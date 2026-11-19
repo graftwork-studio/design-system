@@ -56,6 +56,6 @@ pnpm --filter @graftwork/docs dev        # Storybook on http://localhost:6006
 
 Snapshots are rendered on Linux in the Playwright container, so baselines come from CI rather than your machine. When a change alters how something looks:
 
-1. Run the **Update visual snapshots** workflow on your branch.
+1. Add the `update-snapshots` label to your pull request. This runs the **Update visual snapshots** workflow.
 2. Download its `visual-snapshots` artifact and check the images.
 3. Commit them to `apps/docs/tests/__screenshots__`.

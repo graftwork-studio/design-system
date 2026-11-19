@@ -1,10 +1,13 @@
 name: Update visual snapshots
 
-# Snapshots must be rendered on Linux, in the same container CI uses. Run this
-# on a branch, download the "visual-snapshots" artifact, review the images and
-# commit them to apps/docs/tests/__screenshots__.
+# Snapshots must be rendered on Linux, in the same container CI uses. Add the
+# "update-snapshots" label to a pull request (or run this workflow by hand),
+# download the "visual-snapshots" artifact, review the images and commit them
+# to apps/docs/tests/__screenshots__.
 on:
   workflow_dispatch:
+  pull_request:
+    types: [labeled]
 
 permissions:
   contents: read
@@ -12,6 +15,7 @@ permissions:
 jobs:
   update:
     name: Render snapshots
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'update-snapshots'
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.65.1-noble
     steps:
