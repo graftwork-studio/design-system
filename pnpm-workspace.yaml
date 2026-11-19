@@ -1,3 +1,8 @@
 packages:
   - packages/*
   - apps/*
+
+# Install scripts stay off unless a package needs one. esbuild ships prebuilt
+# binaries through optional dependencies, so its postinstall check isn't needed.
+allowBuilds:
+  esbuild: false

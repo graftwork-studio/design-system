@@ -327,6 +327,21 @@
           }
         }
       },
+      "input-invalid": {
+        "$value": "{color.red.900}",
+        "$description": "Border of an invalid field. Always paired with error text and an icon.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      },
       "default": {
         "$value": "{color.neutral.700}",
         "$description": "Dividers and card outlines. Not relied on to identify anything.",

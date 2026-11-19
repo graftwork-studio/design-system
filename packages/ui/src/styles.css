@@ -1,0 +1,108 @@
+/*
+ * @graftwork/ui stylesheet. Apps import it after Tailwind:
+ *
+ *   @import "tailwindcss";
+ *   @import "@graftwork/ui/styles.css";
+ *   @source "../node_modules/@graftwork/ui/dist";
+ */
+@import "@fontsource-variable/noto-sans";
+@import "@graftwork/tokens/css";
+@import "@graftwork/tokens/tailwind.css";
+
+/* WCAG 2.4.13: 2px ring, 2px offset, on :focus-visible. */
+@utility focus-ring {
+  &:focus-visible {
+    outline: var(--gw-focus-ring-width) solid var(--gw-color-focus-ring);
+    outline-offset: var(--gw-focus-ring-offset);
+  }
+}
+
+/* The same ring, for a wrapper whose child receives keyboard focus. */
+@utility focus-ring-within {
+  &:has(:focus-visible) {
+    outline: var(--gw-focus-ring-width) solid var(--gw-color-focus-ring);
+    outline-offset: var(--gw-focus-ring-offset);
+  }
+}
+
+/* WCAG 2.5.5: extends the hit area to at least 44 × 44px without changing the look. */
+@utility hit-area {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, var(--gw-target-min));
+    height: max(100%, var(--gw-target-min));
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Dense data grids in compact density only: 24 × 24px. */
+@utility hit-area-compact {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, var(--gw-target-compact));
+    height: max(100%, var(--gw-target-compact));
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* WCAG 1.4.8: readable prose. 80ch measure, 1.5 line height, wide paragraph spacing. */
+@utility prose {
+  max-width: 80ch;
+  line-height: var(--gw-font-line-height-body);
+
+  & p {
+    margin-block: 0 var(--gw-paragraph-spacing-body);
+  }
+}
+
+@layer base {
+  html {
+    /* WCAG 2.4.12: sticky headers and footers never cover focused elements. */
+    scroll-padding-top: var(--gw-scroll-padding-top);
+    scroll-padding-bottom: var(--gw-scroll-padding-bottom);
+    background-color: var(--gw-color-surface-default);
+    color: var(--gw-color-text-default);
+    font-family: var(--gw-font-family-sans);
+    font-size: 100%;
+    line-height: var(--gw-font-line-height-body);
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-width: 20rem;
+  }
+
+  /* Every focusable element gets a visible ring unless a component draws its own. */
+  :where(:focus-visible) {
+    outline: var(--gw-focus-ring-width) solid var(--gw-color-focus-ring);
+    outline-offset: var(--gw-focus-ring-offset);
+  }
+
+  /* Links are underlined, never identified by colour alone. */
+  a {
+    color: var(--gw-color-text-link);
+    text-decoration-line: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  /* WCAG 2.3.3: only opacity fades remain under reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto;
+      animation-duration: 0ms;
+      animation-iteration-count: 1;
+    }
+  }
+}

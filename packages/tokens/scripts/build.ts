@@ -97,8 +97,10 @@ const tailwindName = (t: TransformedToken): string | undefined => {
       return `--color-${key}`;
     case "radius":
       return `--radius-${key}`;
-    case "space":
-      return `--spacing-${key}`;
+    // Named spacing is not mapped: Tailwind would resolve max-w-sm from --spacing-sm.
+    // The numeric scale is driven by the space.2xs token instead (see --spacing below).
+    case "target":
+      return `--spacing-target-${key}`;
     case "breakpoint":
       return `--breakpoint-${key}`;
     case "font": {
@@ -131,6 +133,8 @@ const tailwind = `${HEADER}
   --breakpoint-*: initial;
   --color-transparent: transparent;
   --color-current: currentColor;
+  /* Spacing utilities (p-4, gap-2 …) are multiples of the space.2xs token, 0.25rem. */
+  --spacing: var(--gw-space-2xs);
 ${themeLines}
 }
 `;
