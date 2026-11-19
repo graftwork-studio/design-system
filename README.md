@@ -23,6 +23,8 @@ Every semantic colour declares a contrast role in `$extensions."studio.graftwork
 | `non-text` | 3:1 |
 | `background`, `decorative` | not checked |
 
+**The focus ring** is checked against every surface rather than against the component it surrounds. It's 2px wide with a 2px offset, so a gap of surface colour always separates it from the component, and it only ever touches the surface. That's exactly what WCAG 2.4.13 measures. (No single colour can be 3:1 against both a white page and a dark filled button.) The validator fails if `color.focus.ring` leaves out any `color.surface.*` token.
+
 ```bash
 pnpm install
 pnpm --filter @graftwork/tokens build      # validates, then builds dist/

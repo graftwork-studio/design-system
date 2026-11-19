@@ -18,6 +18,9 @@ export const THRESHOLDS: Record<Exclude<Role, "background" | "decorative">, numb
 /** The brand colour is for icons, borders, focus rings and decoration. Never text. */
 export const BRAND_HEX = "#2883de";
 
+/** Checked against surfaces only. See the focus-ring rule in checkTheme. */
+export const FOCUS_RING = "color.focus.ring";
+
 export type Failure = { theme: Theme; token: string; message: string };
 export type PairResult = {
   theme: Theme;
@@ -72,6 +75,20 @@ export function checkTheme(theme: Theme, tokens: TransformedToken[]) {
       fail(`resolves to the brand colour ${BRAND_HEX}, which must never be used for text.`);
     }
     if (role === "background" || role === "decorative") continue;
+
+    // The focus ring is 2px with a 2px offset, so a gap of background always sits
+    // between it and the component. It only ever touches surfaces, which is what
+    // WCAG 2.4.13 measures, so it must be checked against every one of them.
+    if (name === FOCUS_RING) {
+      const declared = new Set(on.map((ref) => ref.replace(/^\{|\}$/g, "")));
+      for (const surface of tokens) {
+        const surfaceName = tokenName(surface);
+        if (isSemantic(surface) && surfaceName.startsWith("color.surface.") && !declared.has(surfaceName)) {
+          fail(`must declare every surface it can sit on, but is missing ${surfaceName}.`);
+        }
+      }
+    }
+
     if (on.length === 0) {
       fail(`has role "${role}" but declares no background in "on".`);
       continue;

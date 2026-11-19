@@ -409,7 +409,7 @@
       "$description": "High-contrast theme (light base). focus tokens.",
       "ring": {
         "$value": "{color.neutral.1000}",
-        "$description": "Focus ring. 2px with a 2px offset, so it sits on the surface.",
+        "$description": "Focus ring: 2px wide with a 2px offset, so a gap of surface always separates it from the component. Checked at 3:1 against every surface, which is what WCAG 2.4.13 measures.",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
