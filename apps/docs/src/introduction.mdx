@@ -1,0 +1,62 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# Graftwork design system
+
+Components and tokens for Graftwork apps. Every component here is built on shadcn/ui with React Aria, and styled only with our semantic tokens.
+
+## Using it in an app
+
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@import "@graftwork/ui/styles.css";
+@source "../node_modules/@graftwork/ui/dist";
+```
+
+```tsx
+import { Button } from "@graftwork/ui";
+
+<Button variant="primary" size="md">Save changes</Button>;
+```
+
+Apps never run `shadcn add`. If you need something that isn't here, add it to `@graftwork/ui`.
+
+## Tokens in Tailwind
+
+Only semantic tokens are available. Tailwind's default palette has been removed, so classes like `bg-blue-500` don't exist.
+
+| What | Classes |
+| --- | --- |
+| Text | `text-text-default`, `text-text-secondary`, `text-text-link`, `text-text-error` … |
+| Surfaces | `bg-surface-default`, `bg-surface-raised`, `bg-surface-subtle`, `bg-surface-overlay` |
+| Borders | `border-border-default`, `border-border-input` |
+| Radius | `rounded-sm`, `rounded-md` (6px base), `rounded-lg`, `rounded-xl`, `rounded-full` |
+| Type | `text-xs` … `text-4xl`, `leading-body`, `font-sans` |
+| Spacing | Tailwind's numeric scale (`p-4` = 1rem), driven by the `space.2xs` token |
+| Targets | `min-h-target-min` (44px), `hit-area`, `hit-area-compact` |
+| Focus | `focus-ring`, `focus-ring-within` |
+
+## Accessibility built in
+
+- Text is at least 7:1 against its background in every theme, checked when tokens build.
+- Every pointer target has a hit area of at least 44 × 44px.
+- Focus rings are 2px with a 2px offset, on `:focus-visible`, at least 3:1 against every surface.
+- Light, dark and high-contrast themes follow the operating system, and the theme toggle overrides them.
+- Under reduced motion, only opacity fades remain.
+- Charts have a written summary and a table view, and never rely on colour alone.
+
+## Figma naming contract
+
+Component and property names match the Figma library exactly.
+
+| Component | Properties |
+| --- | --- |
+| Button | `variant`: primary, secondary, ghost, destructive · `size`: sm, md, lg · `isDisabled` |
+| Input | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` |
+| Select | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` |
+| Card | CardHeader, CardTitle, CardDescription, CardContent, CardFooter |
+| Table | `density`: comfortable, compact |
+| BarChart | `view`: chart, table |
+| ThemeToggle | `value`: system, light, dark, high-contrast |
