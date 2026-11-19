@@ -1,0 +1,214 @@
+{
+  "radius": {
+    "$type": "dimension",
+    "sm": {
+      "$value": "{radius.two-thirds}"
+    },
+    "md": {
+      "$value": "{radius.base}",
+      "$description": "The base radius. Inputs, buttons, selects."
+    },
+    "lg": {
+      "$value": "{radius.five-thirds}",
+      "$description": "Cards and panels."
+    },
+    "xl": {
+      "$value": "{radius.seven-thirds}",
+      "$description": "Dialogs and large surfaces."
+    },
+    "full": {
+      "$value": "{radius.pill}"
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "3xs": {
+      "$value": "{size.0-5}"
+    },
+    "2xs": {
+      "$value": "{size.1}"
+    },
+    "xs": {
+      "$value": "{size.2}"
+    },
+    "sm": {
+      "$value": "{size.3}"
+    },
+    "md": {
+      "$value": "{size.4}"
+    },
+    "lg": {
+      "$value": "{size.6}"
+    },
+    "xl": {
+      "$value": "{size.8}"
+    },
+    "2xl": {
+      "$value": "{size.12}"
+    },
+    "3xl": {
+      "$value": "{size.16}"
+    }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "sans": {
+        "$value": [
+          "Noto Sans Variable",
+          "Noto Sans",
+          "system-ui",
+          "sans-serif"
+        ],
+        "$description": "Loaded from @fontsource-variable/noto-sans. Never from Google's servers."
+      },
+      "mono": {
+        "$value": [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace"
+        ]
+      }
+    },
+    "size": {
+      "$type": "dimension",
+      "xs": {
+        "$value": "{font-size.075}"
+      },
+      "sm": {
+        "$value": "{font-size.0875}"
+      },
+      "md": {
+        "$value": "{font-size.100}",
+        "$description": "Body text."
+      },
+      "lg": {
+        "$value": "{font-size.1125}"
+      },
+      "xl": {
+        "$value": "{font-size.125}"
+      },
+      "2xl": {
+        "$value": "{font-size.150}",
+        "$description": "Large text threshold (24px) for contrast."
+      },
+      "3xl": {
+        "$value": "{font-size.1875}"
+      },
+      "4xl": {
+        "$value": "{font-size.225}"
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": {
+        "$value": "{font-weight.400}"
+      },
+      "medium": {
+        "$value": "{font-weight.500}"
+      },
+      "semibold": {
+        "$value": "{font-weight.600}"
+      },
+      "bold": {
+        "$value": "{font-weight.700}"
+      }
+    },
+    "line-height": {
+      "$type": "number",
+      "body": {
+        "$value": "{line-height.150}",
+        "$description": "WCAG 1.4.8: at least 1.5 for body text."
+      },
+      "heading": {
+        "$value": "{line-height.125}"
+      },
+      "ui": {
+        "$value": "{line-height.135}"
+      }
+    }
+  },
+  "paragraph-spacing": {
+    "$type": "dimension",
+    "$description": "WCAG 1.4.8: at least 1.5 × the 1.5 line height of body text (2.25rem at 1rem).",
+    "body": {
+      "$value": {
+        "value": 2.25,
+        "unit": "rem"
+      }
+    }
+  },
+  "focus": {
+    "ring-width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "WCAG 2.4.13: at least 2px."
+    },
+    "ring-offset": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    }
+  },
+  "target": {
+    "$type": "dimension",
+    "min": {
+      "$value": "{size.11}",
+      "$description": "WCAG 2.5.5: 44 × 44px hit area."
+    },
+    "compact": {
+      "$value": "{size.6}",
+      "$description": "Dense data grids in compact density only: 24 × 24px."
+    }
+  },
+  "scroll-padding": {
+    "$type": "dimension",
+    "$description": "WCAG 2.4.12: keeps focused elements clear of sticky headers and footers.",
+    "top": {
+      "$value": "{size.18}"
+    },
+    "bottom": {
+      "$value": "{size.16}"
+    }
+  },
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "$description": "Become 0 under prefers-reduced-motion: reduce, except fade.",
+      "fast": {
+        "$value": "{duration.100}"
+      },
+      "normal": {
+        "$value": "{duration.200}"
+      },
+      "slow": {
+        "$value": "{duration.300}"
+      },
+      "fade": {
+        "$value": "{duration.150}",
+        "$description": "Opacity fades only. Kept under reduced motion."
+      }
+    }
+  },
+  "breakpoint": {
+    "$type": "dimension",
+    "sm": {
+      "$value": "{viewport.640}"
+    },
+    "md": {
+      "$value": "{viewport.768}"
+    },
+    "lg": {
+      "$value": "{viewport.1024}"
+    },
+    "xl": {
+      "$value": "{viewport.1280}"
+    }
+  }
+}

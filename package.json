@@ -1,0 +1,20 @@
+{
+  "name": "graftwork-design-system",
+  "private": true,
+  "description": "Graftwork design system monorepo",
+  "license": "MIT",
+  "packageManager": "pnpm@12.21.0",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "tokens:validate": "pnpm --filter @graftwork/tokens validate"
+  },
+  "devDependencies": {
+    "turbo": "2.11.13",
+    "typescript": "7.0.2"
+  }
+}
