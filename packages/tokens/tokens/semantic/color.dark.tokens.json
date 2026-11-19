@@ -1,0 +1,487 @@
+{
+  "color": {
+    "surface": {
+      "$type": "color",
+      "$description": "Dark theme. surface tokens.",
+      "default": {
+        "$value": "{color.neutral.950}",
+        "$description": "Page background.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "background"
+          }
+        }
+      },
+      "raised": {
+        "$value": "{color.neutral.900}",
+        "$description": "Cards and panels.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "background"
+          }
+        }
+      },
+      "subtle": {
+        "$value": "{color.neutral.850}",
+        "$description": "Table headers, wells, zebra rows.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "background"
+          }
+        }
+      },
+      "overlay": {
+        "$value": "{color.neutral.900}",
+        "$description": "Popovers, menus and dialogs.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "background"
+          }
+        }
+      }
+    },
+    "action": {
+      "$type": "color",
+      "$description": "Dark theme. action tokens.",
+      "primary": {
+        "bg": {
+          "$value": "{color.brand.400}",
+          "$description": "Filled primary button.",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        },
+        "bg-hover": {
+          "$value": "{color.brand.300}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      },
+      "secondary": {
+        "bg": {
+          "$value": "{color.neutral.900}",
+          "$description": "Secondary button.",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        },
+        "bg-hover": {
+          "$value": "{color.neutral.850}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      },
+      "ghost": {
+        "bg-hover": {
+          "$value": "{color.neutral.850}",
+          "$description": "Ghost button hover.",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      },
+      "destructive": {
+        "bg": {
+          "$value": "{color.red.400}",
+          "$description": "Filled destructive button.",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        },
+        "bg-hover": {
+          "$value": "{color.red.300}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "$type": "color",
+      "$description": "Dark theme. status tokens.",
+      "success": {
+        "bg": {
+          "$value": "{color.green.950}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      },
+      "warning": {
+        "bg": {
+          "$value": "{color.amber.950}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      },
+      "error": {
+        "bg": {
+          "$value": "{color.red.950}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      },
+      "info": {
+        "bg": {
+          "$value": "{color.brand.950}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "background"
+            }
+          }
+        }
+      }
+    },
+    "text": {
+      "$type": "color",
+      "$description": "Dark theme. text tokens.",
+      "default": {
+        "$value": "{color.neutral.50}",
+        "$description": "Body and heading text.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}",
+              "{color.action.secondary.bg}",
+              "{color.action.secondary.bg-hover}",
+              "{color.action.ghost.bg-hover}",
+              "{color.status.success.bg}",
+              "{color.status.warning.bg}",
+              "{color.status.error.bg}",
+              "{color.status.info.bg}"
+            ]
+          }
+        }
+      },
+      "secondary": {
+        "$value": "{color.neutral.300}",
+        "$description": "Supporting text. Still 7:1.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      },
+      "placeholder": {
+        "$value": "{color.neutral.300}",
+        "$description": "Input placeholders. Still 7:1; never the only label.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      },
+      "link": {
+        "$value": "{color.brand.300}",
+        "$description": "Links. Always underlined as well.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      },
+      "on-primary": {
+        "$value": "{color.neutral.950}",
+        "$description": "Labels on filled primary buttons.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.action.primary.bg}",
+              "{color.action.primary.bg-hover}"
+            ]
+          }
+        }
+      },
+      "on-destructive": {
+        "$value": "{color.neutral.950}",
+        "$description": "Labels on filled destructive buttons.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.action.destructive.bg}",
+              "{color.action.destructive.bg-hover}"
+            ]
+          }
+        }
+      },
+      "success": {
+        "$value": "{color.green.300}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.status.success.bg}"
+            ]
+          }
+        }
+      },
+      "warning": {
+        "$value": "{color.amber.300}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.status.warning.bg}"
+            ]
+          }
+        }
+      },
+      "error": {
+        "$value": "{color.red.300}",
+        "$description": "Error messages, linked to their field.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.status.error.bg}"
+            ]
+          }
+        }
+      },
+      "info": {
+        "$value": "{color.brand.300}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.status.info.bg}"
+            ]
+          }
+        }
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$description": "Dark theme. border tokens.",
+      "input": {
+        "$value": "{color.neutral.500}",
+        "$description": "Input, select and checkbox borders.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      },
+      "default": {
+        "$value": "{color.neutral.800}",
+        "$description": "Dividers and card outlines. Not relied on to identify anything.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "decorative"
+          }
+        }
+      },
+      "status": {
+        "success": {
+          "$value": "{color.green.700}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "decorative"
+            }
+          }
+        },
+        "warning": {
+          "$value": "{color.amber.700}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "decorative"
+            }
+          }
+        },
+        "error": {
+          "$value": "{color.red.700}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "decorative"
+            }
+          }
+        },
+        "info": {
+          "$value": "{color.brand.700}",
+          "$extensions": {
+            "studio.graftwork": {
+              "role": "decorative"
+            }
+          }
+        }
+      }
+    },
+    "icon": {
+      "$type": "color",
+      "$description": "Dark theme. icon tokens.",
+      "default": {
+        "$value": "{color.neutral.400}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      },
+      "brand": {
+        "$value": "{color.brand.500}",
+        "$description": "The brand colour. Icons, borders and decoration; never text.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      }
+    },
+    "focus": {
+      "$type": "color",
+      "$description": "Dark theme. focus tokens.",
+      "ring": {
+        "$value": "{color.brand.400}",
+        "$description": "Focus ring: 2px wide with a 2px offset, so a gap of surface always separates it from the component. Checked at 3:1 against every surface, which is what WCAG 2.4.13 measures.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}",
+              "{color.surface.subtle}",
+              "{color.surface.overlay}"
+            ]
+          }
+        }
+      }
+    },
+    "chart": {
+      "$type": "color",
+      "$description": "Dark theme. chart tokens.",
+      "series-1": {
+        "$value": "{color.brand.400}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}"
+            ]
+          }
+        }
+      },
+      "series-2": {
+        "$value": "{color.amber.400}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}"
+            ]
+          }
+        }
+      },
+      "series-3": {
+        "$value": "{color.neutral.400}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}"
+            ]
+          }
+        }
+      },
+      "series-4": {
+        "$value": "{color.green.400}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}"
+            ]
+          }
+        }
+      },
+      "grid": {
+        "$value": "{color.neutral.800}",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "decorative"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,273 @@
+{
+  "size": {
+    "$type": "dimension",
+    "0": {
+      "$value": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "0-5": {
+      "$value": {
+        "value": 0.125,
+        "unit": "rem"
+      }
+    },
+    "1": {
+      "$value": {
+        "value": 0.25,
+        "unit": "rem"
+      }
+    },
+    "1-5": {
+      "$value": {
+        "value": 0.375,
+        "unit": "rem"
+      }
+    },
+    "2": {
+      "$value": {
+        "value": 0.5,
+        "unit": "rem"
+      }
+    },
+    "3": {
+      "$value": {
+        "value": 0.75,
+        "unit": "rem"
+      }
+    },
+    "4": {
+      "$value": {
+        "value": 1,
+        "unit": "rem"
+      }
+    },
+    "5": {
+      "$value": {
+        "value": 1.25,
+        "unit": "rem"
+      }
+    },
+    "6": {
+      "$value": {
+        "value": 1.5,
+        "unit": "rem"
+      }
+    },
+    "8": {
+      "$value": {
+        "value": 2,
+        "unit": "rem"
+      }
+    },
+    "10": {
+      "$value": {
+        "value": 2.5,
+        "unit": "rem"
+      }
+    },
+    "11": {
+      "$value": {
+        "value": 2.75,
+        "unit": "rem"
+      }
+    },
+    "12": {
+      "$value": {
+        "value": 3,
+        "unit": "rem"
+      }
+    },
+    "16": {
+      "$value": {
+        "value": 4,
+        "unit": "rem"
+      }
+    },
+    "18": {
+      "$value": {
+        "value": 4.5,
+        "unit": "rem"
+      }
+    }
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "Derived from a 6px base radius.",
+    "base": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      }
+    },
+    "half": {
+      "$value": {
+        "value": 3,
+        "unit": "px"
+      }
+    },
+    "two-thirds": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "five-thirds": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      }
+    },
+    "seven-thirds": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      }
+    },
+    "pill": {
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      }
+    }
+  },
+  "font-size": {
+    "$type": "dimension",
+    "075": {
+      "$value": {
+        "value": 0.75,
+        "unit": "rem"
+      }
+    },
+    "0875": {
+      "$value": {
+        "value": 0.875,
+        "unit": "rem"
+      }
+    },
+    "100": {
+      "$value": {
+        "value": 1,
+        "unit": "rem"
+      }
+    },
+    "1125": {
+      "$value": {
+        "value": 1.125,
+        "unit": "rem"
+      }
+    },
+    "125": {
+      "$value": {
+        "value": 1.25,
+        "unit": "rem"
+      }
+    },
+    "150": {
+      "$value": {
+        "value": 1.5,
+        "unit": "rem"
+      }
+    },
+    "1875": {
+      "$value": {
+        "value": 1.875,
+        "unit": "rem"
+      }
+    },
+    "225": {
+      "$value": {
+        "value": 2.25,
+        "unit": "rem"
+      }
+    }
+  },
+  "line-height": {
+    "$type": "number",
+    "125": {
+      "$value": 1.25
+    },
+    "135": {
+      "$value": 1.35
+    },
+    "150": {
+      "$value": 1.5
+    }
+  },
+  "font-weight": {
+    "$type": "fontWeight",
+    "400": {
+      "$value": 400
+    },
+    "500": {
+      "$value": 500
+    },
+    "600": {
+      "$value": 600
+    },
+    "700": {
+      "$value": 700
+    }
+  },
+  "duration": {
+    "$type": "duration",
+    "0": {
+      "$value": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+    "100": {
+      "$value": {
+        "value": 100,
+        "unit": "ms"
+      }
+    },
+    "150": {
+      "$value": {
+        "value": 150,
+        "unit": "ms"
+      }
+    },
+    "200": {
+      "$value": {
+        "value": 200,
+        "unit": "ms"
+      }
+    },
+    "300": {
+      "$value": {
+        "value": 300,
+        "unit": "ms"
+      }
+    }
+  },
+  "viewport": {
+    "$type": "dimension",
+    "640": {
+      "$value": {
+        "value": 40,
+        "unit": "rem"
+      }
+    },
+    "768": {
+      "$value": {
+        "value": 48,
+        "unit": "rem"
+      }
+    },
+    "1024": {
+      "$value": {
+        "value": 64,
+        "unit": "rem"
+      }
+    },
+    "1280": {
+      "$value": {
+        "value": 80,
+        "unit": "rem"
+      }
+    }
+  }
+}
