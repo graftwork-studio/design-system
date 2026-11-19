@@ -45,8 +45,12 @@ for (const story of stories) {
       for (const width of WIDTHS) {
         await page.setViewportSize({ width, height: 800 });
         // WCAG 1.4.10: no horizontal scrolling of the page at any width, down to 320px.
-        const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-        expect(overflow, `page scrolls sideways at ${width}px`).toBeLessThanOrEqual(0);
+        // Polled, because charts resize through a ResizeObserver a moment after the viewport changes.
+        await expect
+          .poll(() => page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth), {
+            message: `page scrolls sideways at ${width}px`,
+          })
+          .toBeLessThanOrEqual(0);
         await expect(page.locator("#storybook-root")).toHaveScreenshot(`${story.id}--${theme.name}--${width}.png`);
       }
     });
