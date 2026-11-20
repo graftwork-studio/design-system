@@ -55,12 +55,12 @@
       "$type": "fontFamily",
       "sans": {
         "$value": [
-          "Noto Sans Variable",
-          "Noto Sans",
+          "Geist Variable",
+          "Geist",
           "system-ui",
           "sans-serif"
         ],
-        "$description": "Loaded from @fontsource-variable/noto-sans. Never from Google's servers."
+        "$description": "Loaded from @fontsource-variable/geist. Never from Google's servers."
       },
       "mono": {
         "$value": [
@@ -81,7 +81,11 @@
       },
       "md": {
         "$value": "{font-size.100}",
-        "$description": "Body text."
+        "$description": "Form controls and buttons. Stays at 16px so iOS Safari doesn't zoom into inputs on focus."
+      },
+      "body": {
+        "$value": "{font-size.0875}",
+        "$description": "Body text: 14px at the browser default. Applied to body; the html root stays at 100% so rem follows the user's font setting."
       },
       "lg": {
         "$value": "{font-size.1125}"

@@ -45,7 +45,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@fontsource-variable/noto-sans": "5.3.0",
+    "@fontsource-variable/geist": "5.3.0",
     "@graftwork/tokens": "workspace:^",
     "class-variance-authority": "0.7.1",
     "cn": "0.5.2",
