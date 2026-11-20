@@ -1,5 +1,16 @@
 # @graftwork/ui
 
+## 1.1.0
+
+### Minor Changes
+
+- [#11](https://github.com/graftwork-studio/design-system/pull/11) [`9a0027d`](https://github.com/graftwork-studio/design-system/commit/9a0027dd8e526ade08587b8912227dd7b25e209e) Thanks [@david-kenny](https://github.com/david-kenny)! - Change the brand colour from blue (`#2883de`) to purple (`#8e3fd6`), regenerating the brand scale from it. This is a temporary change to test that a design-system release reaches apps through Renovate. A patch release will revert it.
+
+### Patch Changes
+
+- Updated dependencies [[`9a0027d`](https://github.com/graftwork-studio/design-system/commit/9a0027dd8e526ade08587b8912227dd7b25e209e)]:
+  - @graftwork/tokens@1.1.0
+
 ## 1.0.1
 
 ### Patch Changes
