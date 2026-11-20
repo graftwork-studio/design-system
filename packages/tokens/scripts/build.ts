@@ -119,7 +119,10 @@ const tailwindName = (t: TransformedToken): string | undefined => {
 const themeLines = resolved.light
   .map((t) => [tailwindName(t), t] as const)
   .filter((pair): pair is readonly [string, TransformedToken] => pair[0] !== undefined)
-  .map(([name, t]) => `  ${name}: ${v(t)};`)
+  // Breakpoints end up inside @media queries, where CSS variables don't work,
+  // so they're written as literal values. Everything else points at the variable
+  // so it can switch with the theme.
+  .map(([name, t]) => `  ${name}: ${t.path[0] === "breakpoint" ? String(t.$value) : v(t)};`)
   .join("\n");
 
 const tailwind = `${HEADER}
