@@ -31,8 +31,8 @@
         }
       },
       "overlay": {
-        "$value": "{color.neutral.900}",
-        "$description": "Popovers, menus and dialogs.",
+        "$value": "{color.neutral.850}",
+        "$description": "Popovers, menus and dialogs. A step lighter than raised in the dark theme, so they sit above the dimmed page.",
         "$extensions": {
           "studio.graftwork": {
             "role": "background"
@@ -44,8 +44,8 @@
       "$type": "color",
       "$description": "Dark theme. overlay tokens.",
       "scrim": {
-        "$value": "{color.neutral.950}",
-        "$description": "Behind modal dialogs and sheets. Use at reduced opacity, e.g. bg-overlay-scrim/60. Never text or a surface.",
+        "$value": "{color.neutral.1000}",
+        "$description": "Behind modal dialogs and sheets. Use at reduced opacity, e.g. bg-overlay-scrim/60. Never text or a surface. Black in the dark theme: the page is already near-black, so a scrim in the page's own colour wouldn't dim it.",
         "$extensions": {
           "studio.graftwork": {
             "role": "decorative"
