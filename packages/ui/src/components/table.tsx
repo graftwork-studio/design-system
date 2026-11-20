@@ -45,7 +45,7 @@ export function Table({ className, density = "comfortable", ...props }: TablePro
         <TablePrimitive
           data-slot="table"
           data-density={density}
-          className={cn("w-full border-collapse text-left text-md text-text-default", className)}
+          className={cn("w-full border-collapse text-left text-body text-text-default", className)}
           {...props}
         />
       </div>
