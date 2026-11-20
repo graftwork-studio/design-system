@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared Renovate preset for Graftwork apps. Extend it with github>graftwork-studio/design-system//renovate/app",
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "platformAutomerge": true,
+  "automergeType": "pr",
+  "packageRules": [
+    {
+      "description": "Minor and patch updates merge themselves once every required check passes.",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "description": "Major updates wait for David.",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["major"]
+    },
+    {
+      "description": "One pull request per design-system release.",
+      "matchPackageNames": ["@graftwork/{/,}**"],
+      "groupName": "Graftwork design system",
+      "groupSlug": "graftwork-design-system"
+    }
+  ]
+}
