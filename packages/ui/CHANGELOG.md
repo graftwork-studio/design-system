@@ -1,5 +1,21 @@
 # @graftwork/ui
 
+## 1.3.0
+
+### Minor Changes
+
+- [#25](https://github.com/graftwork-studio/design-system/pull/25) [`33b8015`](https://github.com/graftwork-studio/design-system/commit/33b80153bfad7861453ded91710a7d8d542ae477) Thanks [@david-kenny](https://github.com/david-kenny)! - Controls now use the 14px body size by default.
+  
+  - Button and Toggle text is 12px at `sm`, 14px at `md` and 16px at `lg` (was 14, 16 and 18).
+  - Input, Textarea, InputGroup and Combobox are 14px from the `md` breakpoint (768px) up, and 16px below it so iPhone Safari doesn't zoom in when they're tapped.
+  - The Select trigger, Select and Combobox options, DropdownMenu items, Accordion triggers and Tabs are 14px everywhere.
+  - Pagination links keep 14px text at the small button height.
+
+### Patch Changes
+
+- Updated dependencies [[`33b8015`](https://github.com/graftwork-studio/design-system/commit/33b80153bfad7861453ded91710a7d8d542ae477)]:
+  - @graftwork/tokens@1.3.0
+
 ## 1.2.0
 
 ### Minor Changes
