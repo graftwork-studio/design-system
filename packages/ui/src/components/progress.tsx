@@ -23,14 +23,14 @@ export type ProgressProps = Omit<ProgressBarPrimitiveProps, "className" | "style
 
 export function Progress({ label, showValue = true, className, ...props }: ProgressProps) {
   return (
-    <ProgressBar data-slot="progress" className={cn("flex w-full flex-col gap-1", className)} {...props}>
+    <ProgressBar data-slot="progress" className={cn("flex w-full flex-col gap-2", className)} {...props}>
       {({ percentage, valueText, isIndeterminate }) => (
         <>
           <div className="flex items-baseline justify-between gap-4">
             <FieldLabel>{label}</FieldLabel>
             {showValue && !isIndeterminate ? <span className="text-sm text-text-secondary tabular-nums">{valueText}</span> : null}
           </div>
-          <div className="relative h-2 w-full overflow-hidden rounded-full bg-surface-subtle outline outline-1 -outline-offset-1 outline-border-input">
+          <div className="relative h-1 w-full overflow-hidden rounded-full bg-surface-subtle outline outline-1 -outline-offset-1 outline-border-input">
             <div
               data-slot="progress-fill"
               className={cn(

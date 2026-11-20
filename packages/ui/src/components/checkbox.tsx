@@ -21,13 +21,13 @@ import { FieldDescription, FieldErrorText, FieldLabel } from "./field.js";
 
 /** The row a checkbox, radio or switch sits in. The whole row is the label, so the hit area is the full row. */
 export const selectionRow = [
-  "group/selection flex min-h-target-min cursor-pointer items-center gap-3 text-body text-text-default",
+  "group/selection hit-area flex cursor-pointer items-center gap-2 text-body text-text-default",
   "data-disabled:cursor-not-allowed data-disabled:opacity-50",
 ].join(" ");
 
 /** The box or circle itself. Focus is shown on the indicator, which is what the keyboard user is operating. */
 export const selectionIndicator = [
-  "flex shrink-0 items-center justify-center border-2 border-border-input bg-surface-default text-text-on-primary",
+  "flex shrink-0 items-center justify-center border border-border-input bg-surface-default text-text-on-primary",
   "transition-colors duration-(--gw-motion-duration-fast)",
   "group-data-focus-visible/selection:focus-ring-drawn group-data-invalid/selection:border-border-input-invalid",
 ].join(" ");
@@ -47,15 +47,15 @@ export function Checkbox({ className, children, ...props }: CheckboxProps) {
             data-slot="checkbox-indicator"
             className={cn(
               selectionIndicator,
-              "size-5 rounded-sm",
+              "size-4 rounded-sm",
               "group-data-selected/selection:border-action-primary-bg group-data-selected/selection:bg-action-primary-bg",
               "group-data-indeterminate/selection:border-action-primary-bg group-data-indeterminate/selection:bg-action-primary-bg",
             )}
           >
             {isIndeterminate ? (
-              <MinusIcon aria-hidden className="size-4" strokeWidth={3} />
+              <MinusIcon aria-hidden className="size-3.5" strokeWidth={3} />
             ) : isSelected ? (
-              <CheckIcon aria-hidden className="size-4" strokeWidth={3} />
+              <CheckIcon aria-hidden className="size-3.5" strokeWidth={3} />
             ) : null}
           </span>
           <span>{label}</span>
@@ -77,13 +77,13 @@ export type CheckboxGroupProps = Omit<CheckboxGroupPrimitiveProps, "className" |
 
 export function CheckboxGroup({ label, description, errorMessage, className, children, ...props }: CheckboxGroupProps) {
   return (
-    <CheckboxGroupPrimitive data-slot="checkbox-group" className={cn("flex flex-col gap-1", className)} {...props}>
+    <CheckboxGroupPrimitive data-slot="checkbox-group" className={cn("flex flex-col gap-2", className)} {...props}>
       <FieldLabel elementType="span">
         {label}
         {props.isRequired ? <span className="text-text-secondary"> (required)</span> : null}
       </FieldLabel>
       {description ? <FieldDescription>{description}</FieldDescription> : null}
-      <div className="flex flex-col">{children}</div>
+      <div className="flex flex-col gap-3">{children}</div>
       <FieldErrorText>{errorMessage}</FieldErrorText>
     </CheckboxGroupPrimitive>
   );

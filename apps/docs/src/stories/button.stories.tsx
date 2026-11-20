@@ -49,7 +49,7 @@ export const Sizes: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    // Every size keeps a 44 × 44px hit area, even when it looks smaller.
+    // Every size keeps a hit area of at least 24 × 24px (WCAG 2.5.8).
     for (const button of within(canvasElement).getAllByRole("button")) {
       await expectHitArea(button);
     }

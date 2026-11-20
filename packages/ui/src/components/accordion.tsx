@@ -56,7 +56,7 @@ export function AccordionTrigger({ children, level = 3, className }: AccordionTr
         slot="trigger"
         data-slot="accordion-trigger"
         className={cn(
-          "focus-ring flex min-h-target-min flex-1 cursor-pointer items-center justify-between gap-4 py-3 text-start text-body font-medium text-text-default",
+          "focus-ring flex flex-1 cursor-pointer items-center justify-between gap-4 py-2.5 text-start text-body font-medium text-text-default",
           "hover:underline data-disabled:cursor-not-allowed data-disabled:opacity-50",
           className,
         )}
@@ -76,7 +76,7 @@ export type AccordionContentProps = Omit<DisclosurePanelProps, "className" | "st
 export function AccordionContent({ className, children, ...props }: AccordionContentProps) {
   return (
     <DisclosurePanel data-slot="accordion-content" {...props}>
-      <div className={cn("pb-4 text-body text-text-default", className)}>{children}</div>
+      <div className={cn("pb-2.5 text-body text-text-default", className)}>{children}</div>
     </DisclosurePanel>
   );
 }
