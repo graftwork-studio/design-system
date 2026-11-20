@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
-  # The release workflow starts this on the Version Packages pull request.
+  # For running CI by hand on any branch.
   workflow_dispatch:
 
 permissions:
