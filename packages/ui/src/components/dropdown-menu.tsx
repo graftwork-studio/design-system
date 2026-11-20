@@ -63,7 +63,7 @@ export function DropdownMenuContent<T extends object>({
 }
 
 const item = [
-  "group/item flex min-h-target-min cursor-pointer items-center gap-2 rounded-sm px-3 text-md text-text-default outline-none",
+  "group/item flex min-h-target-min cursor-pointer items-center gap-2 rounded-sm px-3 text-body text-text-default outline-none",
   "data-focused:bg-action-ghost-bg-hover",
   "data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:-outline-offset-2 data-focus-visible:outline-focus-ring",
   "data-disabled:cursor-not-allowed data-disabled:opacity-50",

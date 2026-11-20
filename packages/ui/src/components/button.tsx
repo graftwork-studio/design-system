@@ -34,9 +34,9 @@ export const buttonVariants = cva(
           "bg-action-destructive-bg text-text-on-destructive hover:bg-action-destructive-bg-hover data-pressed:bg-action-destructive-bg-hover",
       },
       size: {
-        sm: "h-8 px-3 text-sm [&_svg]:size-4",
-        md: "h-10 px-4 text-md [&_svg]:size-4",
-        lg: "h-11 px-6 text-lg [&_svg]:size-5",
+        sm: "h-8 px-3 text-xs [&_svg]:size-4",
+        md: "h-10 px-4 text-body [&_svg]:size-4",
+        lg: "h-11 px-6 text-md [&_svg]:size-5",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },

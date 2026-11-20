@@ -19,6 +19,8 @@ export const Default: Story = {
     await expect(input).toHaveFocus();
     await expectFocusRing(input);
     await expectHitArea(input);
+    // 14px like body text from the md breakpoint (768px) up, 16px below it so iPhone Safari doesn't zoom in.
+    await expect(getComputedStyle(input).fontSize).toBe(window.innerWidth >= 768 ? "14px" : "16px");
     await userEvent.type(input, "Atlas");
     await expect(input).toHaveValue("Atlas");
   },

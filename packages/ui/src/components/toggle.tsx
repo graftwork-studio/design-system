@@ -33,9 +33,9 @@ export const toggleVariants = cva(
         secondary: "border-border-input bg-action-secondary-bg",
       },
       size: {
-        sm: "h-8 min-w-8 px-2 text-sm [&_svg]:size-4",
-        md: "h-10 min-w-10 px-3 text-md [&_svg]:size-4",
-        lg: "h-11 min-w-11 px-4 text-lg [&_svg]:size-5",
+        sm: "h-8 min-w-8 px-2 text-xs [&_svg]:size-4",
+        md: "h-10 min-w-10 px-3 text-body [&_svg]:size-4",
+        lg: "h-11 min-w-11 px-4 text-md [&_svg]:size-5",
       },
     },
     defaultVariants: { variant: "ghost", size: "md" },

@@ -81,11 +81,11 @@
       },
       "md": {
         "$value": "{font-size.100}",
-        "$description": "Form controls and buttons. Stays at 16px so iOS Safari doesn't zoom into inputs on focus."
+        "$description": "Text fields below the md breakpoint, so iOS Safari doesn't zoom in on focus, and large buttons."
       },
       "body": {
         "$value": "{font-size.0875}",
-        "$description": "Body text: 14px at the browser default. Applied to body; the html root stays at 100% so rem follows the user's font setting."
+        "$description": "Body text and the default size for controls: 14px at the browser default. Applied to body; the html root stays at 100% so rem follows the user's font setting."
       },
       "lg": {
         "$value": "{font-size.1125}"

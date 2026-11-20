@@ -62,7 +62,8 @@ export function Pagination({
       aria-current={extra.current ? "page" : undefined}
       className={cn(
         buttonVariants({ variant: extra.current ? "primary" : "ghost", size: "sm" }),
-        "min-w-8 px-2 no-underline",
+        // Small button height, but body-size text: page numbers shouldn't shrink to 12px.
+        "min-w-8 px-2 text-body no-underline",
         !extra.current && "text-text-default",
       )}
     >

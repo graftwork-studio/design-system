@@ -49,7 +49,9 @@ export function FieldErrorText({ children, className }: { children?: React.React
 }
 
 export const fieldControl = [
-  "w-full min-w-0 rounded-md border border-border-input bg-surface-default px-3 text-md text-text-default",
+  // 14px like body text, but 16px below the md breakpoint: iOS Safari zooms into
+  // text fields under 16px. Select overrides this, as it isn't a text field.
+  "w-full min-w-0 rounded-md border border-border-input bg-surface-default px-3 text-md md:text-body text-text-default",
   "min-h-target-min transition-colors duration-(--gw-motion-duration-fast)",
   "data-invalid:border-2 data-invalid:border-border-input-invalid",
   "data-disabled:cursor-not-allowed data-disabled:opacity-50",
