@@ -3,13 +3,28 @@
   "version": "0.0.0",
   "description": "Graftwork design tokens: CSS variables, a Tailwind v4 theme and JS constants",
   "license": "MIT",
+  "homepage": "https://graftwork-studio.github.io/design-system/",
+  "bugs": {
+    "url": "https://github.com/graftwork-studio/design-system/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "dtcg",
+    "tailwindcss",
+    "accessibility"
+  ],
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/graftwork-studio/design-system.git",
     "directory": "packages/tokens"
   },
-  "files": ["dist", "tokens"],
+  "files": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "dist",
+    "tokens"
+  ],
   "exports": {
     ".": {
       "types": "./dist/js/tokens.d.ts",
@@ -33,5 +48,9 @@
     "style-dictionary": "5.8.0",
     "typescript": "6.0.3",
     "vitest": "5.1.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

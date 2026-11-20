@@ -3,6 +3,18 @@
   "version": "0.0.0",
   "description": "Graftwork React components, built on shadcn/ui with React Aria",
   "license": "MIT",
+  "homepage": "https://graftwork-studio.github.io/design-system/",
+  "bugs": {
+    "url": "https://github.com/graftwork-studio/design-system/issues"
+  },
+  "keywords": [
+    "react",
+    "react-aria",
+    "shadcn",
+    "tailwindcss",
+    "accessibility",
+    "design-system"
+  ],
   "type": "module",
   "repository": {
     "type": "git",
@@ -13,8 +25,9 @@
     "**/*.css"
   ],
   "files": [
-    "dist",
-    "LICENSE"
+    "CHANGELOG.md",
+    "LICENSE",
+    "dist"
   ],
   "exports": {
     ".": {
@@ -56,5 +69,9 @@
     "typescript": "6.0.3",
     "vitest": "5.1.1",
     "vitest-browser-react": "2.3.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

@@ -59,3 +59,13 @@ Snapshots are rendered on Linux in the Playwright container, so baselines come f
 1. Add the `update-snapshots` label to your pull request. This runs the **Update visual snapshots** workflow.
 2. Download its `visual-snapshots` artifact and check the images.
 3. Commit them to `apps/docs/tests/__screenshots__`.
+
+## Releasing
+
+Releases use [Changesets](https://changesets.dev). Both packages share one version.
+
+1. Every pull request that changes a package adds a changeset (`pnpm changeset`). See [`.changeset/README.md`](.changeset/README.md) for what counts as major, minor or patch.
+2. Merging to `main` opens or updates the **Version Packages** pull request. The release workflow starts CI on it, because pull requests opened by GitHub Actions don't trigger workflows by themselves.
+3. Merging **Version Packages** releases. The workflow builds and packs (with no publishing rights), then publishes to npm with provenance, tags, creates GitHub releases and deploys Storybook to <https://graftwork-studio.github.io/design-system/>.
+
+Only David merges **Version Packages**. Publishing uses npm trusted publishing (OIDC) from `release.yml` in the `npm` environment, so no npm token is stored.
