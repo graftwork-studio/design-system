@@ -1,12 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "For test-app only. It is the canary: design-system releases arrive with no delay. Extend it with github>graftwork-studio/design-system//renovate/canary",
-  "extends": ["github>graftwork-studio/design-system//renovate/app"],
+  "description": "For test-app only. It is the canary: design-system releases arrive after 1 hour instead of 3 days. Extend it with github>graftwork-studio/design-system//renovate/canary",
+  "extends": [
+    "github>graftwork-studio/design-system//renovate/app"
+  ],
   "packageRules": [
     {
-      "description": "No minimum release age for the design system in the canary.",
-      "matchPackageNames": ["@graftwork/{/,}**"],
-      "minimumReleaseAge": null
+      "description": "Wait 1 hour for the design system in the canary. With no delay, Renovate could try to install a release before npm was serving its files.",
+      "matchPackageNames": [
+        "@graftwork/{/,}**"
+      ],
+      "minimumReleaseAge": "1 hour"
     }
   ]
 }
