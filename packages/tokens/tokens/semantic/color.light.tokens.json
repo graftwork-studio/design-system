@@ -182,7 +182,7 @@
         }
       },
       "secondary": {
-        "$value": "{color.neutral.600}",
+        "$value": "{color.neutral.500}",
         "$description": "Supporting text. Still 7:1.",
         "$extensions": {
           "studio.graftwork": {
