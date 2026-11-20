@@ -46,7 +46,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      actions: write # to start CI on the pull request (see below)
+      actions: write # to approve the held CI run (see below)
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
@@ -60,16 +60,30 @@ jobs:
         with:
           pr-title: Version Packages
           commit-message: Version Packages
-      # Pull requests opened with GITHUB_TOKEN don't trigger other workflows, so
-      # the required checks would never run. Start CI on its branch explicitly.
-      - name: Run CI on the Version Packages pull request
+      # GitHub holds CI on pull requests opened by GitHub Actions until someone
+      # approves the run, so the required checks never start on their own.
+      # Approve the held run for the pull request's latest commit.
+      - name: Approve CI on the Version Packages pull request
         if: steps.version.outputs.pr-number != ''
         env:
           GH_TOKEN: ${{ github.token }}
           PR: ${{ steps.version.outputs.pr-number }}
         run: |
-          branch=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json headRefName --jq .headRefName)
-          gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$branch"
+          sha=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json headRefOid --jq .headRefOid)
+          ids=""
+          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
+            ids=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$sha&status=action_required" --jq '.workflow_runs[].id')
+            [ -n "$ids" ] && break
+            sleep 10
+          done
+          if [ -z "$ids" ]; then
+            echo "::warning::No held CI run found for $sha. Check the checks on pull request #$PR."
+            exit 0
+          fi
+          for id in $ids; do
+            gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$id/approve"
+            echo "Approved run $id"
+          done
 
   pack:
     name: Build and pack

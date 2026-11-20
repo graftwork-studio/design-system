@@ -65,7 +65,9 @@ Snapshots are rendered on Linux in the Playwright container, so baselines come f
 Releases use [Changesets](https://changesets.dev). Both packages share one version.
 
 1. Every pull request that changes a package adds a changeset (`pnpm changeset`). See [`.changeset/README.md`](.changeset/README.md) for what counts as major, minor or patch.
-2. Merging to `main` opens or updates the **Version Packages** pull request. The release workflow starts CI on it, because pull requests opened by GitHub Actions don't trigger workflows by themselves.
+2. Merging to `main` opens or updates the **Version Packages** pull request. GitHub holds CI on pull requests opened by GitHub Actions until a run is approved, so the release workflow approves it.
 3. Merging **Version Packages** releases. The workflow builds and packs (with no publishing rights), then publishes to npm with provenance, tags, creates GitHub releases and deploys Storybook to <https://graftwork-studio.github.io/design-system/>.
 
 Only David merges **Version Packages**. Publishing uses npm trusted publishing (OIDC) from `release.yml` in the `npm` environment, so no npm token is stored.
+
+The first release (1.0.0) couldn't use trusted publishing, because npm only allows it for packages that already exist. It was published with a temporary token instead. npm now stages any publish made with a token that bypasses two-factor authentication, so 1.0.0 waited for approval on npmjs.com and went out without a provenance attestation. Every later release goes straight out with provenance.
