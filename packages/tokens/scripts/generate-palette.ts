@@ -9,7 +9,9 @@ import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { clampChroma, converter, formatHex, parse, wcagContrast } from "culori";
 
-export const BRAND_HEX = "#2883de";
+import { BRAND_HEX } from "../src/brand.ts";
+
+export { BRAND_HEX };
 
 const toOklch = converter("oklch");
 const toRgb = converter("rgb");
