@@ -5,14 +5,16 @@
  *
  * - no-outline-removal: outline-none/outline-hidden/outline-0 needs a replacement
  *   ring in the same expression (focus-ring, focus-visible:outline…,
- *   data-focus-visible:outline…)
+ *   data-focus-visible:outline…, or focus-ring-drawn under any variant, e.g.
+ *   group-data-focus-visible/selection:focus-ring-drawn)
  * - no-justified-text: text-justify
  * - no-px-font-size: text-[14px] and similar
  * - no-raw-colour: arbitrary colour values such as bg-[#fff] or text-[rgb(…)]
  */
 
 const OUTLINE_REMOVED = /(^|\s)([\w-]+:)*outline-(none|hidden|0)(?=\s|$)/;
-const OUTLINE_REPLACED = /(^|\s)(focus-ring(-within)?|([\w-]+:)*(focus-visible|data-focus-visible|has-focus-visible):outline-\S+)/;
+const OUTLINE_REPLACED =
+  /(^|\s)(focus-ring(-within)?|([\w/-]+:)*focus-ring-drawn|([\w-]+:)*(focus-visible|data-focus-visible|has-focus-visible):outline-\S+)/;
 const JUSTIFIED = /(^|\s)([\w-]+:)*text-justify(?=\s|$)/;
 const PX_FONT = /(^|\s)([\w-]+:)*text-\[\d+(\.\d+)?px\]/;
 const RAW_COLOUR = /(^|\s)([\w-]+:)*(bg|text|border|outline|ring|fill|stroke|decoration|from|to|via|shadow)-\[(#|rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color\()/i;

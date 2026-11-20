@@ -40,6 +40,19 @@
         }
       }
     },
+    "overlay": {
+      "$type": "color",
+      "$description": "Light theme. overlay tokens.",
+      "scrim": {
+        "$value": "{color.neutral.950}",
+        "$description": "Behind modal dialogs and sheets. Use at reduced opacity, e.g. bg-overlay-scrim/60. Never text or a surface.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "decorative"
+          }
+        }
+      }
+    },
     "action": {
       "$type": "color",
       "$description": "Light theme. action tokens.",

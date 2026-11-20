@@ -25,6 +25,15 @@
   }
 }
 
+/*
+ * The same ring, drawn unconditionally. For a part that shows focus on behalf of
+ * its focused parent, e.g. group-data-focus-visible/selection:focus-ring-drawn.
+ */
+@utility focus-ring-drawn {
+  outline: var(--gw-focus-ring-width) solid var(--gw-color-focus-ring);
+  outline-offset: var(--gw-focus-ring-offset);
+}
+
 /* WCAG 2.5.5: extends the hit area to at least 44 × 44px without changing the look. */
 @utility hit-area {
   position: relative;

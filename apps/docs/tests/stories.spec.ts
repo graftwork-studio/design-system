@@ -35,9 +35,9 @@ for (const story of stories) {
       await page.setViewportSize({ width: 1280, height: 800 });
       await openStory(page, story.id, theme);
 
-      // axe, WCAG 2.2 A/AA plus AAA contrast.
+      // axe, WCAG 2.2 A/AA plus AAA contrast. The whole page, not just #storybook-root:
+      // dialogs, menus, popovers and tooltips are rendered outside it.
       const results = await new AxeBuilder({ page })
-        .include("#storybook-root")
         .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "wcag2aaa"])
         .analyze();
       expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
