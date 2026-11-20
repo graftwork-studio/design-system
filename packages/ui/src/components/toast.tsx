@@ -99,7 +99,7 @@ export function Toaster({ "aria-label": label = "Notifications", className }: To
             <ButtonPrimitive
               slot="close"
               aria-label="Dismiss"
-              className="focus-ring hit-area -m-1 flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
+              className="focus-ring hit-area -m-1 flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
             >
               <XIcon aria-hidden className="size-4" />
             </ButtonPrimitive>
