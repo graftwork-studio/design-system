@@ -64,7 +64,7 @@ export function Select<T extends object>({
         data-slot="select-trigger"
         className={cn(
           fieldControl,
-          "focus-ring flex cursor-pointer items-center justify-between gap-2 text-left",
+          "focus-ring flex cursor-pointer items-center justify-between gap-2 text-left text-body",
           "hover:bg-action-secondary-bg-hover",
           "group-data-invalid/select:border-2 group-data-invalid/select:border-border-input-invalid",
         )}
@@ -97,7 +97,7 @@ export function SelectItem({ className, children, ...props }: SelectItemProps) {
       data-slot="select-item"
       textValue={typeof children === "string" ? children : props.textValue}
       className={cn(
-        "flex min-h-target-min cursor-pointer items-center justify-between gap-2 rounded-sm px-3 text-md text-text-default outline-none",
+        "flex min-h-target-min cursor-pointer items-center justify-between gap-2 rounded-sm px-3 text-body text-text-default outline-none",
         "data-focused:bg-action-ghost-bg-hover data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:-outline-offset-2 data-focus-visible:outline-focus-ring",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,

@@ -34,7 +34,7 @@ Only semantic tokens are available. Tailwind's default palette has been removed,
 | Scrim | `bg-overlay-scrim/60`, behind modal dialogs and sheets |
 | Borders | `border-border-default`, `border-border-input` |
 | Radius | `rounded-sm`, `rounded-md` (6px base), `rounded-lg`, `rounded-xl`, `rounded-full` |
-| Type | `text-body` (14px body text), `text-xs` … `text-4xl`, `leading-body`, `font-sans` |
+| Type | `text-body` (14px: body text and the default for controls), `text-xs` … `text-4xl`, `leading-body`, `font-sans`. Text fields are 16px below 768px so iPhone Safari doesn't zoom in on them. |
 | Spacing | Tailwind's numeric scale (`p-4` = 1rem), driven by the `space.2xs` token |
 | Targets | `min-h-target-min` (44px), `hit-area`, `hit-area-compact` |
 | Focus | `focus-ring`, `focus-ring-within`, and `focus-ring-drawn` for a part that shows its parent's focus |
@@ -54,7 +54,7 @@ Component and property names match the Figma library exactly.
 
 | Component | Properties |
 | --- | --- |
-| Button | `variant`: primary, secondary, ghost, destructive · `size`: sm, md, lg · `isDisabled` |
+| Button | `variant`: primary, secondary, ghost, destructive · `size`: sm (12px text), md (14px), lg (16px) · `isDisabled` |
 | Input | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` |
 | Select | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` |
 | Card | CardHeader, CardTitle, CardDescription, CardContent, CardFooter |
@@ -94,5 +94,5 @@ These components aren't in the Figma library yet. Their names and properties are
 | Tabs | `orientation`: horizontal, vertical · TabList, Tab `id`, TabPanel `id` |
 | Textarea | Input's properties, plus `rows` |
 | Toast | `variant`: info, success, warning, error · `title`, `description` |
-| Toggle | `variant`: ghost, secondary · `size`: sm, md, lg · `isSelected` |
+| Toggle | `variant`: ghost, secondary · `size`: sm (12px text), md (14px), lg (16px) · `isSelected` |
 | Tooltip | TooltipContent `placement` |
