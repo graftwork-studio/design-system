@@ -56,7 +56,7 @@ export function Tab({ className, ...props }: TabProps) {
     <TabPrimitive
       data-slot="tab"
       className={cn(
-        "relative flex min-h-target-min cursor-pointer items-center px-4 text-body font-medium whitespace-nowrap text-text-secondary outline-none",
+        "relative flex h-8 cursor-pointer items-center gap-1.5 px-2 text-body font-medium whitespace-nowrap text-text-secondary outline-none",
         "hover:text-text-default data-selected:text-text-default",
         "data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:-outline-offset-2 data-focus-visible:outline-focus-ring",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",

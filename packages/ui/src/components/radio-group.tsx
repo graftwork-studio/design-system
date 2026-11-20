@@ -42,7 +42,7 @@ export function RadioGroup({
     <RadioGroupPrimitive
       data-slot="radio-group"
       orientation={orientation}
-      className={cn("flex flex-col gap-1", className)}
+      className={cn("flex flex-col gap-2", className)}
       {...props}
     >
       <FieldLabel elementType="span">
@@ -50,7 +50,7 @@ export function RadioGroup({
         {props.isRequired ? <span className="text-text-secondary"> (required)</span> : null}
       </FieldLabel>
       {description ? <FieldDescription>{description}</FieldDescription> : null}
-      <div className={cn("flex", orientation === "horizontal" ? "flex-row flex-wrap gap-x-6" : "flex-col")}>
+      <div className={cn("flex", orientation === "horizontal" ? "flex-row flex-wrap gap-x-6 gap-y-3" : "flex-col gap-3")}>
         {children}
       </div>
       <FieldErrorText>{errorMessage}</FieldErrorText>
@@ -71,9 +71,9 @@ export function Radio({ className, children, ...props }: RadioProps) {
         <>
           <span
             data-slot="radio-indicator"
-            className={cn(selectionIndicator, "size-5 rounded-full", "group-data-selected/selection:border-action-primary-bg")}
+            className={cn(selectionIndicator, "size-4 rounded-full", "group-data-selected/selection:border-action-primary-bg")}
           >
-            {isSelected ? <span className="size-2.5 rounded-full bg-action-primary-bg" /> : null}
+            {isSelected ? <span className="size-2 rounded-full bg-action-primary-bg" /> : null}
           </span>
           <span>{label}</span>
         </>

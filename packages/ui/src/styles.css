@@ -34,7 +34,7 @@
   outline-offset: var(--gw-focus-ring-offset);
 }
 
-/* WCAG 2.5.5: extends the hit area to at least 44 × 44px without changing the look. */
+/* WCAG 2.5.8 (AA): extends the hit area to at least 24 × 24px without changing the look. */
 @utility hit-area {
   position: relative;
 
@@ -49,7 +49,7 @@
   }
 }
 
-/* Dense data grids in compact density only: 24 × 24px. */
+/* The same 24 × 24px minimum as hit-area. Kept so existing classes keep working. */
 @utility hit-area-compact {
   position: relative;
 

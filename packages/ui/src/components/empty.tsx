@@ -26,7 +26,7 @@ export function Empty({ icon, title, description, action, level = 2, className, 
     <div
       data-slot="empty"
       className={cn(
-        "flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-border-default px-6 py-12 text-center",
+        "flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-border-default p-6 text-center",
         className,
       )}
       {...props}
@@ -34,7 +34,7 @@ export function Empty({ icon, title, description, action, level = 2, className, 
       {icon ? (
         <span
           aria-hidden
-          className="flex size-12 items-center justify-center rounded-full bg-surface-subtle text-icon-default [&_svg]:size-6"
+          className="flex size-8 items-center justify-center rounded-lg bg-surface-subtle text-icon-default [&_svg]:size-4"
         >
           {icon}
         </span>

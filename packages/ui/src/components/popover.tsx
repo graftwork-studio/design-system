@@ -61,7 +61,7 @@ export function PopoverContent({ className, children, offset = 8, "aria-label": 
       <DialogPrimitive
         data-slot="popover-dialog"
         aria-label={ariaLabel}
-        className={cn("focus-ring flex flex-col gap-3 p-4 text-body", className)}
+        className={cn("focus-ring flex flex-col gap-2.5 p-2.5 text-body", className)}
       >
         {children}
       </DialogPrimitive>

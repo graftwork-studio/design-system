@@ -17,7 +17,7 @@ import { cn } from "../lib/utils.js";
 
 export const buttonVariants = cva(
   [
-    "focus-ring hit-area inline-flex shrink-0 cursor-pointer items-center justify-center gap-2",
+    "focus-ring hit-area inline-flex shrink-0 cursor-pointer items-center justify-center",
     "rounded-md border border-transparent font-medium whitespace-nowrap select-none",
     "transition-colors duration-(--gw-motion-duration-fast)",
     "disabled:cursor-not-allowed disabled:opacity-50",
@@ -34,9 +34,9 @@ export const buttonVariants = cva(
           "bg-action-destructive-bg text-text-on-destructive hover:bg-action-destructive-bg-hover data-pressed:bg-action-destructive-bg-hover",
       },
       size: {
-        sm: "h-8 px-3 text-xs [&_svg]:size-4",
-        md: "h-10 px-4 text-body [&_svg]:size-4",
-        lg: "h-11 px-6 text-md [&_svg]:size-5",
+        sm: "h-7 gap-1 px-2.5 text-xs [&_svg]:size-3.5",
+        md: "h-8 gap-1.5 px-2.5 text-body [&_svg]:size-4",
+        lg: "h-9 gap-1.5 px-2.5 text-md [&_svg]:size-4",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },
@@ -50,7 +50,7 @@ export type ButtonProps = Omit<ButtonPrimitiveProps, "className" | "style"> &
   React.RefAttributes<HTMLButtonElement> & {
     /** Visual style. Defaults to primary. */
     variant?: ButtonVariant;
-    /** Visual size. Every size keeps a hit area of at least 44 × 44px. Defaults to md. */
+    /** Visual size: 28, 32 or 36px tall. Defaults to md. */
     size?: ButtonSize;
     className?: string;
   };

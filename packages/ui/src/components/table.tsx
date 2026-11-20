@@ -64,7 +64,7 @@ export function TableHeader<T extends object>({ className, ...props }: TableHead
 }
 
 function cellPadding(density: TableDensity) {
-  return density === "compact" ? "px-2 py-1 text-sm" : "px-3 py-3";
+  return density === "compact" ? "px-2 py-1 text-sm" : "p-2";
 }
 
 export function TableColumn({ className, ...props }: Omit<ColumnProps, "className"> & { className?: string }) {

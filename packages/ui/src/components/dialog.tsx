@@ -87,7 +87,7 @@ export function DialogContent({
           data-slot="dialog"
           role={role}
           aria-describedby={descriptionId}
-          className={cn("focus-ring relative flex flex-col gap-4 p-6", className)}
+          className={cn("focus-ring relative flex flex-col gap-4 p-4", className)}
         >
           {(renderProps) => (
             <DescriptionContext.Provider value={setDescriptionId}>
@@ -97,7 +97,7 @@ export function DialogContent({
                   slot="close"
                   aria-label="Close"
                   data-slot="dialog-close"
-                  className="focus-ring hit-area absolute top-4 right-4 flex size-8 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
+                  className="focus-ring hit-area absolute top-2 right-2 flex size-7 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
                 >
                   <XIcon aria-hidden className="size-4" />
                 </ButtonPrimitive>

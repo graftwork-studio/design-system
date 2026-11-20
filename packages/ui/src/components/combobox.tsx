@@ -50,7 +50,7 @@ export function Combobox<T extends object>({
   ...props
 }: ComboboxProps<T>) {
   return (
-    <ComboBoxPrimitive data-slot="combobox" className={cn("group/combobox flex flex-col gap-1", className)} {...props}>
+    <ComboBoxPrimitive data-slot="combobox" className={cn("group/combobox flex flex-col gap-2", className)} {...props}>
       <FieldLabel>
         {label}
         {props.isRequired ? <span className="text-text-secondary"> (required)</span> : null}
@@ -61,7 +61,7 @@ export function Combobox<T extends object>({
         isDisabled={props.isDisabled}
         className={cn(
           fieldControl,
-          "focus-ring-within flex items-center gap-1 pe-0",
+          "focus-ring-within flex items-center gap-1 pe-0 py-0",
           "group-data-invalid/combobox:border-2 group-data-invalid/combobox:border-border-input-invalid",
           "group-data-disabled/combobox:cursor-not-allowed group-data-disabled/combobox:opacity-50",
         )}
@@ -70,11 +70,11 @@ export function Combobox<T extends object>({
           data-slot="combobox-input"
           placeholder={placeholder}
           // eslint-disable-next-line graftwork/no-outline-removal -- the wrapping Group draws the ring (focus-ring-within).
-          className="min-h-target-min min-w-0 flex-1 bg-transparent outline-none placeholder:text-text-placeholder disabled:cursor-not-allowed"
+          className="h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-text-placeholder disabled:cursor-not-allowed"
         />
         <ButtonPrimitive
           data-slot="combobox-trigger"
-          className="focus-ring flex size-target-min shrink-0 cursor-pointer items-center justify-center rounded-md hover:bg-action-ghost-bg-hover data-disabled:cursor-not-allowed"
+          className="focus-ring hit-area me-1 flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md hover:bg-action-ghost-bg-hover data-disabled:cursor-not-allowed"
         >
           <ChevronDownIcon aria-hidden className="size-4 text-icon-default" />
         </ButtonPrimitive>
@@ -108,7 +108,7 @@ export function ComboboxItem({ className, children, ...props }: ComboboxItemProp
       data-slot="combobox-item"
       textValue={typeof children === "string" ? children : props.textValue}
       className={cn(
-        "flex min-h-target-min cursor-pointer items-center justify-between gap-2 rounded-sm px-3 text-body text-text-default outline-none",
+        "flex cursor-pointer items-center justify-between gap-1.5 rounded-md py-1 ps-1.5 pe-2 text-body text-text-default outline-none",
         "data-focused:bg-action-ghost-bg-hover data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:-outline-offset-2 data-focus-visible:outline-focus-ring",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,

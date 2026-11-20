@@ -13,7 +13,7 @@ import { cn } from "../lib/utils.js";
  * to the avatar, pass decorative so it isn't read twice.
  */
 
-const sizes = { sm: "size-8 text-xs", md: "size-10 text-sm", lg: "size-12 text-md" } as const;
+const sizes = { sm: "size-6 text-xs", md: "size-8 text-sm", lg: "size-10 text-sm" } as const;
 
 export type AvatarProps = {
   /** The person's name. Used for the alt text and the initials. */
@@ -80,7 +80,7 @@ export function AvatarGroup({ max, className, children, ...props }: AvatarGroupP
         <span
           role="img"
           aria-label={`${extra} more`}
-          className="relative inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-surface-subtle text-sm font-medium text-text-default"
+          className="relative inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-surface-subtle text-sm font-medium text-text-default"
         >
           <span aria-hidden>+{extra}</span>
         </span>

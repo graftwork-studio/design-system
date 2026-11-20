@@ -8,8 +8,8 @@ export async function expectFocusRing(element: Element, { inset = false } = {}) 
   await expect(style.outlineOffset).toBe(inset ? "-2px" : "2px");
 }
 
-/** Asserts the WCAG 2.5.5 hit area: at least 44 × 44px, including any ::before extension. */
-export async function expectHitArea(element: Element, min = 44) {
+/** Asserts the WCAG 2.5.8 hit area: at least 24 × 24px, including any ::before extension. */
+export async function expectHitArea(element: Element, min = 24) {
   const box = element.getBoundingClientRect();
   const before = getComputedStyle(element, "::before");
   const width = Math.max(box.width, Number.parseFloat(before.width) || 0);
