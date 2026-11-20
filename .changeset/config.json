@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@4.0.0/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "graftwork-studio/design-system" }],
+  "commit": false,
+  "fixed": [["@graftwork/tokens", "@graftwork/ui"]],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@graftwork/docs"]
+}
