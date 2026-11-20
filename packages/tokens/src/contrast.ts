@@ -15,8 +15,9 @@ export const THRESHOLDS: Record<Exclude<Role, "background" | "decorative">, numb
   "non-text": 3,
 };
 
-/** The brand colour is for icons, borders, focus rings and decoration. Never text. */
-export const BRAND_HEX = "#2883de";
+import { BRAND_HEX } from "./brand.ts";
+
+export { BRAND_HEX };
 
 /** Checked against surfaces only. See the focus-ring rule in checkTheme. */
 export const FOCUS_RING = "color.focus.ring";

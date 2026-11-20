@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { checkTheme, contrastRatio, validateAll } from "./contrast.ts";
+import { BRAND_HEX, checkTheme, contrastRatio, validateAll } from "./contrast.ts";
 import { loadTheme } from "./load.ts";
 
 describe("contrastRatio", () => {
@@ -39,7 +39,7 @@ describe("the validator", () => {
     const tokens = await loadTheme("light");
     const link = tokens.find((t) => t.path.join(".") === "color.text.link");
     if (!link) throw new Error("missing color.text.link");
-    link.$value = "#2883de";
+    link.$value = BRAND_HEX;
 
     const { failures } = checkTheme("light", tokens);
     expect(failures.some((f) => f.message.includes("must never be used for text"))).toBe(true);
