@@ -4,4 +4,4 @@
  *
  * It's for icons, borders, focus rings and decoration, never text.
  */
-export const BRAND_HEX = "#8e3fd6";
+export const BRAND_HEX = "#2883de";
