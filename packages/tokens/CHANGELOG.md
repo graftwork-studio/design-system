@@ -1,5 +1,11 @@
 # @graftwork/tokens
 
+## 1.1.1
+
+### Patch Changes
+
+- [#13](https://github.com/graftwork-studio/design-system/pull/13) [`815cacb`](https://github.com/graftwork-studio/design-system/commit/815cacb1142ab69a18408db707cfd99831e645c8) Thanks [@david-kenny](https://github.com/david-kenny)! - Revert the brand colour to blue (`#2883de`) after the cascade test. The brand scale is back to exactly what it was in 1.0.1.
+
 ## 1.1.0
 
 ### Minor Changes
