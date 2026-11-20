@@ -1,5 +1,13 @@
 # @graftwork/ui
 
+## 1.0.1
+
+### Patch Changes
+
+- [#9](https://github.com/graftwork-studio/design-system/pull/9) [`4fd1bb0`](https://github.com/graftwork-studio/design-system/commit/4fd1bb0da29b1f95cb9a8a4eaeca8493d0d222dd) Thanks [@david-kenny](https://github.com/david-kenny)! - Remove the paragraph spacing after the last paragraph in a `prose` block, so it no longer leaves a large gap before whatever follows.
+- Updated dependencies [[`4588dbd`](https://github.com/graftwork-studio/design-system/commit/4588dbdce6966be9492f593fe607394dd29daed0)]:
+  - @graftwork/tokens@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
