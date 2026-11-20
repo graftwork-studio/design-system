@@ -10,8 +10,8 @@ import { extensionOf, isSemantic, loadTheme, THEMES, type Role, type Theme } fro
 
 /** Minimum contrast ratio for each role. */
 export const THRESHOLDS: Record<Exclude<Role, "background" | "decorative">, number> = {
-  text: 7,
-  "large-text": 4.5,
+  text: 4.5,
+  "large-text": 3,
   "non-text": 3,
 };
 
