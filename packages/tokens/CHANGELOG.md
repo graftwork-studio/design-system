@@ -1,5 +1,11 @@
 # @graftwork/tokens
 
+## 1.0.1
+
+### Patch Changes
+
+- [#7](https://github.com/graftwork-studio/design-system/pull/7) [`4588dbd`](https://github.com/graftwork-studio/design-system/commit/4588dbdce6966be9492f593fe607394dd29daed0) Thanks [@david-kenny](https://github.com/david-kenny)! - Fix responsive classes such as `lg:grid-cols-2` breaking an app's CSS build. The Tailwind theme now writes breakpoints as literal values, because CSS variables don't work inside media queries.
+
 ## 1.0.0
 
 ### Major Changes
