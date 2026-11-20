@@ -1,5 +1,16 @@
 # @graftwork/ui
 
+## 1.4.0
+
+### Minor Changes
+
+- [#27](https://github.com/graftwork-studio/design-system/pull/27) [`413923e`](https://github.com/graftwork-studio/design-system/commit/413923e64863413c549af834f5e07e39a74a6547) Thanks [@david-kenny](https://github.com/david-kenny)! - Modals dim the page in the dark theme. `color.overlay.scrim` is now black in the dark theme (it was the page's own near-black, so the page background didn't change), and dark `color.surface.overlay` is a step lighter (`neutral.850`, was `neutral.900`) so dialogs, sheets, popovers, menus and toasts sit above the dimmed page. Light and high-contrast are unchanged.
+
+### Patch Changes
+
+- Updated dependencies [[`413923e`](https://github.com/graftwork-studio/design-system/commit/413923e64863413c549af834f5e07e39a74a6547)]:
+  - @graftwork/tokens@1.4.0
+
 ## 1.3.0
 
 ### Minor Changes
