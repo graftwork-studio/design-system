@@ -31,12 +31,13 @@ Only semantic tokens are available. Tailwind's default palette has been removed,
 | --- | --- |
 | Text | `text-text-default`, `text-text-secondary`, `text-text-link`, `text-text-error` … |
 | Surfaces | `bg-surface-default`, `bg-surface-raised`, `bg-surface-subtle`, `bg-surface-overlay` |
+| Scrim | `bg-overlay-scrim/60`, behind modal dialogs and sheets |
 | Borders | `border-border-default`, `border-border-input` |
 | Radius | `rounded-sm`, `rounded-md` (6px base), `rounded-lg`, `rounded-xl`, `rounded-full` |
-| Type | `text-xs` … `text-4xl`, `leading-body`, `font-sans` |
+| Type | `text-body` (14px body text), `text-xs` … `text-4xl`, `leading-body`, `font-sans` |
 | Spacing | Tailwind's numeric scale (`p-4` = 1rem), driven by the `space.2xs` token |
 | Targets | `min-h-target-min` (44px), `hit-area`, `hit-area-compact` |
-| Focus | `focus-ring`, `focus-ring-within` |
+| Focus | `focus-ring`, `focus-ring-within`, and `focus-ring-drawn` for a part that shows its parent's focus |
 
 ## Accessibility built in
 
@@ -60,3 +61,38 @@ Component and property names match the Figma library exactly.
 | Table | `density`: comfortable, compact |
 | BarChart | `view`: chart, table |
 | ThemeToggle | `value`: system, light, dark, high-contrast |
+
+These components aren't in the Figma library yet. Their names and properties are the contract the Figma versions will follow.
+
+| Component | Properties |
+| --- | --- |
+| Accordion | `allowsMultipleExpanded` · AccordionItem `id`, `isDisabled` · AccordionTrigger `level` · AccordionContent |
+| Alert | `variant`: info, success, warning, error · `title` · `action` |
+| AlertDialog | AlertDialogContent `size`: sm, md, lg · AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter |
+| Avatar | `name`, `src`, `size`: sm, md, lg · AvatarGroup `max` |
+| Badge | `variant`: neutral, info, success, warning, error, outline |
+| Breadcrumb | BreadcrumbItem `href` |
+| Checkbox | `isSelected`, `isIndeterminate`, `isInvalid`, `isDisabled` · CheckboxGroup `label`, `description`, `errorMessage` |
+| Collapsible | `isExpanded`, `isDisabled` · CollapsibleTrigger, CollapsibleContent |
+| Combobox | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` · ComboboxItem |
+| Dialog | DialogContent `size`: sm, md, lg, `showCloseButton` · DialogHeader, DialogTitle, DialogDescription, DialogBody, DialogFooter |
+| DropdownMenu | DropdownMenuContent `selectionMode` · DropdownMenuItem `variant`: default, destructive, `shortcut` · DropdownMenuSection `title` · DropdownMenuSeparator · DropdownMenuSub |
+| Empty | `icon`, `title`, `description`, `action` |
+| InputGroup | Input's properties, plus `startAddon`, `endAddon` |
+| Kbd | text |
+| Label | text |
+| Pagination | `page`, `pageCount`, `siblingCount` |
+| Popover | PopoverContent `placement` · PopoverTitle |
+| Progress | `label`, `value`, `showValue`, `isIndeterminate` |
+| RadioGroup | `label`, `description`, `errorMessage`, `orientation`: vertical, horizontal · Radio `value` |
+| Separator | `orientation`: horizontal, vertical |
+| Sheet | SheetContent `side`: right, left, top, bottom, `showCloseButton` · SheetHeader, SheetTitle, SheetDescription, SheetBody, SheetFooter |
+| Skeleton | size and shape from `className` |
+| Slider | `label`, `description`, `showValue`, `minValue`, `maxValue`, `step` |
+| Spinner | `size`: sm, md, lg · `label` |
+| Switch | `isSelected`, `isDisabled` |
+| Tabs | `orientation`: horizontal, vertical · TabList, Tab `id`, TabPanel `id` |
+| Textarea | Input's properties, plus `rows` |
+| Toast | `variant`: info, success, warning, error · `title`, `description` |
+| Toggle | `variant`: ghost, secondary · `size`: sm, md, lg · `isSelected` |
+| Tooltip | TooltipContent `placement` |

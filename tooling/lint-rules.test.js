@@ -15,6 +15,8 @@ test("ESLint: outlines can't be removed without a replacement", () => {
       { code: `<button className="focus-ring outline-none" />` },
       { code: `cn("outline-none", "data-focus-visible:outline-2 data-focus-visible:outline-focus-ring")` },
       { code: `<div className="outline-offset-2" />` },
+      { code: `<div className="outline-none data-focus-visible:focus-ring-drawn" />` },
+      { code: `cn("outline-none", "group-data-focus-visible/selection:focus-ring-drawn")` },
     ],
     invalid: [
       { code: `<button className="outline-none" />`, errors: [{ messageId: "bad" }] },
