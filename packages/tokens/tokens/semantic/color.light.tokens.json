@@ -390,7 +390,7 @@
           }
         },
         "info": {
-          "$value": "{color.brand.300}",
+          "$value": "{color.shadcn.light-border}",
           "$extensions": {
             "studio.graftwork": {
               "role": "decorative"
