@@ -1,5 +1,11 @@
 # @graftwork/tokens
 
+## 2.0.2
+
+### Patch Changes
+
+- [#35](https://github.com/graftwork-studio/design-system/pull/35) [`0f7225d`](https://github.com/graftwork-studio/design-system/commit/0f7225dfcab8e863d1fb27767e887d6607890bc8) Thanks [@david-kenny](https://github.com/david-kenny)! - Make the info border neutral in the high-contrast theme. `color.border.status.info` is now `neutral.800` instead of a dark blue.
+
 ## 2.0.1
 
 ### Patch Changes
