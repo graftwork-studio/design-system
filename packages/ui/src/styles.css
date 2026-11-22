@@ -64,7 +64,7 @@
   }
 }
 
-/* WCAG 1.4.8: readable prose. 80ch measure, 1.5 line height, wide paragraph spacing. */
+/* Readable prose: 80ch measure, the body line height, wide paragraph spacing. */
 @utility prose {
   max-width: 80ch;
   line-height: var(--gw-font-line-height-body);

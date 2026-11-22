@@ -196,7 +196,7 @@
       },
       "secondary": {
         "$value": "{color.shadcn.dark-muted-foreground}",
-        "$description": "Supporting text. Still 7:1.",
+        "$description": "Supporting text. At least 4.5:1 on its surfaces.",
         "$extensions": {
           "studio.graftwork": {
             "role": "text",
@@ -211,7 +211,7 @@
       },
       "placeholder": {
         "$value": "{color.shadcn.dark-muted-foreground}",
-        "$description": "Input placeholders. Still 7:1; never the only label.",
+        "$description": "Input placeholders. At least 4.5:1; never the only label.",
         "$extensions": {
           "studio.graftwork": {
             "role": "text",
@@ -418,7 +418,7 @@
       },
       "brand": {
         "$value": "{color.shadcn.dark-primary}",
-        "$description": "The brand colour. Icons, borders and decoration; never text.",
+        "$description": "Selected marks and spinners. Neutral, matching the primary colour.",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",

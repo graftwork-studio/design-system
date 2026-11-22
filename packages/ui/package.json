@@ -34,6 +34,10 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./showcase": {
+      "types": "./dist/showcase/component-showcase.d.ts",
+      "default": "./dist/showcase/component-showcase.js"
+    },
     "./styles.css": {
       "style": "./dist/styles.css",
       "default": "./dist/styles.css"

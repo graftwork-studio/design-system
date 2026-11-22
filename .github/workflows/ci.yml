@@ -52,6 +52,8 @@ jobs:
         run: pnpm lint
       - name: Lint rules ban what they should
         run: node --test tooling/
+      - name: Every component is in the showcase
+        run: pnpm --filter @graftwork/ui test
       - name: TypeScript
         run: pnpm typecheck
 

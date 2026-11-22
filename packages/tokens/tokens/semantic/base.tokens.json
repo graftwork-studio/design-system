@@ -135,7 +135,7 @@
   },
   "paragraph-spacing": {
     "$type": "dimension",
-    "$description": "WCAG 1.4.8: at least 1.5 × the 1.5 line height of body text (2.25rem at 1rem).",
+    "$description": "Space between paragraphs: more than 1.5 × the 20px body line height.",
     "body": {
       "$value": {
         "value": 2.25,

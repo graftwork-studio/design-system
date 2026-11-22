@@ -49,8 +49,19 @@ Lint bans removing an outline without a replacement ring, justified text, font s
 pnpm lint                                # ESLint and Stylelint
 node --test tooling/                     # proves the lint bans fire
 pnpm --filter @graftwork/docs test       # story interaction tests and axe
+pnpm --filter @graftwork/ui test        # every component is in the showcase
 pnpm --filter @graftwork/docs dev        # Storybook on http://localhost:6006
+pnpm test                                # all unit, showcase and story tests
 ```
+
+### Adding a component
+
+1. Add it to `packages/ui/src/components` and export it from `packages/ui/src/index.ts`.
+2. Add a Storybook story.
+3. Add a working example to `showcaseEntries` in `packages/ui/src/showcase/component-showcase.tsx`. CI fails until every exported component is used there.
+4. Add its Figma properties to the naming contract in `apps/docs/src/introduction.mdx`.
+
+The example pages in `app-template` and `test-app` render `<ComponentShowcase />` from `@graftwork/ui/showcase`, so the new component appears on them when they update to the release.
 
 ### Visual snapshots
 
@@ -67,6 +78,13 @@ Releases use [Changesets](https://changesets.dev). Both packages share one versi
 1. Every pull request that changes a package adds a changeset (`pnpm changeset`). See [`.changeset/README.md`](.changeset/README.md) for what counts as major, minor or patch.
 2. Merging to `main` opens or updates the **Version Packages** pull request. GitHub holds CI on pull requests opened by GitHub Actions until a run is approved, so the release workflow approves it.
 3. Merging **Version Packages** releases. The workflow builds and packs (with no publishing rights), then publishes to npm with provenance, tags, creates GitHub releases and deploys Storybook to <https://graftwork-studio.github.io/design-system/>.
+
+To publish docs-only changes without a release, run the **Deploy Storybook** workflow from the Actions tab. It builds `main` and deploys it to GitHub Pages, with no npm access.
+
+After a release that changes tokens or components, update Figma:
+
+1. Update the variables and Graftwork components in the [Graftwork Design System](https://www.figma.com/design/8dIiSHbXjX1qwjqlaKkyXA/Graftwork-Design-System) file. The repo is the source of truth.
+2. In Figma, open **Assets**, then the library icon, and **Publish** the changes so other files receive them.
 
 Only David merges **Version Packages**. Publishing uses npm trusted publishing (OIDC) from `release.yml` in the `npm` environment, so no npm token is stored.
 

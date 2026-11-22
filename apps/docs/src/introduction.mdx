@@ -48,6 +48,18 @@ Only semantic tokens are available. Tailwind's default palette has been removed,
 - Under reduced motion, only opacity fades remain.
 - Charts have a written summary and a table view, and never rely on colour alone.
 
+## Component showcase
+
+`ComponentShowcase` renders a working example of every component. Example pages use it, so new components appear on them with each package update:
+
+```tsx
+import { ComponentShowcase } from "@graftwork/ui/showcase";
+
+<ComponentShowcase exclude={["ThemeToggle"]} />;
+```
+
+Use `exclude` for anything the page already shows. See it under **Showcase → All components**.
+
 ## Figma naming contract
 
 Component and property names match the Figma library, with the differences listed below the table.
