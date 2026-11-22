@@ -22,6 +22,7 @@ const config: StorybookConfig = {
     viteConfig.resolve ??= {};
     viteConfig.resolve.alias = {
       ...(viteConfig.resolve.alias as Record<string, string> | undefined),
+      "@graftwork/ui/showcase": fileURLToPath(new URL("../../../packages/ui/src/showcase/component-showcase.tsx", import.meta.url)),
       "@graftwork/ui": fileURLToPath(new URL("../../../packages/ui/src/index.ts", import.meta.url)),
     };
     // Storybook is served from /design-system/ on GitHub Pages.
