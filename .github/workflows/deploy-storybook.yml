@@ -1,0 +1,45 @@
+name: Deploy Storybook
+
+# Run by hand from the Actions tab to publish docs changes without a release.
+# It builds Storybook from main and deploys it to GitHub Pages. It has no npm
+# access. Releases still deploy Storybook through release.yml.
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+# Shares the release group, so it never deploys at the same time as a release.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  storybook:
+    name: Deploy Storybook to GitHub Pages
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build Storybook
+        run: pnpm --filter @graftwork/docs... build
+        env:
+          STORYBOOK_BASE: /design-system/
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: apps/docs/storybook-static
+      - id: deploy
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
