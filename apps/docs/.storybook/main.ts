@@ -1,10 +1,19 @@
 import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
 import tailwindcss from "@tailwindcss/vite";
+import remarkGfm from "remark-gfm";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.tsx"],
-  addons: ["@storybook/addon-docs", "@storybook/addon-a11y", "@storybook/addon-vitest"],
+  addons: [
+    {
+      name: "@storybook/addon-docs",
+      // MDX needs GitHub Flavored Markdown for pipe tables.
+      options: { mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } } },
+    },
+    "@storybook/addon-a11y",
+    "@storybook/addon-vitest",
+  ],
   framework: { name: "@storybook/react-vite", options: {} },
   core: { disableTelemetry: true },
   async viteFinal(viteConfig) {
