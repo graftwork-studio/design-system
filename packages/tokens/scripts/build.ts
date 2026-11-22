@@ -125,6 +125,22 @@ const themeLines = resolved.light
   .map(([name, t]) => `  ${name}: ${t.path[0] === "breakpoint" ? String(t.$value) : v(t)};`)
   .join("\n");
 
+// Each text size carries Tailwind's default line height, as shadcn/ui expects.
+const TEXT_LINE_HEIGHTS: Record<string, string> = {
+  xs: "calc(1 / 0.75)",
+  sm: "calc(1.25 / 0.875)",
+  body: "calc(1.25 / 0.875)",
+  md: "1.5",
+  lg: "calc(1.75 / 1.125)",
+  xl: "calc(1.75 / 1.25)",
+  "2xl": "calc(2 / 1.5)",
+  "3xl": "calc(2.25 / 1.875)",
+  "4xl": "calc(2.5 / 2.25)",
+};
+const textLineHeights = Object.entries(TEXT_LINE_HEIGHTS)
+  .map(([size, value]) => `  --text-${size}--line-height: ${value};`)
+  .join("\n");
+
 const tailwind = `${HEADER}
 @theme inline {
   --color-*: initial;
@@ -139,6 +155,7 @@ const tailwind = `${HEADER}
   /* Spacing utilities (p-4, gap-2 …) are multiples of the space.2xs token, 0.25rem. */
   --spacing: var(--gw-space-2xs);
 ${themeLines}
+${textLineHeights}
 }
 `;
 

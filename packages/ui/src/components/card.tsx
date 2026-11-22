@@ -12,7 +12,7 @@ export function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "flex flex-col gap-4 rounded-lg border border-border-default bg-surface-raised py-4 text-body text-text-default",
+        "flex flex-col gap-4 rounded-xl border border-border-default bg-surface-raised py-4 text-body text-text-default",
         className,
       )}
       {...props}
@@ -34,7 +34,7 @@ export function CardTitle({ className, level = 2, ...props }: CardTitleProps) {
   return (
     <Heading
       data-slot="card-title"
-      className={cn("text-xl leading-heading font-semibold text-text-default", className)}
+      className={cn("text-md leading-heading font-medium text-text-default", className)}
       {...props}
     />
   );

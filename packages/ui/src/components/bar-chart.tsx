@@ -110,7 +110,7 @@ export function BarChart({
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex min-w-0 flex-col gap-1">
-          <Heading id={titleId} className="text-lg leading-heading font-semibold text-text-default">
+          <Heading id={titleId} className="text-md leading-heading font-medium text-text-default">
             {title}
           </Heading>
           <p id={summaryId} className="max-w-[80ch] text-sm text-text-secondary">

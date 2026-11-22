@@ -84,7 +84,7 @@ export function Combobox<T extends object>({
         data-slot="combobox-popover"
         offset={4}
         className={cn(
-          "w-(--trigger-width) min-w-40 overflow-auto rounded-md border border-border-default bg-surface-overlay shadow-md",
+          "w-(--trigger-width) min-w-36 overflow-auto rounded-lg border border-border-default bg-surface-overlay shadow-md",
           "transition-opacity duration-(--gw-motion-duration-fade) data-entering:opacity-0 data-exiting:opacity-0",
         )}
       >

@@ -122,7 +122,7 @@ export type DropdownMenuSectionProps<T extends object> = Omit<MenuSectionProps<T
 export function DropdownMenuSection<T extends object>({ title, className, children, ...props }: DropdownMenuSectionProps<T>) {
   return (
     <MenuSection data-slot="dropdown-menu-section" className={className} {...props}>
-      {title ? <Header className="px-1.5 py-1 text-sm font-semibold text-text-secondary">{title}</Header> : null}
+      {title ? <Header className="px-1.5 py-1 text-xs font-medium text-text-secondary">{title}</Header> : null}
       {children as React.ReactNode}
     </MenuSection>
   );

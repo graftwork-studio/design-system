@@ -2,19 +2,19 @@
   "radius": {
     "$type": "dimension",
     "sm": {
-      "$value": "{radius.two-thirds}"
+      "$value": "{radius.base}"
     },
     "md": {
-      "$value": "{radius.base}",
-      "$description": "The base radius. Inputs, buttons, selects."
+      "$value": "{radius.four-thirds}",
+      "$description": "Menu items, tab triggers, tooltips and small buttons."
     },
     "lg": {
       "$value": "{radius.five-thirds}",
-      "$description": "Cards and panels."
+      "$description": "Buttons, inputs, selects, popovers and alerts. Matches shadcn/ui --radius."
     },
     "xl": {
       "$value": "{radius.seven-thirds}",
-      "$description": "Dialogs and large surfaces."
+      "$description": "Cards, dialogs and large surfaces."
     },
     "full": {
       "$value": "{radius.pill}"
@@ -122,11 +122,11 @@
     "line-height": {
       "$type": "number",
       "body": {
-        "$value": "{line-height.150}",
-        "$description": "WCAG 1.4.8: at least 1.5 for body text."
+        "$value": "{line-height.14286}",
+        "$description": "20px on 14px body text, matching shadcn/ui."
       },
       "heading": {
-        "$value": "{line-height.125}"
+        "$value": "{line-height.1375}"
       },
       "ui": {
         "$value": "{line-height.135}"

@@ -94,7 +94,7 @@
   },
   "radius": {
     "$type": "dimension",
-    "$description": "Derived from a 6px base radius.",
+    "$description": "shadcn/ui's radius scale, from its 10px --radius.",
     "base": {
       "$value": {
         "value": 6,
@@ -110,6 +110,12 @@
     "two-thirds": {
       "$value": {
         "value": 4,
+        "unit": "px"
+      }
+    },
+    "four-thirds": {
+      "$value": {
+        "value": 8,
         "unit": "px"
       }
     },
@@ -185,11 +191,19 @@
   },
   "line-height": {
     "$type": "number",
+    "1375": {
+      "$value": 1.375,
+      "$description": "Tailwind's leading-snug, used by shadcn/ui for titles."
+    },
     "125": {
       "$value": 1.25
     },
     "135": {
       "$value": 1.35
+    },
+    "14286": {
+      "$value": 1.42857,
+      "$description": "20px on 14px text, shadcn/ui's text-sm line height."
     },
     "150": {
       "$value": 1.5

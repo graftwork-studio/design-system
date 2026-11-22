@@ -12,15 +12,15 @@ Tokens and React components for Graftwork apps.
 
 Tokens live in `packages/tokens/tokens` and this repo is the only place they're edited.
 
-- `primitives/` holds the raw palette and scales. The colour palette is generated from the brand colour by `pnpm --filter @graftwork/tokens palette`; don't edit it by hand.
+- `primitives/` holds the raw palette and scales. `color.tokens.json` is generated from the brand colour by `pnpm --filter @graftwork/tokens palette`; don't edit it by hand. `shadcn.tokens.json` holds shadcn/ui's neutral theme, which the light and dark themes use. Names ending `-aa` are the nearest colour to shadcn's that passes WCAG AA.
 - `semantic/` holds the tokens apps use: `base.tokens.json` for everything theme-independent, and one colour file per theme (light, dark, high contrast).
 
 Every semantic colour declares a contrast role in `$extensions."studio.graftwork"`, and every text token lists the backgrounds it sits on. The build runs the contrast validator first and fails if any pair falls below its threshold in any theme:
 
 | Role | Minimum ratio |
 | --- | --- |
-| `text` | 7:1 |
-| `large-text` | 4.5:1 |
+| `text` | 4.5:1 |
+| `large-text` | 3:1 |
 | `non-text` | 3:1 |
 | `background`, `decorative` | not checked |
 

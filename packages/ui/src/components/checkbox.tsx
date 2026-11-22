@@ -47,7 +47,7 @@ export function Checkbox({ className, children, ...props }: CheckboxProps) {
             data-slot="checkbox-indicator"
             className={cn(
               selectionIndicator,
-              "size-4 rounded-sm",
+              "size-4 rounded-[4px]",
               "group-data-selected/selection:border-action-primary-bg group-data-selected/selection:bg-action-primary-bg",
               "group-data-indeterminate/selection:border-action-primary-bg group-data-indeterminate/selection:bg-action-primary-bg",
             )}

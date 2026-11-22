@@ -78,7 +78,7 @@ export function DialogContent({
       <Modal
         data-slot="dialog-modal"
         className={cn(
-          "w-full rounded-lg border border-border-default bg-surface-overlay text-body text-text-default shadow-lg",
+          "w-full rounded-xl border border-border-default bg-surface-overlay text-body text-text-default shadow-lg",
           "max-h-[calc(100dvh-2rem)] overflow-y-auto",
           sizes[size],
         )}
@@ -129,7 +129,7 @@ export function DialogTitle({ className, level = 2, ...props }: DialogTitleProps
       slot="title"
       level={level}
       data-slot="dialog-title"
-      className={cn("text-xl leading-heading font-semibold text-text-default", className)}
+      className={cn("text-md leading-none font-medium text-text-default", className)}
       {...props}
     />
   );

@@ -74,5 +74,5 @@ export function Tab({ className, ...props }: TabProps) {
 export type TabPanelProps = Omit<TabPanelPrimitiveProps, "className" | "style"> & { className?: string };
 
 export function TabPanel({ className, ...props }: TabPanelProps) {
-  return <TabPanelPrimitive data-slot="tab-panel" className={cn("focus-ring flex-1 rounded-sm text-body", className)} {...props} />;
+  return <TabPanelPrimitive data-slot="tab-panel" className={cn("focus-ring flex-1 rounded-md text-body", className)} {...props} />;
 }

@@ -41,7 +41,7 @@ export type TableProps = Omit<TablePrimitiveProps, "className" | "style"> & {
 export function Table({ className, density = "comfortable", ...props }: TableProps) {
   return (
     <DensityContext.Provider value={density}>
-      <div data-slot="table-container" className="w-full overflow-x-auto rounded-md border border-border-default">
+      <div data-slot="table-container" className="w-full overflow-x-auto rounded-lg border border-border-default">
         <TablePrimitive
           data-slot="table"
           data-density={density}
@@ -73,7 +73,7 @@ export function TableColumn({ className, ...props }: Omit<ColumnProps, "classNam
     <ColumnPrimitive
       data-slot="table-column"
       className={cn(
-        "text-sm font-semibold outline-none whitespace-nowrap text-text-default",
+        "text-sm font-medium outline-none whitespace-nowrap text-text-default",
         "data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:-outline-offset-2 data-focus-visible:outline-focus-ring",
         cellPadding(density),
         className,

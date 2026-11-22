@@ -35,7 +35,7 @@ export function TooltipContent({ className, offset = 6, ...props }: TooltipConte
       data-slot="tooltip"
       offset={offset}
       className={cn(
-        "max-w-xs rounded-md bg-text-default px-3 py-1.5 text-sm text-surface-default",
+        "max-w-xs rounded-md bg-text-default px-3 py-1.5 text-xs text-surface-default",
         "transition-opacity duration-(--gw-motion-duration-fade) data-entering:opacity-0 data-exiting:opacity-0",
         className,
       )}

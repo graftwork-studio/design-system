@@ -26,7 +26,7 @@ export function Empty({ icon, title, description, action, level = 2, className, 
     <div
       data-slot="empty"
       className={cn(
-        "flex flex-col items-center justify-center gap-4 rounded-lg border border-dashed border-border-default p-6 text-center",
+        "flex flex-col items-center justify-center gap-4 rounded-xl border border-dashed border-border-default p-6 text-center",
         className,
       )}
       {...props}
@@ -40,7 +40,7 @@ export function Empty({ icon, title, description, action, level = 2, className, 
         </span>
       ) : null}
       <div className="flex max-w-sm flex-col gap-1">
-        <Heading className="text-lg leading-heading font-semibold text-text-default">{title}</Heading>
+        <Heading className="text-sm font-medium tracking-tight text-text-default">{title}</Heading>
         {description ? <p className="text-body text-text-secondary">{description}</p> : null}
       </div>
       {action ? <div className="flex flex-wrap justify-center gap-2">{action}</div> : null}

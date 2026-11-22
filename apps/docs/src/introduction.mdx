@@ -33,7 +33,7 @@ Only semantic tokens are available. Tailwind's default palette has been removed,
 | Surfaces | `bg-surface-default`, `bg-surface-raised`, `bg-surface-subtle`, `bg-surface-overlay` |
 | Scrim | `bg-overlay-scrim/60`, behind modal dialogs and sheets |
 | Borders | `border-border-default`, `border-border-input` |
-| Radius | `rounded-sm`, `rounded-md` (6px base), `rounded-lg`, `rounded-xl`, `rounded-full` |
+| Radius | `rounded-sm` (6px), `rounded-md` (8px), `rounded-lg` (10px), `rounded-xl` (14px), `rounded-full` |
 | Type | `text-body` (14px: body text and the default for controls), `text-xs` … `text-4xl`, `leading-body`, `font-sans`. Text fields are 16px below 768px so iPhone Safari doesn't zoom in on them. |
 | Spacing | Tailwind's numeric scale (`p-4` = 1rem), driven by the `space.2xs` token |
 | Targets | `min-h-target-min` (24px), `hit-area` |
@@ -41,7 +41,7 @@ Only semantic tokens are available. Tailwind's default palette has been removed,
 
 ## Accessibility built in
 
-- Text is at least 7:1 against its background in every theme, checked when tokens build.
+- Text is at least 4.5:1 against its background in every theme (WCAG AA), checked when tokens build.
 - Every pointer target has a hit area of at least 24 × 24px (WCAG 2.5.8 AA). Component sizes follow shadcn/ui (aria-nova).
 - Focus rings are 2px with a 2px offset, on `:focus-visible`, at least 3:1 against every surface.
 - Light, dark and high-contrast themes follow the operating system, and the theme toggle overrides them.
@@ -54,7 +54,7 @@ Component and property names match the Figma library exactly.
 
 | Component | Properties |
 | --- | --- |
-| Button | `variant`: primary, secondary, ghost, destructive · `size`: sm (28px tall, 12px text), md (32px, 14px), lg (36px, 16px) · `isDisabled` |
+| Button | `variant`: primary, secondary, ghost, destructive · `size`: sm (28px tall, 12.8px text), md (32px, 14px), lg (36px, 14px) · `isDisabled` |
 | Input | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` |
 | Select | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` |
 | Card | CardHeader, CardTitle, CardDescription, CardContent, CardFooter |
@@ -94,5 +94,5 @@ These components aren't in the Figma library yet. Their names and properties are
 | Tabs | `orientation`: horizontal, vertical · TabList, Tab `id`, TabPanel `id` |
 | Textarea | Input's properties, plus `rows` |
 | Toast | `variant`: info, success, warning, error · `title`, `description` |
-| Toggle | `variant`: ghost, secondary · `size`: sm (28px tall, 12px text), md (32px, 14px), lg (36px, 16px) · `isSelected` |
+| Toggle | `variant`: ghost, secondary · `size`: sm (28px tall, 12.8px text), md (32px, 14px), lg (36px, 14px) · `isSelected` |
 | Tooltip | TooltipContent `placement` |

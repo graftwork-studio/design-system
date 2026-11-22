@@ -33,7 +33,7 @@ export function Popover(props: DialogTriggerProps) {
 
 /** Shared look for floating panels: Popover, DropdownMenu, Select and Combobox lists. */
 export const floatingPanel = cn(
-  "focus-ring rounded-md border border-border-default bg-surface-overlay text-text-default shadow-md",
+  "focus-ring rounded-lg border border-border-default bg-surface-overlay text-text-default shadow-md",
   "transition-opacity duration-(--gw-motion-duration-fade) data-entering:opacity-0 data-exiting:opacity-0",
 );
 
@@ -75,7 +75,7 @@ export function PopoverTitle({ className, level = 2, ...props }: Omit<React.Comp
       slot="title"
       level={level}
       data-slot="popover-title"
-      className={cn("text-md leading-heading font-semibold", className)}
+      className={cn("text-body font-medium", className)}
       {...props}
     />
   );

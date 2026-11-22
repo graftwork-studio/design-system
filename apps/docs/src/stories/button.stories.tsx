@@ -53,11 +53,11 @@ export const Sizes: Story = {
     for (const button of within(canvasElement).getAllByRole("button")) {
       await expectHitArea(button);
     }
-    // Text is 12, 14 and 16px: md matches body text.
+    // Matches shadcn: 12.8px at sm, 14px at md and lg.
     const sizes = within(canvasElement)
       .getAllByRole("button")
       .map((button) => getComputedStyle(button).fontSize);
-    await expect(sizes).toEqual(["12px", "14px", "16px"]);
+    await expect(sizes).toEqual(["12.8px", "14px", "14px"]);
   },
 };
 

@@ -2,8 +2,8 @@
  * The contrast validator.
  *
  * Checks every declared text/background and non-text/background pair in every
- * theme against the Graftwork accessibility standard (WCAG 2.2 AA plus AAA
- * 1.4.6 contrast), and enforces the rules about how colour tokens are declared.
+ * theme against the Graftwork accessibility standard (WCAG 2.2 AA
+ * contrast), and enforces the rules about how colour tokens are declared.
  */
 import type { TransformedToken } from "style-dictionary/types";
 import { extensionOf, isSemantic, loadTheme, THEMES, type Role, type Theme } from "./load.ts";

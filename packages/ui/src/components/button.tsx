@@ -18,7 +18,7 @@ import { cn } from "../lib/utils.js";
 export const buttonVariants = cva(
   [
     "focus-ring hit-area inline-flex shrink-0 cursor-pointer items-center justify-center",
-    "rounded-md border border-transparent font-medium whitespace-nowrap select-none",
+    "rounded-lg border border-transparent font-medium whitespace-nowrap select-none",
     "transition-colors duration-(--gw-motion-duration-fast)",
     "disabled:cursor-not-allowed disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -34,9 +34,9 @@ export const buttonVariants = cva(
           "bg-action-destructive-bg text-text-on-destructive hover:bg-action-destructive-bg-hover data-pressed:bg-action-destructive-bg-hover",
       },
       size: {
-        sm: "h-7 gap-1 px-2.5 text-xs [&_svg]:size-3.5",
+        sm: "h-7 gap-1 rounded-md px-2.5 text-[0.8rem] [&_svg]:size-3.5",
         md: "h-8 gap-1.5 px-2.5 text-body [&_svg]:size-4",
-        lg: "h-9 gap-1.5 px-2.5 text-md [&_svg]:size-4",
+        lg: "h-9 gap-1.5 px-2.5 text-body [&_svg]:size-4",
       },
     },
     defaultVariants: { variant: "primary", size: "md" },
