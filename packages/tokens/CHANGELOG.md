@@ -1,5 +1,11 @@
 # @graftwork/tokens
 
+## 2.0.1
+
+### Patch Changes
+
+- [#30](https://github.com/graftwork-studio/design-system/pull/30) [`884a202`](https://github.com/graftwork-studio/design-system/commit/884a202da27cced7f70b1ffce9a1395a778120a6) Thanks [@david-kenny](https://github.com/david-kenny)! - Fix the info border, which stayed blue in 2.0.0. `color.border.status.info` now uses shadcn's neutral border in the light and dark themes, matching the other info colours.
+
 ## 2.0.0
 
 ### Major Changes
