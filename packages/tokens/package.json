@@ -1,6 +1,6 @@
 {
   "name": "@graftwork/tokens",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Graftwork design tokens: CSS variables, a Tailwind v4 theme and JS constants",
   "license": "MIT",
   "homepage": "https://graftwork-studio.github.io/design-system/",
