@@ -1,6 +1,6 @@
 {
   "name": "@graftwork/ui",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Graftwork React components, built on shadcn/ui with React Aria",
   "license": "MIT",
   "homepage": "https://graftwork-studio.github.io/design-system/",
