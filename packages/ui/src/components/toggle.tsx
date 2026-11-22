@@ -19,8 +19,8 @@ import { cn } from "../lib/utils.js";
 
 export const toggleVariants = cva(
   [
-    "focus-ring hit-area inline-flex shrink-0 cursor-pointer items-center justify-center gap-2",
-    "rounded-md border border-transparent font-medium whitespace-nowrap text-text-default select-none",
+    "focus-ring hit-area inline-flex shrink-0 cursor-pointer items-center justify-center gap-1",
+    "rounded-lg border border-transparent font-medium whitespace-nowrap text-text-default select-none",
     "transition-colors duration-(--gw-motion-duration-fast)",
     "hover:bg-action-ghost-bg-hover data-selected:bg-action-secondary-bg-hover data-selected:border-border-input",
     "disabled:cursor-not-allowed disabled:opacity-50 data-disabled:cursor-not-allowed data-disabled:opacity-50",
@@ -33,9 +33,9 @@ export const toggleVariants = cva(
         secondary: "border-border-input bg-action-secondary-bg",
       },
       size: {
-        sm: "h-8 min-w-8 px-2 text-xs [&_svg]:size-4",
-        md: "h-10 min-w-10 px-3 text-body [&_svg]:size-4",
-        lg: "h-11 min-w-11 px-4 text-md [&_svg]:size-5",
+        sm: "h-7 min-w-7 rounded-md px-2.5 text-[0.8rem] [&_svg]:size-3.5",
+        md: "h-8 min-w-8 px-2.5 text-body [&_svg]:size-4",
+        lg: "h-9 min-w-9 px-2.5 text-body [&_svg]:size-4",
       },
     },
     defaultVariants: { variant: "ghost", size: "md" },
@@ -47,7 +47,7 @@ export type ToggleVariant = "ghost" | "secondary";
 export type ToggleProps = Omit<TogglePrimitiveProps, "className" | "style"> & {
   /** Visual style. Defaults to ghost. */
   variant?: ToggleVariant;
-  /** Visual size. Every size keeps a hit area of at least 44 × 44px. Defaults to md. */
+  /** Visual size: 28, 32 or 36px tall. Defaults to md. */
   size?: "sm" | "md" | "lg";
   className?: string;
 };

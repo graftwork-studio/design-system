@@ -40,8 +40,8 @@ export function Sheet(props: DialogTriggerProps) {
 export type SheetSide = "right" | "left" | "top" | "bottom";
 
 const sides: Record<SheetSide, string> = {
-  right: "inset-y-0 right-0 h-full w-full max-w-md border-l data-entering:translate-x-full data-exiting:translate-x-full",
-  left: "inset-y-0 left-0 h-full w-full max-w-md border-r data-entering:-translate-x-full data-exiting:-translate-x-full",
+  right: "inset-y-0 right-0 h-full w-3/4 sm:max-w-sm border-l data-entering:translate-x-full data-exiting:translate-x-full",
+  left: "inset-y-0 left-0 h-full w-3/4 sm:max-w-sm border-r data-entering:-translate-x-full data-exiting:-translate-x-full",
   top: "inset-x-0 top-0 max-h-[80dvh] w-full border-b data-entering:-translate-y-full data-exiting:-translate-y-full",
   bottom: "inset-x-0 bottom-0 max-h-[80dvh] w-full border-t data-entering:translate-y-full data-exiting:translate-y-full",
 };
@@ -84,7 +84,7 @@ export function SheetContent({
         <DialogPrimitive
           data-slot="sheet-dialog"
           aria-describedby={description.descriptionId}
-          className={cn("focus-ring relative flex min-h-full flex-col gap-4 p-6", className)}>
+          className={cn("focus-ring relative flex min-h-full flex-col gap-4 p-4", className)}>
           {(renderProps) => (
             <description.Provider value={description.setDescriptionId}>
               {typeof children === "function" ? children(renderProps) : children}
@@ -93,7 +93,7 @@ export function SheetContent({
                   slot="close"
                   aria-label="Close"
                   data-slot="sheet-close"
-                  className="focus-ring hit-area absolute top-4 right-4 flex size-8 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
+                  className="focus-ring hit-area absolute top-2 right-2 flex size-7 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
                 >
                   <XIcon aria-hidden className="size-4" />
                 </ButtonPrimitive>

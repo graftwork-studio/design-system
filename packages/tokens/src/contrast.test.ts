@@ -24,15 +24,15 @@ describe("the shipped tokens", () => {
 });
 
 describe("the validator", () => {
-  it("fails a text pair below 7:1", async () => {
+  it("fails a text pair below 4.5:1", async () => {
     const tokens = await loadTheme("light");
     const secondary = tokens.find((t) => t.path.join(".") === "color.text.secondary");
     if (!secondary) throw new Error("missing color.text.secondary");
-    secondary.$value = "#737373"; // neutral.500, 4.74:1 on white
+    secondary.$value = "#737373"; // shadcn muted-foreground: 4.35:1 on the subtle surface
 
     const { failures } = checkTheme("light", tokens);
     expect(failures.map((f) => f.token)).toContain("color.text.secondary");
-    expect(failures[0]?.message).toMatch(/Needs 7:1 for text/);
+    expect(failures[0]?.message).toMatch(/Needs 4.5:1 for text/);
   });
 
   it("fails a text token that uses the brand colour", async () => {

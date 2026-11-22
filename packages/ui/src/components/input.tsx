@@ -29,7 +29,7 @@ export type InputProps = Omit<TextFieldProps, "className" | "style" | "children"
 
 export function Input({ label, description, errorMessage, placeholder, className, inputRef, ...props }: InputProps) {
   return (
-    <TextField data-slot="input-field" className={cn("flex flex-col gap-1", className)} {...props}>
+    <TextField data-slot="input-field" className={cn("flex flex-col gap-2", className)} {...props}>
       <FieldLabel>
         {label}
         {props.isRequired ? <span className="text-text-secondary"> (required)</span> : null}

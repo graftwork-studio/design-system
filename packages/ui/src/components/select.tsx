@@ -52,7 +52,7 @@ export function Select<T extends object>({
     <SelectPrimitive
       data-slot="select"
       placeholder={placeholder}
-      className={cn("group/select flex flex-col gap-1", className)}
+      className={cn("group/select flex flex-col gap-2", className)}
       {...props}
     >
       <FieldLabel>
@@ -64,7 +64,7 @@ export function Select<T extends object>({
         data-slot="select-trigger"
         className={cn(
           fieldControl,
-          "focus-ring flex cursor-pointer items-center justify-between gap-2 text-left text-body",
+          "focus-ring flex cursor-pointer items-center justify-between gap-1.5 ps-2.5 pe-2 text-left text-body",
           "hover:bg-action-secondary-bg-hover",
           "group-data-invalid/select:border-2 group-data-invalid/select:border-border-input-invalid",
         )}
@@ -77,7 +77,7 @@ export function Select<T extends object>({
         data-slot="select-popover"
         offset={4}
         className={cn(
-          "w-(--trigger-width) min-w-40 overflow-auto rounded-md border border-border-default bg-surface-overlay shadow-md",
+          "w-(--trigger-width) min-w-36 overflow-auto rounded-lg border border-border-default bg-surface-overlay shadow-md",
           "transition-opacity duration-(--gw-motion-duration-fade) data-entering:opacity-0 data-exiting:opacity-0",
         )}
       >
@@ -97,7 +97,7 @@ export function SelectItem({ className, children, ...props }: SelectItemProps) {
       data-slot="select-item"
       textValue={typeof children === "string" ? children : props.textValue}
       className={cn(
-        "flex min-h-target-min cursor-pointer items-center justify-between gap-2 rounded-sm px-3 text-body text-text-default outline-none",
+        "flex cursor-pointer items-center justify-between gap-1.5 rounded-md py-1 ps-1.5 pe-2 text-body text-text-default outline-none",
         "data-focused:bg-action-ghost-bg-hover data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:-outline-offset-2 data-focus-visible:outline-focus-ring",
         "data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,

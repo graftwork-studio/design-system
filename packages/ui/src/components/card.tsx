@@ -12,7 +12,7 @@ export function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "flex flex-col gap-4 rounded-lg border border-border-default bg-surface-raised py-6 text-body text-text-default",
+        "flex flex-col gap-4 rounded-xl border border-border-default bg-surface-raised py-4 text-body text-text-default",
         className,
       )}
       {...props}
@@ -21,7 +21,7 @@ export function Card({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="card-header" className={cn("flex flex-col gap-1 px-6", className)} {...props} />;
+  return <div data-slot="card-header" className={cn("flex flex-col gap-1 px-4", className)} {...props} />;
 }
 
 export type CardTitleProps = React.ComponentProps<"h2"> & {
@@ -34,7 +34,7 @@ export function CardTitle({ className, level = 2, ...props }: CardTitleProps) {
   return (
     <Heading
       data-slot="card-title"
-      className={cn("text-xl leading-heading font-semibold text-text-default", className)}
+      className={cn("text-md leading-heading font-medium text-text-default", className)}
       {...props}
     />
   );
@@ -45,11 +45,11 @@ export function CardDescription({ className, ...props }: React.ComponentProps<"p
 }
 
 export function CardContent({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="card-content" className={cn("px-6", className)} {...props} />;
+  return <div data-slot="card-content" className={cn("px-4", className)} {...props} />;
 }
 
 export function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div data-slot="card-footer" className={cn("flex flex-wrap items-center gap-2 px-6", className)} {...props} />
+    <div data-slot="card-footer" className={cn("flex flex-wrap items-center gap-2 px-4", className)} {...props} />
   );
 }

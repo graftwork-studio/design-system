@@ -49,15 +49,15 @@ export const Sizes: Story = {
     </div>
   ),
   play: async ({ canvasElement }) => {
-    // Every size keeps a 44 × 44px hit area, even when it looks smaller.
+    // Every size keeps a hit area of at least 24 × 24px (WCAG 2.5.8).
     for (const button of within(canvasElement).getAllByRole("button")) {
       await expectHitArea(button);
     }
-    // Text is 12, 14 and 16px: md matches body text.
+    // Matches shadcn: 12.8px at sm, 14px at md and lg.
     const sizes = within(canvasElement)
       .getAllByRole("button")
       .map((button) => getComputedStyle(button).fontSize);
-    await expect(sizes).toEqual(["12px", "14px", "16px"]);
+    await expect(sizes).toEqual(["12.8px", "14px", "14px"]);
   },
 };
 

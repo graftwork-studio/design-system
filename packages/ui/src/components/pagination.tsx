@@ -61,9 +61,8 @@ export function Pagination({
       aria-label={extra.label}
       aria-current={extra.current ? "page" : undefined}
       className={cn(
-        buttonVariants({ variant: extra.current ? "primary" : "ghost", size: "sm" }),
-        // Small button height, but body-size text: page numbers shouldn't shrink to 12px.
-        "min-w-8 px-2 text-body no-underline",
+        buttonVariants({ variant: extra.current ? "primary" : "ghost", size: "md" }),
+        "min-w-8 px-1.5 no-underline",
         !extra.current && "text-text-default",
       )}
     >
@@ -72,7 +71,7 @@ export function Pagination({
   );
   return (
     <nav aria-label={label} data-slot="pagination" className={cn("flex", className)}>
-      <ul className="flex flex-wrap items-center gap-1">
+      <ul className="flex flex-wrap items-center gap-0.5">
         <li>
           {link(page - 1, <><ChevronLeftIcon aria-hidden /><span className="max-sm:sr-only">Previous</span></>, {
             label: "Previous page",

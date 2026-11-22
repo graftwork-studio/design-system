@@ -17,6 +17,6 @@ export type LabelProps = React.ComponentProps<typeof LabelPrimitive>;
 
 export function Label({ className, ...props }: LabelProps) {
   return (
-    <LabelPrimitive data-slot="label" className={cn("text-sm font-medium text-text-default", className)} {...props} />
+    <LabelPrimitive data-slot="label" className={cn("text-sm leading-none font-medium text-text-default", className)} {...props} />
   );
 }

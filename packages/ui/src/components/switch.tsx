@@ -32,7 +32,7 @@ export function Switch({ className, children, ...props }: SwitchProps) {
           <span
             data-slot="switch-track"
             className={cn(
-              "flex h-6 w-10 shrink-0 items-center rounded-full border-2 border-border-input bg-surface-default p-0.5",
+              "flex h-[18.4px] w-8 shrink-0 items-center rounded-full border border-border-input bg-surface-default",
               "transition-colors duration-(--gw-motion-duration-fast)",
               "group-data-selected/selection:border-action-primary-bg group-data-selected/selection:bg-action-primary-bg",
               "group-data-focus-visible/selection:focus-ring-drawn",
@@ -42,7 +42,7 @@ export function Switch({ className, children, ...props }: SwitchProps) {
               data-slot="switch-thumb"
               className={cn(
                 "size-4 rounded-full bg-icon-default transition-transform duration-(--gw-motion-duration-fast)",
-                "group-data-selected/selection:translate-x-4 group-data-selected/selection:bg-text-on-primary",
+                "group-data-selected/selection:translate-x-[calc(100%-2px)] group-data-selected/selection:bg-text-on-primary",
               )}
             />
           </span>

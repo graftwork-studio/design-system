@@ -35,7 +35,7 @@ export type BreadcrumbProps<T extends object> = Omit<BreadcrumbsProps<T>, "class
 export function Breadcrumb<T extends object>({ "aria-label": label = "Breadcrumb", className, ...props }: BreadcrumbProps<T>) {
   return (
     <nav aria-label={label} data-slot="breadcrumb">
-      <Breadcrumbs className={cn("flex flex-wrap items-center gap-1 text-body text-text-secondary", className)} {...props} />
+      <Breadcrumbs className={cn("flex flex-wrap items-center gap-1.5 text-body text-text-secondary", className)} {...props} />
     </nav>
   );
 }
@@ -49,7 +49,7 @@ export type BreadcrumbItemProps = Omit<BreadcrumbPrimitiveProps, "className" | "
 
 export function BreadcrumbItem({ href, children, className, ...props }: BreadcrumbItemProps) {
   return (
-    <BreadcrumbPrimitive data-slot="breadcrumb-item" className={cn("group/crumb flex items-center gap-1", className)} {...props}>
+    <BreadcrumbPrimitive data-slot="breadcrumb-item" className={cn("group/crumb flex items-center gap-1.5", className)} {...props}>
       <Link
         href={href}
         className={cn(
@@ -61,7 +61,7 @@ export function BreadcrumbItem({ href, children, className, ...props }: Breadcru
       >
         {children}
       </Link>
-      <ChevronRightIcon aria-hidden className="size-4 text-icon-default group-last/crumb:hidden" />
+      <ChevronRightIcon aria-hidden className="size-3.5 text-icon-default group-last/crumb:hidden" />
     </BreadcrumbPrimitive>
   );
 }

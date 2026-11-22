@@ -81,13 +81,13 @@ export function Toaster({ "aria-label": label = "Notifications", className }: To
             data-slot="toast"
             data-variant={variant}
             className={cn(
-              "flex items-start gap-3 rounded-md border border-border-default bg-surface-overlay p-4 text-body text-text-default shadow-lg outline-none",
+              "flex items-start gap-3 rounded-lg border border-border-default bg-surface-overlay p-4 text-body text-text-default shadow-lg outline-none",
               "data-focus-visible:focus-ring-drawn",
             )}
           >
             <Icon aria-hidden className={cn("mt-0.5 size-5 shrink-0", iconClass)} />
             <ToastContentPrimitive className="flex min-w-0 flex-1 flex-col gap-1">
-              <Text slot="title" className="font-semibold">
+              <Text slot="title" className="font-medium">
                 {item.content.title}
               </Text>
               {item.content.description ? (
@@ -99,7 +99,7 @@ export function Toaster({ "aria-label": label = "Notifications", className }: To
             <ButtonPrimitive
               slot="close"
               aria-label="Dismiss"
-              className="focus-ring hit-area -m-1 flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
+              className="focus-ring hit-area -m-1 flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-icon-default hover:bg-action-ghost-bg-hover"
             >
               <XIcon aria-hidden className="size-4" />
             </ButtonPrimitive>

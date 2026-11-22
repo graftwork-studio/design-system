@@ -36,7 +36,7 @@ export function Textarea({
   ...props
 }: TextareaProps) {
   return (
-    <TextField data-slot="textarea-field" className={cn("flex flex-col gap-1", className)} {...props}>
+    <TextField data-slot="textarea-field" className={cn("flex flex-col gap-2", className)} {...props}>
       <FieldLabel>
         {label}
         {props.isRequired ? <span className="text-text-secondary"> (required)</span> : null}
@@ -47,7 +47,7 @@ export function Textarea({
         data-slot="textarea"
         rows={rows}
         placeholder={placeholder}
-        className={cn(fieldControl, "focus-ring field-sizing-content py-2 leading-body placeholder:text-text-placeholder")}
+        className={cn(fieldControl, "focus-ring field-sizing-content h-auto min-h-16 py-2 leading-body placeholder:text-text-placeholder")}
       />
       <FieldErrorText>{errorMessage}</FieldErrorText>
     </TextField>

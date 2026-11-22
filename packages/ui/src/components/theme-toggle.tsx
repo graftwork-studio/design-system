@@ -90,16 +90,16 @@ export function ThemeToggle({ value, defaultValue, onChange, label = "Theme", cl
       value={current}
       onChange={choose}
       orientation="horizontal"
-      className={cn("flex flex-col gap-1", className)}
+      className={cn("flex flex-col gap-2", className)}
     >
       <Label className="text-sm font-medium text-text-default">{label}</Label>
-      <div className="flex flex-wrap gap-1 rounded-md border border-border-input bg-surface-default p-1">
+      <div className="flex flex-wrap gap-0.5 rounded-lg border border-border-input bg-surface-default p-0.5">
         {OPTIONS.map(({ value: optionValue, label: optionLabel, Icon }) => (
           <Radio
             key={optionValue}
             value={optionValue}
             className={cn(
-              "flex min-h-target-min cursor-pointer items-center gap-1 rounded-sm px-3 text-sm text-text-default",
+              "flex h-7 cursor-pointer items-center gap-1.5 rounded-md px-2.5 text-sm text-text-default",
               "transition-colors duration-(--gw-motion-duration-fast) hover:bg-action-ghost-bg-hover",
               "data-selected:bg-action-primary-bg data-selected:text-text-on-primary",
               "data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:outline-offset-2 data-focus-visible:outline-focus-ring",

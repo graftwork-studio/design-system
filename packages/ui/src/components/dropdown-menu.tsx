@@ -56,14 +56,14 @@ export function DropdownMenuContent<T extends object>({
   ...props
 }: DropdownMenuContentProps<T>) {
   return (
-    <PopoverPrimitive data-slot="dropdown-menu-popover" placement={placement} offset={4} className={cn(floatingPanel, "min-w-48")}>
+    <PopoverPrimitive data-slot="dropdown-menu-popover" placement={placement} offset={4} className={cn(floatingPanel, "min-w-32")}>
       <Menu data-slot="dropdown-menu" className={cn("focus-ring max-h-[inherit] overflow-auto p-1", className)} {...props} />
     </PopoverPrimitive>
   );
 }
 
 const item = [
-  "group/item flex min-h-target-min cursor-pointer items-center gap-2 rounded-sm px-3 text-body text-text-default outline-none",
+  "group/item flex cursor-pointer items-center gap-1.5 rounded-md px-1.5 py-1 text-body text-text-default outline-none",
   "data-focused:bg-action-ghost-bg-hover",
   "data-focus-visible:outline-2 data-focus-visible:outline-solid data-focus-visible:-outline-offset-2 data-focus-visible:outline-focus-ring",
   "data-disabled:cursor-not-allowed data-disabled:opacity-50",
@@ -122,7 +122,7 @@ export type DropdownMenuSectionProps<T extends object> = Omit<MenuSectionProps<T
 export function DropdownMenuSection<T extends object>({ title, className, children, ...props }: DropdownMenuSectionProps<T>) {
   return (
     <MenuSection data-slot="dropdown-menu-section" className={className} {...props}>
-      {title ? <Header className="px-3 pt-2 pb-1 text-sm font-semibold text-text-secondary">{title}</Header> : null}
+      {title ? <Header className="px-1.5 py-1 text-xs font-medium text-text-secondary">{title}</Header> : null}
       {children as React.ReactNode}
     </MenuSection>
   );

@@ -4,7 +4,7 @@
       "$type": "color",
       "$description": "Light theme. surface tokens.",
       "default": {
-        "$value": "{color.neutral.0}",
+        "$value": "{color.shadcn.light-background}",
         "$description": "Page background.",
         "$extensions": {
           "studio.graftwork": {
@@ -13,7 +13,7 @@
         }
       },
       "raised": {
-        "$value": "{color.neutral.0}",
+        "$value": "{color.shadcn.light-background}",
         "$description": "Cards and panels.",
         "$extensions": {
           "studio.graftwork": {
@@ -22,7 +22,7 @@
         }
       },
       "subtle": {
-        "$value": "{color.neutral.100}",
+        "$value": "{color.shadcn.light-muted}",
         "$description": "Table headers, wells, zebra rows.",
         "$extensions": {
           "studio.graftwork": {
@@ -31,7 +31,7 @@
         }
       },
       "overlay": {
-        "$value": "{color.neutral.0}",
+        "$value": "{color.shadcn.light-background}",
         "$description": "Popovers, menus and dialogs.",
         "$extensions": {
           "studio.graftwork": {
@@ -58,7 +58,7 @@
       "$description": "Light theme. action tokens.",
       "primary": {
         "bg": {
-          "$value": "{color.brand.700}",
+          "$value": "{color.shadcn.light-primary}",
           "$description": "Filled primary button.",
           "$extensions": {
             "studio.graftwork": {
@@ -67,7 +67,7 @@
           }
         },
         "bg-hover": {
-          "$value": "{color.brand.800}",
+          "$value": "{color.shadcn.light-primary-hover}",
           "$extensions": {
             "studio.graftwork": {
               "role": "background"
@@ -77,7 +77,7 @@
       },
       "secondary": {
         "bg": {
-          "$value": "{color.neutral.0}",
+          "$value": "{color.shadcn.light-background}",
           "$description": "Secondary button.",
           "$extensions": {
             "studio.graftwork": {
@@ -86,7 +86,7 @@
           }
         },
         "bg-hover": {
-          "$value": "{color.neutral.100}",
+          "$value": "{color.shadcn.light-muted}",
           "$extensions": {
             "studio.graftwork": {
               "role": "background"
@@ -96,7 +96,7 @@
       },
       "ghost": {
         "bg-hover": {
-          "$value": "{color.neutral.100}",
+          "$value": "{color.shadcn.light-muted}",
           "$description": "Ghost button hover.",
           "$extensions": {
             "studio.graftwork": {
@@ -107,7 +107,7 @@
       },
       "destructive": {
         "bg": {
-          "$value": "{color.red.700}",
+          "$value": "{color.shadcn.light-destructive}",
           "$description": "Filled destructive button.",
           "$extensions": {
             "studio.graftwork": {
@@ -116,7 +116,7 @@
           }
         },
         "bg-hover": {
-          "$value": "{color.red.800}",
+          "$value": "{color.shadcn.light-destructive-hover}",
           "$extensions": {
             "studio.graftwork": {
               "role": "background"
@@ -160,7 +160,7 @@
       },
       "info": {
         "bg": {
-          "$value": "{color.brand.50}",
+          "$value": "{color.shadcn.light-muted}",
           "$extensions": {
             "studio.graftwork": {
               "role": "background"
@@ -173,7 +173,7 @@
       "$type": "color",
       "$description": "Light theme. text tokens.",
       "default": {
-        "$value": "{color.neutral.950}",
+        "$value": "{color.shadcn.light-foreground}",
         "$description": "Body and heading text.",
         "$extensions": {
           "studio.graftwork": {
@@ -195,7 +195,7 @@
         }
       },
       "secondary": {
-        "$value": "{color.neutral.600}",
+        "$value": "{color.shadcn.light-muted-foreground-aa}",
         "$description": "Supporting text. Still 7:1.",
         "$extensions": {
           "studio.graftwork": {
@@ -210,7 +210,7 @@
         }
       },
       "placeholder": {
-        "$value": "{color.neutral.600}",
+        "$value": "{color.shadcn.light-muted-foreground}",
         "$description": "Input placeholders. Still 7:1; never the only label.",
         "$extensions": {
           "studio.graftwork": {
@@ -224,7 +224,7 @@
         }
       },
       "link": {
-        "$value": "{color.brand.800}",
+        "$value": "{color.shadcn.light-foreground}",
         "$description": "Links. Always underlined as well.",
         "$extensions": {
           "studio.graftwork": {
@@ -239,7 +239,7 @@
         }
       },
       "on-primary": {
-        "$value": "{color.neutral.0}",
+        "$value": "{color.shadcn.light-primary-foreground}",
         "$description": "Labels on filled primary buttons.",
         "$extensions": {
           "studio.graftwork": {
@@ -252,7 +252,7 @@
         }
       },
       "on-destructive": {
-        "$value": "{color.neutral.0}",
+        "$value": "{color.shadcn.light-background}",
         "$description": "Labels on filled destructive buttons.",
         "$extensions": {
           "studio.graftwork": {
@@ -293,7 +293,7 @@
         }
       },
       "error": {
-        "$value": "{color.red.800}",
+        "$value": "{color.shadcn.light-destructive-text-aa}",
         "$description": "Error messages, linked to their field.",
         "$extensions": {
           "studio.graftwork": {
@@ -308,7 +308,7 @@
         }
       },
       "info": {
-        "$value": "{color.brand.800}",
+        "$value": "{color.shadcn.light-foreground}",
         "$extensions": {
           "studio.graftwork": {
             "role": "text",
@@ -326,7 +326,7 @@
       "$type": "color",
       "$description": "Light theme. border tokens.",
       "input": {
-        "$value": "{color.neutral.500}",
+        "$value": "{color.shadcn.light-input-aa}",
         "$description": "Input, select and checkbox borders.",
         "$extensions": {
           "studio.graftwork": {
@@ -341,7 +341,7 @@
         }
       },
       "input-invalid": {
-        "$value": "{color.red.700}",
+        "$value": "{color.shadcn.light-destructive}",
         "$description": "Border of an invalid field. Always paired with error text and an icon.",
         "$extensions": {
           "studio.graftwork": {
@@ -356,7 +356,7 @@
         }
       },
       "default": {
-        "$value": "{color.neutral.200}",
+        "$value": "{color.shadcn.light-border}",
         "$description": "Dividers and card outlines. Not relied on to identify anything.",
         "$extensions": {
           "studio.graftwork": {
@@ -403,7 +403,7 @@
       "$type": "color",
       "$description": "Light theme. icon tokens.",
       "default": {
-        "$value": "{color.neutral.600}",
+        "$value": "{color.shadcn.light-muted-foreground}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -417,7 +417,7 @@
         }
       },
       "brand": {
-        "$value": "{color.brand.500}",
+        "$value": "{color.shadcn.light-primary}",
         "$description": "The brand colour. Icons, borders and decoration; never text.",
         "$extensions": {
           "studio.graftwork": {
@@ -436,7 +436,7 @@
       "$type": "color",
       "$description": "Light theme. focus tokens.",
       "ring": {
-        "$value": "{color.brand.500}",
+        "$value": "{color.shadcn.light-ring-aa}",
         "$description": "Focus ring: 2px wide with a 2px offset, so a gap of surface always separates it from the component. Checked at 3:1 against every surface, which is what WCAG 2.4.13 measures.",
         "$extensions": {
           "studio.graftwork": {
@@ -455,7 +455,7 @@
       "$type": "color",
       "$description": "Light theme. chart tokens.",
       "series-1": {
-        "$value": "{color.brand.500}",
+        "$value": "{color.shadcn.light-chart-1-aa}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -467,7 +467,7 @@
         }
       },
       "series-2": {
-        "$value": "{color.amber.500}",
+        "$value": "{color.shadcn.light-chart-2}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -479,7 +479,7 @@
         }
       },
       "series-3": {
-        "$value": "{color.neutral.600}",
+        "$value": "{color.shadcn.light-chart-3}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -491,7 +491,7 @@
         }
       },
       "series-4": {
-        "$value": "{color.green.600}",
+        "$value": "{color.shadcn.light-chart-4}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -503,7 +503,7 @@
         }
       },
       "grid": {
-        "$value": "{color.neutral.200}",
+        "$value": "{color.shadcn.light-border}",
         "$extensions": {
           "studio.graftwork": {
             "role": "decorative"

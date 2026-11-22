@@ -18,7 +18,7 @@ export function Kbd({ className, ...props }: KbdProps) {
     <Keyboard
       data-slot="kbd"
       className={cn(
-        "inline-flex h-6 min-w-6 items-center justify-center rounded-sm border border-border-input bg-surface-subtle px-1.5 font-sans text-sm font-medium text-text-default",
+        "inline-flex h-5 min-w-5 items-center justify-center rounded-sm border border-border-input bg-surface-subtle px-1 font-sans text-xs font-medium text-text-default",
         className,
       )}
       {...props}
