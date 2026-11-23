@@ -1,6 +1,22 @@
 "use client";
 
-import { ArchiveIcon, BoldIcon, ChevronDownIcon, ChevronsUpDownIcon, FolderOpenIcon, ItalicIcon, PlusIcon, SearchIcon, SlidersHorizontalIcon } from "lucide-react";
+import {
+  ArchiveIcon,
+  BoldIcon,
+  ChevronDownIcon,
+  ChevronsUpDownIcon,
+  EllipsisIcon,
+  FileTextIcon,
+  FolderOpenIcon,
+  HouseIcon,
+  InfoIcon,
+  ItalicIcon,
+  PlusIcon,
+  SearchIcon,
+  SettingsIcon,
+  SlidersHorizontalIcon,
+  XIcon,
+} from "lucide-react";
 import * as React from "react";
 import {
   Accordion,
@@ -89,6 +105,117 @@ import {
   Toggle,
   Tooltip,
   TooltipContent,
+  Attachment,
+  AttachmentAction,
+  AttachmentActions,
+  AttachmentContent,
+  AttachmentDescription,
+  AttachmentGroup,
+  AttachmentMedia,
+  AttachmentTitle,
+  AttachmentTrigger,
+  Bubble,
+  BubbleContent,
+  BubbleGroup,
+  BubbleReactions,
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
+  ItemGroup,
+  ItemHeader,
+  ItemMedia,
+  ItemSeparator,
+  ItemTitle,
+  Marker,
+  MarkerContent,
+  MarkerIcon,
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerViewport,
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+  Questionnaire,
+  QuestionnaireActions,
+  QuestionnaireChoice,
+  QuestionnaireChoiceDescription,
+  QuestionnaireChoices,
+  QuestionnaireDescription,
+  QuestionnaireError,
+  QuestionnaireInput,
+  QuestionnaireItem,
+  QuestionnaireNext,
+  QuestionnairePrevious,
+  QuestionnaireProgress,
+  QuestionnaireSkip,
+  QuestionnaireSubmit,
+  QuestionnaireTitle,
+  ScrollArea,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  ToggleGroup,
+  ToggleGroupItem,
+  Trace,
+  TraceCollapsible,
+  TraceCollapsibleContent,
+  TraceCollapsibleTrigger,
+  TraceDescription,
+  TraceIcon,
+  TraceLine,
+  TraceTitle,
   cn,
   toast,
 } from "../index.js";
@@ -137,6 +264,222 @@ const tableRows = [
   { id: "3", name: "Harbour", lead: "Mei Tan", state: "Archived" },
 ];
 
+const exampleInput = "focus-ring h-8 w-full rounded-lg border border-border-input bg-surface-default px-2.5 text-md text-text-default md:text-body";
+
+function FieldExample() {
+  const id = React.useId();
+  return (
+    <FieldSet>
+      <FieldLegend>Contact details</FieldLegend>
+      <FieldGroup>
+        <Field>
+          <FieldLabel htmlFor={`${id}-name`}>Full name</FieldLabel>
+          <input id={`${id}-name`} aria-describedby={`${id}-hint`} defaultValue="Ana Silva" className={exampleInput} />
+          <FieldDescription id={`${id}-hint`}>As it appears on invoices.</FieldDescription>
+        </Field>
+        <FieldSeparator>And</FieldSeparator>
+        <Field>
+          <FieldLabel htmlFor={`${id}-email`}>Work email</FieldLabel>
+          <input id={`${id}-email`} aria-invalid aria-describedby={`${id}-error`} defaultValue="ana@" className={exampleInput} />
+          <FieldError id={`${id}-error`} errors={[{ message: "Enter a full email address." }]} />
+        </Field>
+        <Field orientation="horizontal">
+          <FieldContent>
+            <FieldTitle>Weekly summary</FieldTitle>
+            <FieldDescription>Sent every Monday.</FieldDescription>
+          </FieldContent>
+          <Switch defaultSelected>On</Switch>
+        </Field>
+      </FieldGroup>
+    </FieldSet>
+  );
+}
+
+const commandContents = (
+  <>
+    <CommandInput placeholder="Search commands" />
+    <CommandList aria-label="Commands" renderEmptyState={() => <CommandEmpty>No results</CommandEmpty>}>
+      <CommandGroup heading="Projects">
+        <CommandItem id="new" textValue="New project">
+          <PlusIcon aria-hidden />
+          <span>New project</span>
+          <CommandShortcut>⌘N</CommandShortcut>
+        </CommandItem>
+        <CommandItem id="archive" textValue="Archive project">
+          <ArchiveIcon aria-hidden />
+          <span>Archive project</span>
+        </CommandItem>
+      </CommandGroup>
+      <CommandSeparator />
+      <CommandGroup heading="Settings">
+        <CommandItem id="preferences">Preferences</CommandItem>
+      </CommandGroup>
+    </CommandList>
+  </>
+);
+
+function CommandExample() {
+  return (
+    <div className="flex flex-col items-start gap-3">
+      <div className="w-full rounded-xl border border-border-default">
+        <Command>{commandContents}</Command>
+      </div>
+      <Dialog>
+        <Button variant="secondary">Open command menu</Button>
+        <CommandDialog>
+          <Command>{commandContents}</Command>
+        </CommandDialog>
+      </Dialog>
+    </div>
+  );
+}
+
+function MessageScrollerExample() {
+  const [count, setCount] = React.useState(6);
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="h-56 rounded-lg border border-border-default">
+        <MessageScroller>
+          <MessageScrollerViewport aria-label="Example conversation">
+            <MessageScrollerContent className="gap-3 p-3">
+              {Array.from({ length: count }, (_, index) => (
+                <MessageScrollerItem key={index}>
+                  <Message align={index % 2 ? "end" : "start"}>
+                    <MessageContent>
+                      <MessageHeader>{index % 2 ? "You" : "Assistant"}</MessageHeader>
+                      <Bubble variant={index % 2 ? "default" : "muted"}>
+                        <BubbleContent>Message {index + 1}</BubbleContent>
+                      </Bubble>
+                    </MessageContent>
+                  </Message>
+                </MessageScrollerItem>
+              ))}
+            </MessageScrollerContent>
+          </MessageScrollerViewport>
+          <MessageScrollerButton />
+        </MessageScroller>
+      </div>
+      <Button variant="secondary" size="sm" className="self-start" onPress={() => setCount((current) => current + 1)}>
+        Add a message
+      </Button>
+    </div>
+  );
+}
+
+function QuestionnaireExample() {
+  const [submitted, setSubmitted] = React.useState(false);
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-start gap-3">
+        <Alert variant="success" title="Thanks, that's everything" />
+        <Button variant="secondary" size="sm" onPress={() => setSubmitted(false)}>
+          Start again
+        </Button>
+      </div>
+    );
+  }
+  return (
+    <Questionnaire onSubmit={() => setSubmitted(true)}>
+      <QuestionnaireProgress />
+      <QuestionnaireItem id="goal" type="single" isRequired>
+        <QuestionnaireTitle level={4}>What should the report cover?</QuestionnaireTitle>
+        <QuestionnaireDescription>Pick the closest match.</QuestionnaireDescription>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="usage">
+            Usage
+            <QuestionnaireChoiceDescription>Active people and sessions</QuestionnaireChoiceDescription>
+          </QuestionnaireChoice>
+          <QuestionnaireChoice value="revenue">Revenue</QuestionnaireChoice>
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
+      <QuestionnaireItem id="formats" type="multiple">
+        <QuestionnaireTitle level={4}>Which formats do you need?</QuestionnaireTitle>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="pdf">PDF</QuestionnaireChoice>
+          <QuestionnaireChoice value="csv">CSV</QuestionnaireChoice>
+        </QuestionnaireChoices>
+      </QuestionnaireItem>
+      <QuestionnaireItem id="notes" type="text">
+        <QuestionnaireTitle level={4}>Anything else?</QuestionnaireTitle>
+        <QuestionnaireInput placeholder="Optional notes" />
+      </QuestionnaireItem>
+      <QuestionnaireActions>
+        <QuestionnairePrevious />
+        <QuestionnaireSkip />
+        <QuestionnaireNext />
+        <QuestionnaireSubmit />
+      </QuestionnaireActions>
+    </Questionnaire>
+  );
+}
+
+function SidebarExample() {
+  return (
+    <SidebarProvider keyboardShortcut={false} className="h-96 min-h-0 overflow-hidden rounded-lg border border-border-default">
+      <Sidebar contained collapsible="icon" aria-label="Example navigation">
+        <SidebarHeader>
+          <SidebarInput label="Search" placeholder="Find a page" className="group-data-[collapsible=icon]/sidebar:hidden" />
+        </SidebarHeader>
+        <SidebarSeparator />
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+            <SidebarGroupAction aria-label="Add a page">
+              <PlusIcon aria-hidden />
+            </SidebarGroupAction>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton href="#overview" isActive tooltip="Overview">
+                    <HouseIcon aria-hidden />
+                    <span>Overview</span>
+                  </SidebarMenuButton>
+                  <SidebarMenuBadge>3</SidebarMenuBadge>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton href="#projects" tooltip="Projects">
+                    <FolderOpenIcon aria-hidden />
+                    <span>Projects</span>
+                  </SidebarMenuButton>
+                  <SidebarMenuAction aria-label="Project options">
+                    <EllipsisIcon aria-hidden />
+                  </SidebarMenuAction>
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton href="#northwind">
+                        <span>Northwind</span>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                </SidebarMenuItem>
+                <SidebarMenuItem aria-busy="true">
+                  <SidebarMenuSkeleton showIcon />
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+        <SidebarFooter>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton tooltip="Settings">
+                <SettingsIcon aria-hidden />
+                <span>Settings</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarFooter>
+        <SidebarRail />
+      </Sidebar>
+      <SidebarInset elementType="div" className="gap-2 p-3">
+        <SidebarTrigger />
+        <p>Page content goes here.</p>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+
 export const showcaseEntries: readonly ShowcaseEntry[] = [
   {
     name: "Accordion",
@@ -184,6 +527,37 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+    ),
+  },
+  {
+    name: "Attachment",
+    render: () => (
+      <AttachmentGroup aria-label="Attached files">
+        <Attachment>
+          <AttachmentTrigger aria-label="Open report.pdf" />
+          <AttachmentMedia>
+            <FileTextIcon aria-hidden />
+          </AttachmentMedia>
+          <AttachmentContent>
+            <AttachmentTitle>report.pdf</AttachmentTitle>
+            <AttachmentDescription>2.4 MB</AttachmentDescription>
+          </AttachmentContent>
+          <AttachmentActions>
+            <AttachmentAction aria-label="Remove report.pdf">
+              <XIcon aria-hidden />
+            </AttachmentAction>
+          </AttachmentActions>
+        </Attachment>
+        <Attachment state="error">
+          <AttachmentMedia>
+            <FileTextIcon aria-hidden />
+          </AttachmentMedia>
+          <AttachmentContent>
+            <AttachmentTitle>notes.txt</AttachmentTitle>
+            <AttachmentDescription>Upload failed</AttachmentDescription>
+          </AttachmentContent>
+        </Attachment>
+      </AttachmentGroup>
     ),
   },
   {
@@ -242,6 +616,20 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   {
+    name: "Bubble",
+    render: () => (
+      <BubbleGroup className="pb-3">
+        <Bubble variant="muted">
+          <BubbleContent>Can you summarise this report?</BubbleContent>
+        </Bubble>
+        <Bubble align="end">
+          <BubbleContent>Sign-ups rose by 12%.</BubbleContent>
+          <BubbleReactions aria-label="1 thumbs up reaction">👍</BubbleReactions>
+        </Bubble>
+      </BubbleGroup>
+    ),
+  },
+  {
     name: "Button",
     render: () => (
       <div className="flex flex-wrap items-center gap-2">
@@ -251,6 +639,28 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
         <Button variant="secondary">Secondary</Button>
         <Button variant="ghost">Ghost</Button>
         <Button variant="destructive">Destructive</Button>
+      </div>
+    ),
+  },
+  {
+    name: "ButtonGroup",
+    render: () => (
+      <div className="flex flex-wrap items-center gap-3">
+        <ButtonGroup aria-label="Page actions">
+          <Button variant="secondary">Copy</Button>
+          <Button variant="secondary">Share</Button>
+          <Button variant="secondary" aria-label="More actions">
+            <ChevronDownIcon aria-hidden />
+          </Button>
+        </ButtonGroup>
+        <ButtonGroup aria-label="Publish">
+          <ButtonGroupText>Draft</ButtonGroupText>
+          <Button>Publish</Button>
+          <ButtonGroupSeparator />
+          <Button aria-label="Publish options">
+            <ChevronDownIcon aria-hidden />
+          </Button>
+        </ButtonGroup>
       </div>
     ),
   },
@@ -308,6 +718,7 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
       </Combobox>
     ),
   },
+  { name: "Command", render: () => <CommandExample /> },
   {
     name: "Dialog",
     render: () => (
@@ -377,10 +788,44 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
       />
     ),
   },
+  { name: "Field", render: () => <FieldExample /> },
   { name: "Input", render: () => <Input label="Display name" description="Shown on your profile." placeholder="For example, Ana" /> },
   {
     name: "InputGroup",
     render: () => <InputGroup label="Find items" startAddon={<SearchIcon aria-hidden />} endAddon="⌘K" placeholder="Search" />,
+  },
+  {
+    name: "Item",
+    render: () => (
+      <ItemGroup>
+        <Item variant="outline">
+          <ItemHeader>
+            <Badge variant="success">Live</Badge>
+          </ItemHeader>
+          <ItemMedia variant="icon">
+            <FileTextIcon aria-hidden />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Monthly report</ItemTitle>
+            <ItemDescription>Updated 2 hours ago</ItemDescription>
+          </ItemContent>
+          <ItemActions>
+            <Button size="sm" variant="secondary">
+              Open
+            </Button>
+          </ItemActions>
+          <ItemFooter>
+            <span className="text-xs text-text-secondary">Owned by Ana Silva</span>
+          </ItemFooter>
+        </Item>
+        <ItemSeparator />
+        <Item href="#northwind" variant="muted" size="sm">
+          <ItemContent>
+            <ItemTitle>Northwind</ItemTitle>
+          </ItemContent>
+        </Item>
+      </ItemGroup>
+    ),
   },
   {
     name: "Kbd",
@@ -391,6 +836,67 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   { name: "Label", render: () => <LabelExample /> },
+  {
+    name: "Marker",
+    render: () => (
+      <div className="flex flex-col gap-3">
+        <Marker variant="separator">
+          <MarkerContent>Today</MarkerContent>
+        </Marker>
+        <Marker>
+          <MarkerIcon>
+            <InfoIcon />
+          </MarkerIcon>
+          <MarkerContent>Ana joined the conversation</MarkerContent>
+        </Marker>
+        <Marker variant="border">
+          <MarkerContent>Earlier messages</MarkerContent>
+        </Marker>
+      </div>
+    ),
+  },
+  {
+    name: "Message",
+    render: () => (
+      <MessageGroup>
+        <Message>
+          <MessageAvatar>
+            <Avatar name="Assistant" size="sm" />
+          </MessageAvatar>
+          <MessageContent>
+            <MessageHeader>Assistant</MessageHeader>
+            <Bubble variant="muted">
+              <BubbleContent>How can I help?</BubbleContent>
+            </Bubble>
+            <MessageFooter>09:41</MessageFooter>
+          </MessageContent>
+        </Message>
+        <Message align="end">
+          <MessageContent>
+            <MessageHeader>You</MessageHeader>
+            <Bubble>
+              <BubbleContent>Find last month's report.</BubbleContent>
+            </Bubble>
+          </MessageContent>
+        </Message>
+      </MessageGroup>
+    ),
+  },
+  { name: "MessageScroller", render: () => <MessageScrollerExample /> },
+  {
+    name: "NativeSelect",
+    render: () => (
+      <NativeSelect label="Time zone" description="Used for scheduled reports." defaultValue="london">
+        <NativeSelectOptGroup label="Europe">
+          <NativeSelectOption value="london">London</NativeSelectOption>
+          <NativeSelectOption value="paris">Paris</NativeSelectOption>
+        </NativeSelectOptGroup>
+        <NativeSelectOptGroup label="Asia">
+          <NativeSelectOption value="tokyo">Tokyo</NativeSelectOption>
+        </NativeSelectOptGroup>
+      </NativeSelect>
+    ),
+  },
   { name: "Pagination", wide: true, render: () => <PaginationExample /> },
   {
     name: "Popover",
@@ -416,6 +922,7 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
       </div>
     ),
   },
+  { name: "Questionnaire", render: () => <QuestionnaireExample /> },
   {
     name: "RadioGroup",
     render: () => (
@@ -424,6 +931,18 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
         <Radio value="team">Team</Radio>
         <Radio value="enterprise">Enterprise</Radio>
       </RadioGroup>
+    ),
+  },
+  {
+    name: "ScrollArea",
+    render: () => (
+      <ScrollArea aria-label="Release notes" className="h-32 rounded-lg border border-border-default p-3">
+        <ul className="flex flex-col gap-2">
+          {Array.from({ length: 12 }, (_, index) => (
+            <li key={index}>Release note {index + 1}</li>
+          ))}
+        </ul>
+      </ScrollArea>
     ),
   },
   {
@@ -473,6 +992,7 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
       </Sheet>
     ),
   },
+  { name: "Sidebar", wide: true, render: () => <SidebarExample /> },
   {
     name: "Skeleton",
     render: () => (
@@ -563,6 +1083,25 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   {
+    name: "ToggleGroup",
+    render: () => (
+      <div className="flex flex-wrap items-center gap-3">
+        <ToggleGroup aria-label="Text style" selectionMode="multiple" variant="secondary" spacing={0} defaultSelectedKeys={["bold"]}>
+          <ToggleGroupItem id="bold" aria-label="Bold">
+            <BoldIcon aria-hidden />
+          </ToggleGroupItem>
+          <ToggleGroupItem id="italic" aria-label="Italic">
+            <ItalicIcon aria-hidden />
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <ToggleGroup aria-label="View" defaultSelectedKeys={["list"]}>
+          <ToggleGroupItem id="list">List</ToggleGroupItem>
+          <ToggleGroupItem id="board">Board</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    ),
+  },
+  {
     name: "Tooltip",
     render: () => (
       <Tooltip>
@@ -571,6 +1110,40 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
         </Button>
         <TooltipContent>Archive</TooltipContent>
       </Tooltip>
+    ),
+  },
+  {
+    name: "Trace",
+    render: () => (
+      <Trace>
+        <TraceLine>
+          <TraceIcon>
+            <SearchIcon />
+          </TraceIcon>
+          <TraceTitle>Searched the docs</TraceTitle>
+          <TraceDescription>1.2s</TraceDescription>
+        </TraceLine>
+        <TraceLine status="running">
+          <TraceIcon>
+            <Spinner size="sm" label="Running" />
+          </TraceIcon>
+          <TraceTitle>Reading 3 files</TraceTitle>
+        </TraceLine>
+        <TraceLine status="error">
+          <TraceIcon>
+            <InfoIcon />
+          </TraceIcon>
+          <TraceTitle>Export failed</TraceTitle>
+        </TraceLine>
+        <TraceCollapsible>
+          <TraceCollapsibleTrigger>
+            <TraceLine>
+              <TraceTitle>Reasoning</TraceTitle>
+            </TraceLine>
+          </TraceCollapsibleTrigger>
+          <TraceCollapsibleContent>The report covers the last full month.</TraceCollapsibleContent>
+        </TraceCollapsible>
+      </Trace>
     ),
   },
 ];
