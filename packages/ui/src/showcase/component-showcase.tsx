@@ -17,6 +17,7 @@ import {
   SlidersHorizontalIcon,
   XIcon,
 } from "lucide-react";
+import { parseDate } from "@internationalized/date";
 import * as React from "react";
 import {
   Accordion,
@@ -216,6 +217,27 @@ import {
   TraceIcon,
   TraceLine,
   TraceTitle,
+  Calendar,
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockContent,
+  CodeBlockCopyButton,
+  CodeBlockFooter,
+  CodeBlockHeader,
+  CodeBlockLine,
+  CodeBlockTitle,
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSection,
+  ContextMenuSeparator,
+  ContextMenuSub,
+  ContextMenuTrigger,
+  DataTable,
+  DatePicker,
+  DateRangePicker,
+  RangeCalendar,
+  type DataTableColumn,
   cn,
   toast,
 } from "../index.js";
@@ -480,6 +502,29 @@ function SidebarExample() {
   );
 }
 
+type ExampleInvoice = { id: string; client: string; status: string; amount: number };
+
+const invoices: ExampleInvoice[] = [
+  { id: "1", client: "Northwind", status: "Paid", amount: 1200 },
+  { id: "2", client: "Orchard", status: "Due", amount: 640 },
+  { id: "3", client: "Harbour", status: "Paid", amount: 2150 },
+  { id: "4", client: "Beacon", status: "Overdue", amount: 310 },
+  { id: "5", client: "Cobalt", status: "Paid", amount: 980 },
+  { id: "6", client: "Delta", status: "Due", amount: 1475 },
+];
+
+const invoiceColumns: DataTableColumn<ExampleInvoice>[] = [
+  { accessorKey: "client", header: "Client" },
+  { accessorKey: "status", header: "Status" },
+  { accessorKey: "amount", header: "Amount", cell: ({ getValue }) => `£${Number(getValue()).toLocaleString("en-GB")}` },
+];
+
+const exampleCode = `import { Button } from "@graftwork/ui";
+
+export function Save() {
+  return <Button>Save</Button>;
+}`;
+
 export const showcaseEntries: readonly ShowcaseEntry[] = [
   {
     name: "Accordion",
@@ -665,6 +710,15 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   {
+    name: "Calendar",
+    render: () => (
+      <div className="flex flex-wrap gap-4">
+        <Calendar aria-label="Delivery date" defaultValue={parseDate("2026-03-15")} />
+        <RangeCalendar aria-label="Holiday dates" defaultValue={{ start: parseDate("2026-03-09"), end: parseDate("2026-03-13") }} />
+      </div>
+    ),
+  },
+  {
     name: "Card",
     render: () => (
       <Card>
@@ -688,6 +742,35 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
           <Checkbox value="email">Email</Checkbox>
           <Checkbox value="sms">Text message</Checkbox>
         </CheckboxGroup>
+      </div>
+    ),
+  },
+  {
+    name: "CodeBlock",
+    render: () => (
+      <div className="flex flex-col gap-3">
+        <CodeBlock>
+          <CodeBlockHeader>
+            <CodeBlockTitle>
+              <FileTextIcon aria-hidden />
+              save.tsx
+            </CodeBlockTitle>
+            <CodeBlockActions>
+              <CodeBlockCopyButton value={exampleCode} />
+            </CodeBlockActions>
+          </CodeBlockHeader>
+          <CodeBlockContent lineNumbers aria-label="save.tsx">
+            {exampleCode}
+          </CodeBlockContent>
+          <CodeBlockFooter>TypeScript</CodeBlockFooter>
+        </CodeBlock>
+        <CodeBlock size="sm">
+          <CodeBlockContent aria-label="Example diff">
+            <CodeBlockLine variant="removed">size="md"</CodeBlockLine>
+            <CodeBlockLine variant="added">size="sm"</CodeBlockLine>
+            <CodeBlockLine variant="highlighted">variant="ghost"</CodeBlockLine>
+          </CodeBlockContent>
+        </CodeBlock>
       </div>
     ),
   },
@@ -719,6 +802,61 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   { name: "Command", render: () => <CommandExample /> },
+  {
+    name: "ContextMenu",
+    render: () => (
+      <ContextMenu>
+        <ContextMenuTrigger
+          className="flex h-24 items-center justify-center border border-dashed border-border-input text-sm text-text-secondary"
+        >
+          Right-click, long press, or press Shift + F10
+        </ContextMenuTrigger>
+        <ContextMenuContent aria-label="Options for report.pdf">
+          <ContextMenuSection title="File">
+            <ContextMenuItem id="open" shortcut="⌘O">
+              Open
+            </ContextMenuItem>
+            <ContextMenuSub>
+              <ContextMenuItem id="move">Move to</ContextMenuItem>
+              <ContextMenuContent aria-label="Move to">
+                <ContextMenuItem id="design">Design team</ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenuSub>
+          </ContextMenuSection>
+          <ContextMenuSeparator />
+          <ContextMenuItem id="delete" variant="destructive">
+            Delete
+          </ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
+    ),
+  },
+  {
+    name: "DataTable",
+    wide: true,
+    render: () => (
+      <DataTable
+        aria-label="Example invoices"
+        columns={invoiceColumns}
+        data={invoices}
+        getRowId={(row) => row.id}
+        filterColumn="client"
+        filterLabel="Filter clients"
+        pageSize={4}
+        selectionMode="multiple"
+        density="compact"
+      />
+    ),
+  },
+  {
+    name: "DatePicker",
+    render: () => (
+      <div className="flex flex-col gap-4">
+        <DatePicker label="Start date" description="Type a date or use the calendar." defaultValue={parseDate("2026-03-15")} />
+        <DateRangePicker label="Trip dates" defaultValue={{ start: parseDate("2026-03-09"), end: parseDate("2026-03-13") }} />
+      </div>
+    ),
+  },
   {
     name: "Dialog",
     render: () => (
