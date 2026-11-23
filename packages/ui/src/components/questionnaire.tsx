@@ -12,10 +12,7 @@ import { FieldError } from "./field-layout.js";
  * Adapted from shadcn/ui's Questionnaire. Copyright (c) 2023 shadcn. MIT licence.
  * Built on React Aria rather than @shadcn/react, which is pre-1.0.
  *
- * Figma contract: Questionnaire, QuestionnaireProgress, QuestionnaireItem { type: single | multiple | text; isRequired },
- *                 QuestionnaireTitle, QuestionnaireDescription, QuestionnaireChoices, QuestionnaireChoice,
- *                 QuestionnaireChoiceDescription, QuestionnaireInput, QuestionnaireError, QuestionnaireActions,
- *                 QuestionnairePrevious, QuestionnaireSkip, QuestionnaireNext, QuestionnaireSubmit
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Asks one question at a time, for example when an assistant needs details.
  * QuestionnaireItem elements must be direct children of Questionnaire. Focus

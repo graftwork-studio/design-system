@@ -20,12 +20,7 @@ import { Tooltip, TooltipContent } from "./tooltip.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: SidebarProvider { defaultOpen; open }, Sidebar { side: left | right; variant: sidebar | floating | inset;
- *                 collapsible: offcanvas | icon | none }, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup,
- *                 SidebarGroupLabel, SidebarGroupAction, SidebarGroupContent, SidebarMenu, SidebarMenuItem,
- *                 SidebarMenuButton { size: sm | md | lg; variant: default | outline; isActive }, SidebarMenuAction,
- *                 SidebarMenuBadge, SidebarMenuSkeleton, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton,
- *                 SidebarInput, SidebarInset, SidebarRail, SidebarSeparator, SidebarTrigger
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Below the md breakpoint it opens as a Sheet. It doesn't store whether it's
  * open: pass open and onOpenChange to keep that in your app.

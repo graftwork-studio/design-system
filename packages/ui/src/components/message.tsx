@@ -4,7 +4,7 @@ import { cn } from "../lib/utils.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Message { align: start | end }, MessageGroup, MessageAvatar, MessageHeader, MessageContent, MessageFooter
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * One turn in a conversation. Put the sender's name in MessageHeader, or in
  * visually hidden text: alignment alone doesn't tell a screen reader who spoke.

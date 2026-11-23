@@ -9,8 +9,7 @@ import { FieldError } from "./field-layout.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: NativeSelect { label; description; errorMessage; size: sm | md; isInvalid; isDisabled; isRequired }
- *                 NativeSelectOption, NativeSelectOptGroup
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * The browser's own select. Prefer it on phones and in plain forms. Use Select
  * when options need custom content.

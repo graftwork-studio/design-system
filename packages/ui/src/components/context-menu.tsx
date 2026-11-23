@@ -8,8 +8,7 @@ import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSection, DropdownMen
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem { variant: default | destructive;
- *                 shortcut; isDisabled }, ContextMenuSection { title }, ContextMenuSeparator, ContextMenuSub
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Opens on right-click, long press, or the keyboard's menu key (Shift + F10).
  * Many people never discover these, so offer the same actions somewhere visible too.

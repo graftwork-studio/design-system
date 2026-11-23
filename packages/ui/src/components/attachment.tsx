@@ -5,10 +5,7 @@ import { Button, type ButtonProps } from "./button.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Attachment { state: idle | uploading | processing | error | done; size: md | sm | xs;
- *                 orientation: horizontal | vertical }, AttachmentGroup, AttachmentMedia { variant: icon | image },
- *                 AttachmentContent, AttachmentTitle, AttachmentDescription, AttachmentActions, AttachmentAction,
- *                 AttachmentTrigger
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * A file in a message or composer. Say the state in AttachmentDescription
  * ("Uploading, 40%", "Upload failed"), so colour is never the only cue.

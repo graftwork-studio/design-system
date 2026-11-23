@@ -5,7 +5,7 @@ import { Separator, type SeparatorProps } from "./separator.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: ButtonGroup { orientation: horizontal | vertical }, ButtonGroupText, ButtonGroupSeparator
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Joins related buttons into one control. Give the group an aria-label. For
  * buttons that stay pressed, use ToggleGroup.

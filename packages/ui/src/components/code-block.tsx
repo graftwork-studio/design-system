@@ -8,9 +8,7 @@ import { Button, type ButtonProps } from "./button.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: CodeBlock { variant: default | destructive; size: md | sm }, CodeBlockHeader, CodeBlockTitle,
- *                 CodeBlockActions, CodeBlockCopyButton, CodeBlockContent { wrap; lineNumbers; startLine },
- *                 CodeBlockLine { variant: default | added | removed | highlighted }, CodeBlockFooter
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Shows code, terminal output and diffs. There's no syntax highlighting built
  * in: pass highlighted spans as children if you need it.

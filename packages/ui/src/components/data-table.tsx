@@ -30,8 +30,7 @@ import { Table, TableBody, TableCell, TableColumn, type TableDensity, TableHeade
 /*
  * Adapted from shadcn/ui's data table guide. Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: DataTable { density: comfortable | compact; selectionMode: none | multiple;
- *                 showFilter; showColumnToggle; showPagination }
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * TanStack Table handles filtering, sorting and paging. React Aria handles the
  * keyboard grid and selection. Columns are TanStack column definitions.

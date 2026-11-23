@@ -23,8 +23,7 @@ import { floatingPanel } from "./popover.js";
 /*
  * Adapted from shadcn/ui's date picker pattern. Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: DatePicker { label; description; errorMessage; isInvalid; isDisabled; isRequired }
- *                 DateRangePicker { label; description; errorMessage; isInvalid; isDisabled; isRequired }
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * The date can be typed one part at a time or chosen from the calendar, so it
  * works without a pointer. The format follows the user's locale.

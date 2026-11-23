@@ -6,8 +6,7 @@ import { Separator } from "./separator.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Field { orientation: vertical | horizontal | responsive }, FieldSet, FieldLegend { variant: legend | label },
- *                 FieldGroup, FieldContent, FieldLabel, FieldTitle, FieldDescription, FieldError, FieldSeparator
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * For laying out a custom form. Input, Select and the other form controls
  * already include a label, description and error, so they don't need Field.

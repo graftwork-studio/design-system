@@ -24,3 +24,4 @@
 | 5 more components | Done | [PR #43](https://github.com/graftwork-studio/design-system/pull/43), 2.3.0. Calendar, Date Picker, Data Table, Context Menu and Code Block. 57 in total, all published to the Figma library |
 | Docs deployment | Done | Manual **Deploy Storybook** workflow ([PR #33](https://github.com/graftwork-studio/design-system/pull/33)); markdown tables fixed in [PR #34](https://github.com/graftwork-studio/design-system/pull/34) |
 | Component showcase | Done | `ComponentShowcase` in `@graftwork/ui/showcase` renders every component on the example pages. CI fails if an exported component is missing from it |
+| Documentation audit | In review | Naming contract matched to Figma, app `CLAUDE.md` files updated, snapshot and preview steps documented, and Renovate configured for this repo |

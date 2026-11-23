@@ -9,9 +9,7 @@ import { Separator, type SeparatorProps } from "./separator.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Item { variant: default | outline | muted; size: md | sm | xs }, ItemGroup, ItemSeparator,
- *                 ItemMedia { variant: default | icon | image }, ItemContent, ItemTitle, ItemDescription,
- *                 ItemActions, ItemHeader, ItemFooter
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * A row with media, a title, a description and actions. Pass href to make the
  * whole row a link. Don't put buttons inside a linked row.

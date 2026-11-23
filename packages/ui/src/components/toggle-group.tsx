@@ -14,9 +14,7 @@ import { type ToggleVariant, toggleVariants } from "./toggle.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: ToggleGroup { variant: ghost | secondary; size: sm | md | lg; spacing: 0 | 1 | 2;
- *                 orientation: horizontal | vertical; selectionMode: single | multiple }
- *                 ToggleGroupItem { isSelected; isDisabled; children }
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * A set of toggles. Arrow keys move between them. Give the group an aria-label,
  * and give icon-only items an aria-label too.
