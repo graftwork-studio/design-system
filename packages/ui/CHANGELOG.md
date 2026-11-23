@@ -1,5 +1,16 @@
 # @graftwork/ui
 
+## 2.3.0
+
+### Minor Changes
+
+- [#43](https://github.com/graftwork-studio/design-system/pull/43) [`c607dae`](https://github.com/graftwork-studio/design-system/commit/c607daeef7a6fef6c596d3dc4750e06caa2877d6) Thanks [@david-kenny](https://github.com/david-kenny)! - Add Calendar, RangeCalendar, DatePicker, DateRangePicker, DataTable, ContextMenu and CodeBlock. DataTable uses TanStack Table, and date components use @internationalized/date.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graftwork/tokens@2.3.0
+
 ## 2.2.0
 
 ### Minor Changes
