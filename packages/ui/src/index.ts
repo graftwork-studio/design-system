@@ -302,4 +302,47 @@ export {
   type TraceLineProps,
   TraceTitle,
 } from "./components/trace.js";
+export {
+  Calendar,
+  type CalendarProps,
+  RangeCalendar,
+  type RangeCalendarProps,
+} from "./components/calendar.js";
+export {
+  CodeBlock,
+  CodeBlockActions,
+  CodeBlockContent,
+  type CodeBlockContentProps,
+  CodeBlockCopyButton,
+  type CodeBlockCopyButtonProps,
+  CodeBlockFooter,
+  CodeBlockHeader,
+  CodeBlockLine,
+  type CodeBlockLineProps,
+  type CodeBlockProps,
+  CodeBlockTitle,
+} from "./components/code-block.js";
+export {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  type ContextMenuProps,
+  ContextMenuSection,
+  ContextMenuSeparator,
+  ContextMenuSub,
+  ContextMenuTrigger,
+  type ContextMenuTriggerProps,
+} from "./components/context-menu.js";
+export {
+  DataTable,
+  type DataTableColumn,
+  type DataTableFeatures,
+  type DataTableProps,
+} from "./components/data-table.js";
+export {
+  DatePicker,
+  type DatePickerProps,
+  DateRangePicker,
+  type DateRangePickerProps,
+} from "./components/date-picker.js";
 export { cn } from "./lib/utils.js";

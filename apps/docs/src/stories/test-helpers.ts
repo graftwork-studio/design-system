@@ -2,6 +2,9 @@ import { expect } from "storybook/test";
 
 /** Asserts the WCAG 2.4.13 focus ring: 2px solid outline with a 2px offset (or inset for grid cells). */
 export async function expectFocusRing(element: Element, { inset = false } = {}) {
+  // Browsers don't match :focus-visible in an unfocused window, such as an embedded preview, so
+  // there's no ring to measure. Automated runs always measure it, so CI can't skip this check.
+  if (!document.hasFocus() && !navigator.webdriver) return;
   const style = getComputedStyle(element);
   await expect(style.outlineStyle).toBe("solid");
   await expect(style.outlineWidth).toBe("2px");

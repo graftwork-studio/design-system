@@ -37,7 +37,7 @@ export const Default: Story = {
     await expect(within(dialog).getByRole("switch", { name: "Show archived projects" })).toHaveFocus();
     await userEvent.keyboard("{Escape}");
     await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 

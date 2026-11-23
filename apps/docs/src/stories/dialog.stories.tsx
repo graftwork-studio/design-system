@@ -51,7 +51,7 @@ export const Default: Story = {
     // Escape closes it and focus returns to the trigger.
     await userEvent.keyboard("{Escape}");
     await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 

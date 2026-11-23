@@ -1,6 +1,7 @@
 import type { Decorator, Preview } from "@storybook/react-vite";
 import { applyTheme, type ThemeChoice } from "@graftwork/ui";
 import "./preview.css";
+import { emulateWindowFocus } from "./emulate-window-focus";
 
 export const THEMES: readonly ThemeChoice[] = ["light", "dark", "high-contrast"];
 
@@ -10,6 +11,8 @@ const withTheme: Decorator = (Story, context) => {
   applyTheme(theme);
   return <Story />;
 };
+
+emulateWindowFocus();
 
 const preview: Preview = {
   decorators: [withTheme],

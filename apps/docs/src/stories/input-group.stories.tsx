@@ -2,6 +2,7 @@ import { Button, InputGroup } from "@graftwork/ui";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { SearchIcon, XIcon } from "lucide-react";
 import { expect, userEvent, within } from "storybook/test";
+import { expectFocusRing } from "./test-helpers.js";
 
 const meta = {
   title: "Components/InputGroup",
@@ -19,7 +20,7 @@ export const Default: Story = {
     await expect(input).toHaveFocus();
     // The ring goes round the whole group, addons included.
     const group = canvasElement.querySelector('[data-slot="input-group"]') as Element;
-    await expect(getComputedStyle(group).outlineStyle).toBe("solid");
+    await expectFocusRing(group);
     await userEvent.type(input, "graftwork.dev");
     await expect(input).toHaveValue("graftwork.dev");
   },

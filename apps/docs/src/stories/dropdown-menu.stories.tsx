@@ -68,7 +68,7 @@ export const Default: Story = {
     await userEvent.keyboard("{ArrowDown}{Enter}");
     await expect(onAction.mock.calls[0]?.[0]).toBe("duplicate");
     await waitFor(() => expect(screen.queryByRole("menu")).toBeNull());
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 

@@ -23,7 +23,7 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const trigger = within(canvasElement).getByRole("button", { name: /Region/ });
     await userEvent.tab();
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
     await expectFocusRing(trigger);
     await expectHitArea(trigger);
 
@@ -37,7 +37,7 @@ export const Default: Story = {
     await waitFor(() => expect(screen.queryByRole("listbox")).toBeNull());
     await expect(trigger).toHaveTextContent("United States");
     // Focus returns to the trigger.
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 
