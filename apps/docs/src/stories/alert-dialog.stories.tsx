@@ -68,7 +68,7 @@ export const Default: Story = {
     await userEvent.click(within(dialog).getByRole("button", { name: "Delete project" }));
     await waitFor(() => expect(screen.queryByRole("alertdialog")).toBeNull());
     await expect(onDelete).toHaveBeenCalledOnce();
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 

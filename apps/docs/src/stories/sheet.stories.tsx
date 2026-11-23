@@ -60,7 +60,7 @@ export const Default: Story = {
     await expect(dialog).toHaveAccessibleDescription("Narrow the list of projects.");
     await userEvent.click(within(dialog).getByRole("button", { name: "Close" }));
     await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
-    await expect(trigger).toHaveFocus();
+    await waitFor(() => expect(trigger).toHaveFocus());
   },
 };
 
