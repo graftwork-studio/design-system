@@ -123,6 +123,16 @@ Component and property names match the Figma library, with the differences liste
 | DataTable | `density`: comfortable, compact · `selectionMode`: none, multiple · `showFilter`, `showColumnToggle`, `showPagination` |
 | ContextMenu | `isOpen`, `triggerText` · items use DropdownMenuItem: `variant`: default, destructive, `shortcut`, `isDisabled` |
 | CodeBlock | `variant`: default, destructive · `size`: md, sm · `title`, `footer`, `showHeader`, `showFooter` · CodeBlockLine `variant`: default, added, removed, highlighted, `size`, `code`, `lineNumber`, `showLineNumber` |
+| AspectRatio | `ratio` |
+| Carousel | `orientation`: horizontal, vertical · CarouselItem `aria-label` |
+| DirectionProvider | `direction`: ltr, rtl · `locale` |
+| Drawer | DrawerContent `side`: bottom, top, left, right, `showCloseButton` · DrawerTitle, DrawerDescription, DrawerBody, DrawerFooter |
+| HoverCard | HoverCardTrigger `href` · HoverCardContent `placement` |
+| InputOTP | `label`, `description`, `errorMessage`, `maxLength`, `isInvalid`, `isDisabled`, `isRequired` · InputOTPSlot `index` |
+| Menubar | MenubarTrigger · MenubarItem `variant`: default, destructive, `shortcut`, `isDisabled` · MenubarSection `title` |
+| NavigationMenu | NavigationMenuTrigger · NavigationMenuLink `href`, `isActive` |
+| Resizable | ResizablePanelGroup `orientation`: horizontal, vertical · ResizablePanel `defaultSize`, `minSize` · ResizableHandle `withHandle` |
+| Typography | `variant`: default, chat, docs |
 
 Where Figma and code differ:
 
@@ -137,4 +147,5 @@ Where Figma and code differ:
 - **Figma helpers:** SidebarMenuButton, CommandItem, QuestionnaireChoice, TraceLine, TraceCollapsible, CalendarDay and CodeBlockLine are their own Figma components so rows can be reused.
 - **Figma states:** DatePicker and DateRangePicker use `state`: default, open, invalid, disabled. Command uses `state`, Questionnaire uses `hasError`, and ContextMenu uses `isOpen`. In code these come from props, validation and user interaction.
 - **Example content:** `show…` properties hide a part of the design; in code, leave that part out. ButtonGroup's `style` picks an example layout, and text such as `item1`, `sender`, `time` and `value` is the content you pass in code.
+- **Not in Figma yet:** the last 10 rows above (AspectRatio to Typography) are defined in code. Their Figma components are still to be added.
 - **Code only:** DataTable's filtering, sorting and paging, and CodeBlock's syntax highlighting, wrapping and `startLine`.

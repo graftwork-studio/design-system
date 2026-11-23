@@ -237,6 +237,46 @@ import {
   DatePicker,
   DateRangePicker,
   RangeCalendar,
+  AspectRatio,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  DirectionProvider,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSection,
+  MenubarSeparator,
+  MenubarSub,
+  MenubarTrigger,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+  Typography,
+  navigationMenuTriggerStyle,
   type DataTableColumn,
   cn,
   toast,
@@ -525,6 +565,17 @@ export function Save() {
   return <Button>Save</Button>;
 }`;
 
+function DirectionExample() {
+  return (
+    <DirectionProvider direction="rtl">
+      <div className="flex flex-col items-start gap-3">
+        <Input label="الاسم" defaultValue="Ana" />
+        <Button variant="secondary">التالي</Button>
+      </div>
+    </DirectionProvider>
+  );
+}
+
 export const showcaseEntries: readonly ShowcaseEntry[] = [
   {
     name: "Accordion",
@@ -572,6 +623,14 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+    ),
+  },
+  {
+    name: "AspectRatio",
+    render: () => (
+      <AspectRatio ratio={16 / 9} className="flex items-center justify-center rounded-lg bg-surface-subtle text-sm text-text-secondary">
+        16 / 9
+      </AspectRatio>
     ),
   },
   {
@@ -734,6 +793,22 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   {
+    name: "Carousel",
+    render: () => (
+      <Carousel aria-label="Example highlights">
+        <CarouselContent>
+          {["Plan", "Build", "Ship"].map((step, index) => (
+            <CarouselItem key={step} aria-label={`Slide ${index + 1} of 3`}>
+              <div className="flex h-32 items-center justify-center rounded-lg bg-surface-subtle font-medium">{step}</div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    ),
+  },
+  {
     name: "Checkbox",
     render: () => (
       <div className="flex flex-col gap-4">
@@ -880,6 +955,27 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
       </Dialog>
     ),
   },
+  { name: "Direction", render: () => <DirectionExample /> },
+  {
+    name: "Drawer",
+    render: () => (
+      <Drawer>
+        <Button variant="secondary">Open drawer</Button>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Move goal</DrawerTitle>
+            <DrawerDescription>Drag down, press Escape, or use the close button.</DrawerDescription>
+          </DrawerHeader>
+          <DrawerBody>
+            <Slider label="Daily goal" defaultValue={40} />
+          </DrawerBody>
+          <DrawerFooter>
+            <Button slot="close">Done</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    ),
+  },
   {
     name: "DropdownMenu",
     render: () => (
@@ -927,10 +1023,43 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   { name: "Field", render: () => <FieldExample /> },
+  {
+    name: "HoverCard",
+    render: () => (
+      <p>
+        Maintained by{" "}
+        <HoverCard>
+          <HoverCardTrigger href="#ana">Ana Silva</HoverCardTrigger>
+          <HoverCardContent>
+            <p className="font-medium">Ana Silva</p>
+            <p className="text-text-secondary">Design systems lead</p>
+          </HoverCardContent>
+        </HoverCard>
+      </p>
+    ),
+  },
   { name: "Input", render: () => <Input label="Display name" description="Shown on your profile." placeholder="For example, Ana" /> },
   {
     name: "InputGroup",
     render: () => <InputGroup label="Find items" startAddon={<SearchIcon aria-hidden />} endAddon="⌘K" placeholder="Search" />,
+  },
+  {
+    name: "InputOTP",
+    render: () => (
+      <InputOTP label="Verification code" description="Enter the 6 digits we sent you." maxLength={6}>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+    ),
   },
   {
     name: "Item",
@@ -994,6 +1123,37 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   {
+    name: "Menubar",
+    render: () => (
+      <Menubar aria-label="Example menu bar">
+        <MenubarMenu>
+          <MenubarTrigger>File</MenubarTrigger>
+          <MenubarContent aria-label="File">
+            <MenubarSection title="Document">
+              <MenubarItem id="new" shortcut="⌘N">
+                New
+              </MenubarItem>
+              <MenubarSub>
+                <MenubarItem id="share">Share</MenubarItem>
+                <MenubarContent aria-label="Share">
+                  <MenubarItem id="email">Email link</MenubarItem>
+                </MenubarContent>
+              </MenubarSub>
+            </MenubarSection>
+            <MenubarSeparator />
+            <MenubarItem id="print">Print</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Edit</MenubarTrigger>
+          <MenubarContent aria-label="Edit">
+            <MenubarItem id="undo">Undo</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    ),
+  },
+  {
     name: "Message",
     render: () => (
       <MessageGroup>
@@ -1035,6 +1195,33 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
       </NativeSelect>
     ),
   },
+  {
+    name: "NavigationMenu",
+    render: () => (
+      <NavigationMenu aria-label="Example site navigation">
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuLink href="#analytics">
+                <span className="font-medium">Analytics</span>
+                <span className="text-text-secondary">See how your team works.</span>
+              </NavigationMenuLink>
+              <NavigationMenuLink href="#reports">
+                <span className="font-medium">Reports</span>
+                <span className="text-text-secondary">Share monthly summaries.</span>
+              </NavigationMenuLink>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="#pricing" isActive className={navigationMenuTriggerStyle}>
+              Pricing
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    ),
+  },
   { name: "Pagination", wide: true, render: () => <PaginationExample /> },
   {
     name: "Popover",
@@ -1069,6 +1256,22 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
         <Radio value="team">Team</Radio>
         <Radio value="enterprise">Enterprise</Radio>
       </RadioGroup>
+    ),
+  },
+  {
+    name: "Resizable",
+    render: () => (
+      <div className="h-40 rounded-lg border border-border-default">
+        <ResizablePanelGroup orientation="horizontal">
+          <ResizablePanel defaultSize="40%" minSize="20%">
+            <div className="flex h-full items-center justify-center text-sm">Files</div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel>
+            <div className="flex h-full items-center justify-center text-sm">Preview</div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </div>
     ),
   },
   {
@@ -1282,6 +1485,23 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
           <TraceCollapsibleContent>The report covers the last full month.</TraceCollapsibleContent>
         </TraceCollapsible>
       </Trace>
+    ),
+  },
+  {
+    name: "Typography",
+    wide: true,
+    render: () => (
+      <Typography>
+        <h4>Release notes</h4>
+        <p>
+          Styles <strong>plain HTML</strong> such as rendered markdown, with <a href="#links">underlined links</a> and <code>inline code</code>.
+        </p>
+        <ul>
+          <li>Readable line lengths</li>
+          <li>Consistent spacing</li>
+        </ul>
+        <blockquote>Good defaults for long-form text.</blockquote>
+      </Typography>
     ),
   },
 ];

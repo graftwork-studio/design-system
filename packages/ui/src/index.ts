@@ -345,4 +345,88 @@ export {
   DateRangePicker,
   type DateRangePickerProps,
 } from "./components/date-picker.js";
+export {
+  AspectRatio,
+  type AspectRatioProps,
+} from "./components/aspect-ratio.js";
+export {
+  Carousel,
+  type CarouselApi,
+  CarouselContent,
+  CarouselItem,
+  type CarouselItemProps,
+  CarouselNext,
+  type CarouselOptions,
+  type CarouselPlugin,
+  CarouselPrevious,
+  type CarouselProps,
+  useCarousel,
+} from "./components/carousel.js";
+export {
+  DirectionProvider,
+  type DirectionProviderProps,
+  useDirection,
+} from "./components/direction.js";
+export {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  type DrawerContentProps,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  type DrawerSide,
+  DrawerTitle,
+} from "./components/drawer.js";
+export {
+  HoverCard,
+  HoverCardContent,
+  type HoverCardContentProps,
+  HoverCardTrigger,
+  type HoverCardTriggerProps,
+} from "./components/hover-card.js";
+export {
+  InputOTP,
+  InputOTPGroup,
+  type InputOTPProps,
+  InputOTPSeparator,
+  InputOTPSlot,
+  type InputOTPSlotProps,
+} from "./components/input-otp.js";
+export {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  type MenubarProps,
+  MenubarSection,
+  MenubarSeparator,
+  MenubarSub,
+  MenubarTrigger,
+  type MenubarTriggerProps,
+} from "./components/menubar.js";
+export {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  type NavigationMenuLinkProps,
+  NavigationMenuList,
+  type NavigationMenuProps,
+  NavigationMenuTrigger,
+  type NavigationMenuTriggerProps,
+  navigationMenuTriggerStyle,
+} from "./components/navigation-menu.js";
+export {
+  ResizableHandle,
+  type ResizableHandleProps,
+  ResizablePanel,
+  ResizablePanelGroup,
+  type ResizablePanelGroupProps,
+  type ResizablePanelProps,
+} from "./components/resizable.js";
+export {
+  Typography,
+  type TypographyProps,
+} from "./components/typography.js";
 export { cn } from "./lib/utils.js";
