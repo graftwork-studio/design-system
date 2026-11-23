@@ -1,5 +1,16 @@
 # @graftwork/ui
 
+## 2.4.0
+
+### Minor Changes
+
+- [#48](https://github.com/graftwork-studio/design-system/pull/48) [`b2ebda5`](https://github.com/graftwork-studio/design-system/commit/b2ebda56963f16d2299931000f3db987ad9a2751) Thanks [@david-kenny](https://github.com/david-kenny)! - Add AspectRatio, Carousel, DirectionProvider, Drawer, HoverCard, InputOTP, Menubar, NavigationMenu, Resizable and Typography, completing shadcn/ui's component list.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graftwork/tokens@2.4.0
+
 ## 2.3.0
 
 ### Minor Changes
