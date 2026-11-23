@@ -122,4 +122,184 @@ export { Textarea, type TextareaProps } from "./components/textarea.js";
 export { type ToastContent, Toaster, type ToasterProps, type ToastVariant, toast, toastQueue } from "./components/toast.js";
 export { Toggle, type ToggleProps, type ToggleVariant, toggleVariants } from "./components/toggle.js";
 export { Tooltip, TooltipContent, type TooltipContentProps } from "./components/tooltip.js";
+export {
+  Attachment,
+  AttachmentAction,
+  AttachmentActions,
+  AttachmentContent,
+  AttachmentDescription,
+  AttachmentGroup,
+  AttachmentMedia,
+  type AttachmentMediaProps,
+  type AttachmentProps,
+  AttachmentTitle,
+  AttachmentTrigger,
+} from "./components/attachment.js";
+export {
+  Bubble,
+  BubbleContent,
+  BubbleGroup,
+  type BubbleProps,
+  BubbleReactions,
+  type BubbleReactionsProps,
+  type BubbleVariant,
+} from "./components/bubble.js";
+export {
+  ButtonGroup,
+  type ButtonGroupProps,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "./components/button-group.js";
+export {
+  Command,
+  CommandDialog,
+  type CommandDialogProps,
+  CommandEmpty,
+  CommandGroup,
+  type CommandGroupProps,
+  CommandInput,
+  type CommandInputProps,
+  CommandItem,
+  type CommandItemProps,
+  CommandList,
+  type CommandListProps,
+  type CommandProps,
+  CommandSeparator,
+  CommandShortcut,
+} from "./components/command.js";
+export {
+  FieldDescription,
+  FieldLabel,
+} from "./components/field.js";
+export {
+  Field,
+  FieldContent,
+  FieldError,
+  type FieldErrorProps,
+  FieldGroup,
+  FieldLegend,
+  type FieldLegendProps,
+  type FieldProps,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+} from "./components/field-layout.js";
+export {
+  Item,
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemFooter,
+  ItemGroup,
+  ItemHeader,
+  ItemMedia,
+  type ItemMediaProps,
+  type ItemProps,
+  ItemSeparator,
+  ItemTitle,
+} from "./components/item.js";
+export {
+  Marker,
+  MarkerContent,
+  MarkerIcon,
+  type MarkerProps,
+  markerVariants,
+} from "./components/marker.js";
+export {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+  type MessageProps,
+} from "./components/message.js";
+export {
+  MessageScroller,
+  MessageScrollerButton,
+  type MessageScrollerButtonProps,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerViewport,
+  type MessageScrollerViewportProps,
+  useMessageScroller,
+} from "./components/message-scroller.js";
+export {
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+  type NativeSelectProps,
+} from "./components/native-select.js";
+export {
+  Questionnaire,
+  QuestionnaireActions,
+  type QuestionnaireAnswer,
+  type QuestionnaireAnswers,
+  QuestionnaireChoice,
+  QuestionnaireChoiceDescription,
+  type QuestionnaireChoiceProps,
+  QuestionnaireChoices,
+  QuestionnaireDescription,
+  QuestionnaireError,
+  QuestionnaireInput,
+  QuestionnaireItem,
+  type QuestionnaireItemProps,
+  QuestionnaireNext,
+  QuestionnairePrevious,
+  QuestionnaireProgress,
+  type QuestionnaireProps,
+  QuestionnaireSkip,
+  QuestionnaireSubmit,
+  QuestionnaireTitle,
+} from "./components/questionnaire.js";
+export {
+  ScrollArea,
+  type ScrollAreaProps,
+} from "./components/scroll-area.js";
+export {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  type SidebarMenuButtonProps,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  type SidebarProps,
+  SidebarProvider,
+  type SidebarProviderProps,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  useSidebar,
+} from "./components/sidebar.js";
+export {
+  ToggleGroup,
+  ToggleGroupItem,
+  type ToggleGroupItemProps,
+  type ToggleGroupProps,
+} from "./components/toggle-group.js";
+export {
+  Trace,
+  TraceCollapsible,
+  TraceCollapsibleContent,
+  TraceCollapsibleTrigger,
+  TraceDescription,
+  TraceIcon,
+  TraceLine,
+  type TraceLineProps,
+  TraceTitle,
+} from "./components/trace.js";
 export { cn } from "./lib/utils.js";
