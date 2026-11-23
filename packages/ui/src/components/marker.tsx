@@ -5,7 +5,7 @@ import { cn } from "../lib/utils.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Marker { variant: default | separator | border }, MarkerIcon, MarkerContent
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * An inline note in a conversation, like "Today" or "Ana joined".
  */

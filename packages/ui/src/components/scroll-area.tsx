@@ -4,7 +4,7 @@ import { cn } from "../lib/utils.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: ScrollArea { aria-label; children }
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * A scrolling region with a thin native scrollbar. It takes keyboard focus so
  * arrow keys can scroll it, which is why it needs an aria-label.

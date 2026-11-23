@@ -9,8 +9,7 @@ import { Button, type ButtonProps } from "./button.js";
  * Adapted from shadcn/ui's Message Scroller. Copyright (c) 2023 shadcn. MIT licence.
  * Built here rather than on @shadcn/react, which is pre-1.0.
  *
- * Figma contract: MessageScroller, MessageScrollerViewport { aria-label }, MessageScrollerContent, MessageScrollerItem,
- *                 MessageScrollerButton { direction: start | end }
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Follows new content while the reader is at the end, and stops as soon as they
  * scroll up. The viewport is a live log, so screen readers hear new messages.

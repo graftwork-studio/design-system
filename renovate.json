@@ -1,0 +1,33 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Dependency updates for the design system itself. Apps use the presets in renovate/. Nothing merges automatically, because these updates can change what we publish.",
+  "extends": [
+    "config:recommended"
+  ],
+  "minimumReleaseAge": "3 days",
+  "internalChecksFilter": "strict",
+  "automerge": false,
+  "prBodyNotes": [
+    "If this changes a dependency of a published package, add a changeset before merging."
+  ],
+  "packageRules": [
+    {
+      "description": "React Aria and its date library must stay in step.",
+      "matchPackageNames": [
+        "react-aria-components",
+        "@internationalized/date"
+      ],
+      "groupName": "React Aria",
+      "groupSlug": "react-aria"
+    },
+    {
+      "description": "Major updates wait for David.",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "labels": [
+        "major"
+      ]
+    }
+  ]
+}

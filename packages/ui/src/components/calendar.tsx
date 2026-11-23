@@ -20,7 +20,7 @@ import { Button } from "./button.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Calendar { numberOfMonths }, RangeCalendar { numberOfMonths }
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Arrow keys move between days, Page Up and Page Down change month, and Enter
  * selects. Today is bold and underlined, so colour is never the only cue. Pass

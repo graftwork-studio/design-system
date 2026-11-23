@@ -4,8 +4,7 @@ import { cn } from "../lib/utils.js";
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Bubble { variant: default | secondary | muted | tinted | outline | ghost | destructive; align: start | end },
- *                 BubbleGroup, BubbleContent, BubbleReactions { side: top | bottom; align: start | end }
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * The text of a message. Use inside Message, or on its own.
  */

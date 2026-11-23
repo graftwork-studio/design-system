@@ -9,8 +9,7 @@ import { Collapsible, CollapsibleContent, type CollapsibleContentProps, type Col
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Trace, TraceLine { status: running | error | pending }, TraceIcon, TraceTitle, TraceDescription,
- *                 TraceCollapsible { isExpanded }, TraceCollapsibleTrigger, TraceCollapsibleContent
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * Shows an assistant's steps: reasoning, tool calls and sources. Say the status
  * in the title ("Searching", "Search failed"), so colour is never the only cue.

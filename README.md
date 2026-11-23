@@ -59,7 +59,8 @@ pnpm test                                # all unit, showcase and story tests
 1. Add it to `packages/ui/src/components` and export it from `packages/ui/src/index.ts`.
 2. Add a Storybook story.
 3. Add a working example to `showcaseEntries` in `packages/ui/src/showcase/component-showcase.tsx`. CI fails until every exported component is used there.
-4. Add its Figma properties to the naming contract in `apps/docs/src/introduction.mdx`.
+4. Add its Figma properties to the naming contract in `apps/docs/src/introduction.mdx`, and to the Figma table in `CLAUDE.md` in `app-template` and `test-app`.
+5. Add a changeset, and commit visual baselines for its stories.
 
 The example pages in `app-template` and `test-app` render `<ComponentShowcase />` from `@graftwork/ui/showcase`, so the new component appears on them when they update to the release.
 
@@ -69,7 +70,19 @@ Snapshots are rendered on Linux in the Playwright container, so baselines come f
 
 1. Add the `update-snapshots` label to your pull request. This runs the **Update visual snapshots** workflow.
 2. Download its `visual-snapshots` artifact and check the images.
-3. Commit them to `apps/docs/tests/__screenshots__`.
+3. Commit them to `apps/docs/tests/__screenshots__`, then remove the label.
+
+The workflow only runs when the label is added. If you push a change that affects the images, remove the label and add it again.
+
+### Storybook in an embedded preview
+
+Stories also run in a browser pane that doesn't have window focus. `.storybook/emulate-window-focus.ts` sends the focus events the browser skips, and only automated runs measure the focus ring, so CI still checks it. Keep the Storybook tab visible: browsers pause animation in background tabs, which can stall a story that opens and closes an overlay.
+
+## Dependency updates
+
+Renovate opens pull requests for this repo's dependencies after a 3-day delay, using `renovate.json`. They never merge themselves, because they can change what we publish. React Aria and `@internationalized/date` update together. If a pull request changes a dependency of a published package, add a changeset before merging.
+
+Apps use the shared presets in [`renovate/`](renovate) instead.
 
 ## Releasing
 

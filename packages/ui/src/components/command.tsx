@@ -29,9 +29,7 @@ import { DialogContent, type DialogContentProps, DialogDescription, DialogHeader
 /*
  * Adapted from shadcn/ui (aria-nova). Copyright (c) 2023 shadcn. MIT licence.
  *
- * Figma contract: Command, CommandDialog { title; description }, CommandInput { placeholder }, CommandList,
- *                 CommandEmpty, CommandGroup { heading }, CommandItem { isDisabled; children }, CommandShortcut,
- *                 CommandSeparator
+ * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * A searchable list of actions. Focus stays in the search box while arrow keys
  * move through the results. Items with non-text children need a textValue.
