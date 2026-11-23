@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import * as ResizablePrimitive from "react-resizable-panels";
 import { cn } from "../lib/utils.js";
 
@@ -29,8 +30,25 @@ export type ResizableHandleProps = ResizablePrimitive.SeparatorProps & {
 };
 
 export function ResizableHandle({ withHandle, className, "aria-label": ariaLabel = "Resize panels", ...props }: ResizableHandleProps) {
+  const handleRef = React.useRef<HTMLDivElement>(null);
+  const [hasValue, setHasValue] = React.useState(false);
+
+  // The library sets the handle's value after the panels measure themselves. Until then it can't be
+  // operated or announced, so it stays inert, including in server-rendered HTML.
+  React.useEffect(() => {
+    const handle = handleRef.current;
+    if (!handle) return;
+    const update = () => setHasValue(handle.hasAttribute("aria-valuenow"));
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(handle, { attributes: true, attributeFilter: ["aria-valuenow"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <ResizablePrimitive.Separator
+      elementRef={handleRef}
+      inert={!hasValue}
       data-slot="resizable-handle"
       aria-label={ariaLabel}
       className={cn(
