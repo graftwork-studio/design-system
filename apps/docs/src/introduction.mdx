@@ -119,10 +119,10 @@ Component and property names match the Figma library, with the differences liste
 | Questionnaire | QuestionnaireItem `type`: single, multiple, text, `isRequired` |
 | Trace | TraceLine `status`: running, error, pending · TraceCollapsible `isExpanded` |
 | Calendar | `numberOfMonths` · RangeCalendar `numberOfMonths` |
-| DatePicker | same as Input, without `placeholder` · DateRangePicker has the same properties |
+| DatePicker | `state`: default, open, invalid, disabled · `label`, `description`, `value` · DateRangePicker has the same properties |
 | DataTable | `density`: comfortable, compact · `selectionMode`: none, multiple · `showFilter`, `showColumnToggle`, `showPagination` |
-| ContextMenu | ContextMenuTrigger · ContextMenuItem `variant`: default, destructive, `shortcut`, `isDisabled` · ContextMenuSection `title` |
-| CodeBlock | `variant`: default, destructive · `size`: md, sm · CodeBlockContent `wrap`, `lineNumbers`, `startLine` · CodeBlockLine `variant`: default, added, removed, highlighted |
+| ContextMenu | `isOpen`, `triggerText` · items use DropdownMenuItem: `variant`: default, destructive, `shortcut`, `isDisabled` |
+| CodeBlock | `variant`: default, destructive · `size`: md, sm · `title`, `footer`, `showHeader`, `showFooter` · CodeBlockLine `variant`: default, added, removed, highlighted, `size`, `code`, `lineNumber`, `showLineNumber` |
 
 Where Figma and code differ:
 
@@ -134,5 +134,6 @@ Where Figma and code differ:
 - **Toast:** pass `title`, `description` and `variant` to `toast()`, with one `<Toaster />` in the app.
 - **Code only:** Slider's two-thumb range and Tooltip's `placement`.
 - **Set in code:** ToggleGroup's vertical `orientation`, Sidebar's `collapsible` behaviour (Figma shows `state`: expanded, collapsed) and CommandDialog, which is Command inside a modal.
-- **Not in Figma yet:** Calendar, DatePicker, DataTable, ContextMenu and CodeBlock are defined in code. Their Figma components are still to be added.
-- **Figma helpers:** SidebarMenuButton, CommandItem, QuestionnaireChoice, TraceLine and TraceCollapsible are their own Figma components so rows can be reused.
+- **Figma helpers:** SidebarMenuButton, CommandItem, QuestionnaireChoice, TraceLine, TraceCollapsible, CalendarDay and CodeBlockLine are their own Figma components so rows can be reused.
+- **Figma states:** DatePicker and DateRangePicker use `state`: default, open, invalid, disabled. ContextMenu uses `isOpen`. In code these come from `isInvalid`, `isDisabled` and user interaction.
+- **Code only:** DataTable's filtering, sorting and paging, and CodeBlock's syntax highlighting, wrapping and `startLine`.
