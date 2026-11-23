@@ -1,5 +1,13 @@
 # @graftwork/ui
 
+## 2.4.1
+
+### Patch Changes
+
+- [#50](https://github.com/graftwork-studio/design-system/pull/50) [`b1eb7ab`](https://github.com/graftwork-studio/design-system/commit/b1eb7ab0c73bc258170bf20a5d2d07c1a08877a8) Thanks [@david-kenny](https://github.com/david-kenny)! - Keep ResizableHandle out of the tab order and accessibility tree until it has a value, which fixes an accessibility error in server-rendered pages.
+- Updated dependencies []:
+  - @graftwork/tokens@2.4.1
+
 ## 2.4.0
 
 ### Minor Changes
