@@ -1,5 +1,16 @@
 # @graftwork/ui
 
+## 2.2.0
+
+### Minor Changes
+
+- [#39](https://github.com/graftwork-studio/design-system/pull/39) [`59aed63`](https://github.com/graftwork-studio/design-system/commit/59aed63552059b70cbe422050388e63513329d5a) Thanks [@david-kenny](https://github.com/david-kenny)! - Add 15 components from shadcn/ui: Field, ToggleGroup, ButtonGroup, NativeSelect, ScrollArea, Item, Sidebar, Command, Message, MessageScroller, Bubble, Attachment, Marker, Questionnaire and Trace.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graftwork/tokens@2.2.0
+
 ## 2.1.0
 
 ### Minor Changes
