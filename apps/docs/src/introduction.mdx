@@ -104,12 +104,12 @@ Component and property names match the Figma library, with the differences liste
 | Toggle | `variant`: ghost, secondary · `size`: sm, md, lg · `isSelected`, `isDisabled`, `children` |
 | Tooltip | `children` |
 | Field | `orientation`: vertical, horizontal, responsive · FieldSet, FieldLegend `variant`: legend, label · FieldGroup, FieldContent, FieldLabel, FieldTitle, FieldDescription, FieldError, FieldSeparator |
-| ToggleGroup | `variant`: ghost, secondary · `size`: sm, md, lg · `spacing`: 0, 1, 2 · `orientation`: horizontal, vertical · `selectionMode`: single, multiple |
+| ToggleGroup | `variant`: ghost, secondary · `size`: sm, md, lg · `spacing`: 0, 1, 2 |
 | ButtonGroup | `orientation`: horizontal, vertical · ButtonGroupText, ButtonGroupSeparator |
 | NativeSelect | `label`, `description`, `errorMessage`, `size`: sm, md, `isInvalid`, `isDisabled`, `isRequired` |
 | ScrollArea | `aria-label`, `children` |
 | Item | `variant`: default, outline, muted · `size`: md, sm, xs · ItemMedia `variant`: default, icon, image |
-| Sidebar | `side`: left, right · `variant`: sidebar, floating, inset · `collapsible`: offcanvas, icon, none · SidebarMenuButton `size`: sm, md, lg, `variant`: default, outline, `isActive` |
+| Sidebar | `side`: left, right · `variant`: sidebar, floating, inset · `state`: expanded, collapsed (`collapsible` in code: offcanvas, icon, none) · SidebarMenuButton `size`: sm, md, lg, `variant`: default, outline, `isActive` |
 | Command | CommandInput `placeholder` · CommandGroup `heading` · CommandItem `isDisabled`, `children` · CommandDialog `title`, `description` |
 | Message | `align`: start, end · MessageAvatar, MessageHeader, MessageContent, MessageFooter |
 | MessageScroller | MessageScrollerViewport `aria-label` · MessageScrollerButton `direction`: start, end |
@@ -128,4 +128,5 @@ Where Figma and code differ:
 - **Breadcrumb:** `isCurrent` means the item has no `href` in code.
 - **Toast:** pass `title`, `description` and `variant` to `toast()`, with one `<Toaster />` in the app.
 - **Code only:** Slider's two-thumb range and Tooltip's `placement`.
-- **Not in Figma yet:** the last 15 rows above (Field to Trace) are defined in code. Their Figma components are still to be added.
+- **Set in code:** ToggleGroup's vertical `orientation`, Sidebar's `collapsible` behaviour (Figma shows `state`: expanded, collapsed) and CommandDialog, which is Command inside a modal.
+- **Figma helpers:** SidebarMenuButton, CommandItem, QuestionnaireChoice, TraceLine and TraceCollapsible are their own Figma components so rows can be reused.
