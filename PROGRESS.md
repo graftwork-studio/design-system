@@ -42,3 +42,13 @@
 | B6: Charts and the rest (batches 4 and 5) | Done | [app-template PR #24](https://github.com/graftwork-studio/app-template/pull/24): the three bar charts BarChart can build. The other 67 chart blocks, `dashboard-01` and the three upstream previews stay parked (see `BLOCKS.md`). Figma: published on the Charts page |
 | Final | Done | 29 of 100 upstream blocks built, 71 parked. The two promotion candidates, an app shell and an auth page layout, were later built as AppShell and AuthLayout (see Page layouts above) |
 
+
+## Line and area charts
+
+| Milestone | Status | Evidence |
+| --- | --- | --- |
+| C0: Palette check | Done | The chart series greys were too close to tell apart (CIEDE2000 5.8–7.3). [PR #73](https://github.com/graftwork-studio/design-system/pull/73) spaced them from existing primitives: at least 10.6 in every theme and under simulated protanopia, deuteranopia and tritanopia, with every series at 3:1 or more |
+| C1: LineChart | Done | [PR #74](https://github.com/graftwork-studio/design-system/pull/74): `curve` and `points`, with BarChart's summary and table view through a shared internal ChartFrame. Uses Recharts' accessibility layer |
+| C2: AreaChart | Done | [PR #75](https://github.com/graftwork-studio/design-system/pull/75): `curve` and `stacking`. Released in 2.6.0 ([PR #76](https://github.com/graftwork-studio/design-system/pull/76)); [PR #77](https://github.com/graftwork-studio/design-system/pull/77) fixed the release workflow approving Version Packages CI too early |
+| C3: Figma | Done | LineChart and AreaChart on the Charts page of the Graftwork Design System library, with `view`, `curve`, `points` and `stacking` matching the code |
+| C4: Blocks | Done | [app-template PR #27](https://github.com/graftwork-studio/app-template/pull/27): 15 chart blocks built (7 line, 8 area), published on the Charts page of Graftwork Blocks ([PR #28](https://github.com/graftwork-studio/app-template/pull/28) links them). Five stay parked for options the charts don't offer: a colour per point, custom point markers, category labels, legend icons and gradient fills |
