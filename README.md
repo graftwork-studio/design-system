@@ -26,10 +26,12 @@ Every semantic colour declares a contrast role in `$extensions."studio.graftwork
 
 **The focus ring** is checked against every surface rather than against the component it surrounds. It's 2px wide with a 2px offset, so a gap of surface colour always separates it from the component, and it only ever touches the surface. That's exactly what WCAG 2.4.13 measures. (No single colour can be 3:1 against both a white page and a dark filled button.) The validator fails if `color.focus.ring` leaves out any `color.surface.*` token.
 
+**Chart series** must also stay distinguishable from each other, because a chart's series are told apart by colour alone (the table view is the alternative). The build checks every pair of `color.chart.series-*` tokens in every theme and fails if any pair's CIEDE2000 difference is below 10, both as the colours are and under simulated protanopia, deuteranopia and tritanopia (Machado 2009, severity 1.0, applied in linear RGB). The threshold and the simulation live in `packages/tokens/src/series.ts`.
+
 ```bash
 pnpm install
 pnpm --filter @graftwork/tokens build      # validates, then builds dist/
-pnpm --filter @graftwork/tokens exec node scripts/validate-contrast.ts --verbose   # every pair and its ratio
+pnpm --filter @graftwork/tokens exec node scripts/validate-contrast.ts --verbose   # every pair, with its ratio or CIEDE2000 difference
 ```
 
 ## Checks
@@ -38,7 +40,7 @@ Every pull request runs these, and all of them are required:
 
 | Check | What it covers |
 | --- | --- |
-| Tokens (contrast, tests, types) | The contrast validator, token build, unit tests |
+| Tokens (contrast, tests, types) | The contrast and chart series validators, token build, unit tests |
 | Lint and types | ESLint with `jsx-a11y`, Stylelint, our own rules for Tailwind classes, TypeScript |
 | Component tests (interaction and axe) | Every story's play function (keyboard, states, focus), then axe |
 | Visual snapshots and axe in every theme | Every story in light, dark and high contrast: axe, no sideways scrolling at 320px, and screenshots at 320, 768 and 1280px |
@@ -66,7 +68,7 @@ pnpm test                                # all unit, showcase and story tests
 
 - Build on the internal `ChartFrame` in `packages/ui/src/components/chart-frame.tsx`. It gives every chart the heading, the required written summary, the "View as table" toggle, the legend and the table view, so they behave the same across charts. Don't export it.
 - Turn on Recharts' `accessibilityLayer`, so the chart is focusable and its tooltip moves with the arrow keys. Name it with the title and describe it with the summary.
-- Use the `chart.series-*` tokens through `seriesColour()`, never raw colours. The table view is the alternative to colour (see the Charts rules in `KICKOFF.md`), so series need no patterns, but their colours must stay distinguishable from each other in every theme, including under protanopia, deuteranopia and tritanopia. The contrast validator checks each series against the surface, not against the other series, so check that by hand when you change the series tokens. [PR #73](https://github.com/graftwork-studio/design-system/pull/73) used a CIEDE2000 difference of at least 10 between every pair.
+- Use the `chart.series-*` tokens through `seriesColour()`, never raw colours. The table view is the alternative to colour (see the Charts rules in `KICKOFF.md`), so series need no patterns, but their colours must stay distinguishable from each other in every theme, including under protanopia, deuteranopia and tritanopia. The build checks this for you: it fails if any two series are less than 10 apart in CIEDE2000 (see [Working on tokens](#working-on-tokens)).
 - Every mark meets 3:1 against everything it touches. Where marks touch each other, as stacked areas do, separate them with a gap in the surface colour, as AreaChart does.
 - Turn off animation (`isAnimationActive={false}`), on the tooltip too.
 
