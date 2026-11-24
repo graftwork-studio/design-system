@@ -491,7 +491,7 @@
         }
       },
       "series-4": {
-        "$value": "{color.green.800}",
+        "$value": "{color.neutral.500}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
