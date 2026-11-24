@@ -1,5 +1,20 @@
 # @graftwork/ui
 
+## 2.6.0
+
+### Minor Changes
+
+- [#75](https://github.com/graftwork-studio/design-system/pull/75) [`2c4b43d`](https://github.com/graftwork-studio/design-system/commit/2c4b43d784dd3fada8af6edced7a2d450436802f) Thanks [@david-kenny](https://github.com/david-kenny)! - Add `AreaChart`. Like `BarChart` and `LineChart`, it has a written summary and a "View as table" toggle showing the same data. Series are stacked. `stacking="percent"` shows each series' share of the total instead, and `curve` sets how points are joined (`smooth`, `linear` or `step`). The chart is focusable, and the arrow keys move its tooltip from point to point.
+
+- [#73](https://github.com/graftwork-studio/design-system/pull/73) [`8a50870`](https://github.com/graftwork-studio/design-system/commit/8a50870a1f48b04a802e742b45386b7281a16745) Thanks [@david-kenny](https://github.com/david-kenny)! - Space the chart series colours further apart so every pair stays distinguishable, including under protanopia, deuteranopia and tritanopia. Light: `chart.series-2` to `[#707070](https://github.com/graftwork-studio/design-system/issues/707070)`, `-3` to `[#454545](https://github.com/graftwork-studio/design-system/issues/454545)`, `-4` to `[#171717](https://github.com/graftwork-studio/design-system/issues/171717)`. Dark: `chart.series-1` to `#e5e5e5`, `-2` to `#b9b9b9`, `-3` to `#8e8e8e`, `-4` to `[#646464](https://github.com/graftwork-studio/design-system/issues/646464)`. High contrast: `chart.series-4` to neutral `[#737373](https://github.com/graftwork-studio/design-system/issues/737373)`. Every series still meets 3:1 against the card surface. Charts look different; no code changes are needed.
+
+- [#74](https://github.com/graftwork-studio/design-system/pull/74) [`c758102`](https://github.com/graftwork-studio/design-system/commit/c7581023f007f952227bc762dc133345254138fe) Thanks [@david-kenny](https://github.com/david-kenny)! - Add `LineChart`. Like `BarChart`, it has a written summary and a "View as table" toggle showing the same data. `curve` sets how points are joined (`smooth`, `linear` or `step`) and `points` adds a dot on each data point (`dots`) or a dot and its value (`values`). The chart is focusable, and the arrow keys move its tooltip from point to point. `BarChart` is unchanged.
+
+### Patch Changes
+
+- Updated dependencies [[`8a50870`](https://github.com/graftwork-studio/design-system/commit/8a50870a1f48b04a802e742b45386b7281a16745)]:
+  - @graftwork/tokens@2.6.0
+
 ## 2.5.1
 
 ### Patch Changes
