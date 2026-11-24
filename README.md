@@ -82,6 +82,10 @@ Stories also run in a browser pane that doesn't have window focus. `.storybook/e
 
 Renovate opens pull requests for this repo's dependencies after a 3-day delay, using `renovate.json`. They never merge themselves, because they can change what we publish. React Aria and `@internationalized/date` update together. If a pull request changes a dependency of a published package, add a changeset before merging.
 
+The [Dependency Dashboard](https://github.com/graftwork-studio/design-system/issues/57) issue lists every pending and open update. Merge Renovate pull requests one at a time. Each merge leaves the others behind `main`, so Renovate rebases them and their checks run again before they can merge.
+
+Renovate only sees repositories it has been given. To add one, go to the organisation's **Settings → GitHub Apps → Renovate → Configure**, add it under **Repository access** and save. It currently covers `design-system`, `app-template` and `test-app`.
+
 Apps use the shared presets in [`renovate/`](renovate) instead.
 
 ## Releasing
