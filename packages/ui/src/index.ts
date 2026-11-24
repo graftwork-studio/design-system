@@ -25,6 +25,14 @@ export {
   type AppShellHeaderProps,
   type AppShellProps,
 } from "./components/app-shell.js";
+export {
+  AreaChart,
+  type AreaChartCurve,
+  type AreaChartProps,
+  type AreaChartSeries,
+  type AreaChartStacking,
+  type AreaChartView,
+} from "./components/area-chart.js";
 export { AuthLayout, type AuthLayoutProps } from "./components/auth-layout.js";
 export { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps } from "./components/avatar.js";
 export { Badge, type BadgeProps, type BadgeVariant, badgeVariants } from "./components/badge.js";

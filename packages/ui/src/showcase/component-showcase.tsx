@@ -242,6 +242,7 @@ import {
   DatePicker,
   DateRangePicker,
   RangeCalendar,
+  AreaChart,
   AspectRatio,
   Carousel,
   CarouselContent,
@@ -674,6 +675,23 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
           <p>Page content goes here.</p>
         </AppShellContent>
       </AppShell>
+    ),
+  },
+  {
+    name: "AreaChart",
+    wide: true,
+    render: () => (
+      <AreaChart
+        title="Visits and trials"
+        summary="Visits and trials together grew from 152 in Q1 to 311 in Q4, dipping in Q3."
+        data={chartData}
+        categoryKey="quarter"
+        series={[
+          { key: "visits", label: "Visits" },
+          { key: "trials", label: "Trials" },
+        ]}
+        headingLevel={4}
+      />
     ),
   },
   {
