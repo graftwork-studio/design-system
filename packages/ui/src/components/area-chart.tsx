@@ -25,7 +25,9 @@ import {
  * - the chart itself is focusable (Recharts' accessibility layer): arrow keys move
  *   the tooltip from point to point
  * - the line along the top of each area is the mark, at 3:1 against the card surface
- *   in every theme; the fill beneath it is decorative. There's no animation.
+ *   in every theme. A 2px gap in the surface colour runs along each side of it, so
+ *   in a stack it never touches the fill of the area above. Fills are decorative.
+ *   There's no animation.
  */
 
 export type AreaChartSeries = ChartSeries;
@@ -45,6 +47,10 @@ export type AreaChartProps = ChartBaseProps & {
 };
 
 const FILL_OPACITY = 0.4;
+
+/** The surface-coloured gap along each line: 2px either side of the 2px line. */
+const GAP_COLOUR = "var(--gw-color-surface-raised)";
+const GAP_WIDTH = 6;
 
 /** A filled square with the series line along its top, for the legend. */
 function AreaSwatch({ colour }: { colour: string }) {
@@ -93,17 +99,54 @@ export function AreaChart({
               tickFormatter={(v: number) => (percent ? formatShare(v) : formatValue(v))}
             />
             <ChartTooltip isAnimationActive={false} content={<ChartTooltipContent />} />
+            {/*
+              Three passes, each its own stack so the geometry matches: the fills, then a
+              gap in the surface colour along each top line, then the lines. Each line
+              touches only the gap, where it meets 3:1, never the fill of the area above it.
+            */}
             {series.map((s, i) => (
               <Area
-                key={s.key}
+                key={`fill-${s.key}`}
+                className="area-fill"
                 dataKey={s.key}
                 name={s.label}
                 type={CURVE_TYPES[curve]}
-                stackId="stack"
-                stroke={seriesColour(i)}
-                strokeWidth={2}
+                stackId="fill"
+                stroke="none"
                 fill={seriesColour(i)}
                 fillOpacity={FILL_OPACITY}
+                activeDot={false}
+                isAnimationActive={false}
+              />
+            ))}
+            {series.map((s) => (
+              <Area
+                key={`gap-${s.key}`}
+                className="area-gap"
+                dataKey={s.key}
+                type={CURVE_TYPES[curve]}
+                stackId="gap"
+                stroke={GAP_COLOUR}
+                strokeWidth={GAP_WIDTH}
+                strokeLinejoin="round"
+                fill="none"
+                tooltipType="none"
+                activeDot={false}
+                isAnimationActive={false}
+              />
+            ))}
+            {series.map((s, i) => (
+              <Area
+                key={`line-${s.key}`}
+                className="area-line"
+                dataKey={s.key}
+                type={CURVE_TYPES[curve]}
+                stackId="line"
+                stroke={seriesColour(i)}
+                strokeWidth={2}
+                strokeLinejoin="round"
+                fill="none"
+                tooltipType="none"
                 activeDot={{ r: 5 }}
                 isAnimationActive={false}
               />
