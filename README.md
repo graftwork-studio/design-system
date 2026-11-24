@@ -104,6 +104,8 @@ After a release that changes tokens or components, update Figma:
 2. In Figma, open **Assets**, then the library icon, and **Publish** the changes so other files receive them.
 3. Check the blocks in [Graftwork Blocks](https://www.figma.com/design/prmltYKyND4F2ioUj2oqtb/Graftwork-Blocks) in all three modes, as described in "Keeping Figma in step" in `BLOCKS.md` in `app-template`. Republish that library if anything changed.
 
+If **Publish to npm** fails, check what reached npm (`npm view @graftwork/ui versions`) and whether the release's tags exist before doing anything else. When neither package went out, as happened with 2.5.1 when GitHub briefly failed to issue the signing token for provenance, open the failed run and choose **Re-run failed jobs**. The build and pack step isn't repeated, so the same packages publish.
+
 Only David merges **Version Packages**. Publishing uses npm trusted publishing (OIDC) from `release.yml` in the `npm` environment, so no npm token is stored.
 
 The first release (1.0.0) couldn't use trusted publishing, because npm only allows it for packages that already exist. It was published with a temporary token instead. npm now stages any publish made with a token that bypasses two-factor authentication, so 1.0.0 waited for approval on npmjs.com and went out without a provenance attestation. Every later release goes straight out with provenance.
