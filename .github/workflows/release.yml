@@ -47,6 +47,7 @@ jobs:
       contents: write
       pull-requests: write
       actions: write # to approve the held CI run (see below)
+      checks: read # to find the held run through its check suite
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
@@ -63,26 +64,56 @@ jobs:
       # GitHub holds CI on pull requests opened by GitHub Actions until someone
       # approves the run, so the required checks never start on their own.
       # Approve the held run for the pull request's latest commit.
+      #
+      # GitHub creates the held run a few seconds after the push, and the runs
+      # list can lag behind the check suite, so keep looking for up to three
+      # minutes: re-read the head commit each time, and find held runs both in
+      # the runs list and through the commit's GitHub Actions check suites. If
+      # nothing is held and nothing is running by then, fail so the stuck pull
+      # request is noticed; re-running this workflow pushes a fresh commit.
       - name: Approve CI on the Version Packages pull request
         if: steps.version.outputs.pr-number != ''
         env:
           GH_TOKEN: ${{ github.token }}
           PR: ${{ steps.version.outputs.pr-number }}
         run: |
-          sha=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json headRefOid --jq .headRefOid)
-          ids=""
-          for attempt in 1 2 3 4 5 6 7 8 9 10 11 12; do
-            ids=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$sha&status=action_required" --jq '.workflow_runs[].id')
-            [ -n "$ids" ] && break
+          api="repos/$GITHUB_REPOSITORY"
+          deadline=$((SECONDS + 180))
+          while :; do
+            sha=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json headRefOid --jq .headRefOid)
+
+            runs=$(gh api "$api/actions/runs?head_sha=$sha&event=pull_request&per_page=100" \
+              --jq '.workflow_runs[] | "\(.id) \(.status) \(.conclusion)"')
+            held=$(echo "$runs" | awk '$2 == "action_required" || $3 == "action_required" { print $1 }')
+
+            suites=$(gh api "$api/commits/$sha/check-suites?app_id=15368" \
+              --jq '.check_suites[] | select(.conclusion == "action_required") | .id')
+            for suite in $suites; do
+              held="$held $(gh api "$api/actions/runs?check_suite_id=$suite" --jq '.workflow_runs[].id')"
+            done
+            held=$(echo $held | tr ' ' '\n' | sort -u)
+
+            if [ -n "$held" ]; then
+              for id in $held; do
+                gh api -X POST "$api/actions/runs/$id/approve"
+                echo "Approved run $id for $sha"
+              done
+              exit 0
+            fi
+
+            if [ -n "$runs" ] && [ -z "$suites" ]; then
+              echo "CI is already running for $sha; nothing to approve."
+              echo "$runs"
+              exit 0
+            fi
+
+            if [ "$SECONDS" -ge "$deadline" ]; then
+              echo "::error::No held CI run appeared for $sha on pull request #$PR within three minutes, so its required checks will not start. Re-run the Release workflow on main to push a fresh commit."
+              [ -n "$suites" ] && echo "Held GitHub Actions check suites with no run: $suites"
+              exit 1
+            fi
+            echo "No held run for $sha yet; looking again in 10 seconds."
             sleep 10
-          done
-          if [ -z "$ids" ]; then
-            echo "::warning::No held CI run found for $sha. Check the checks on pull request #$PR."
-            exit 0
-          fi
-          for id in $ids; do
-            gh api -X POST "repos/$GITHUB_REPOSITORY/actions/runs/$id/approve"
-            echo "Approved run $id"
           done
 
   pack:
