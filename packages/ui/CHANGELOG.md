@@ -1,5 +1,13 @@
 # @graftwork/ui
 
+## 2.6.1
+
+### Patch Changes
+
+- [#79](https://github.com/graftwork-studio/design-system/pull/79) [`33fc14b`](https://github.com/graftwork-studio/design-system/commit/33fc14bdc9cad7eb0ab26b8462bfa9292a2585b1) Thanks [@david-kenny](https://github.com/david-kenny)! - `AreaChart` draws a 2px gap in the surface colour along each side of every area's line. In a stack, each line now touches only that gap, never the fill of the area above it, so it meets 3:1 there as well as against the card. No props change.
+- Updated dependencies []:
+  - @graftwork/tokens@2.6.1
+
 ## 2.6.0
 
 ### Minor Changes
