@@ -73,6 +73,7 @@ import {
   InputGroup,
   Kbd,
   Label,
+  LineChart,
   Pagination,
   Popover,
   PopoverContent,
@@ -1177,6 +1178,24 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   { name: "Label", render: () => <LabelExample /> },
+  {
+    name: "LineChart",
+    wide: true,
+    render: () => (
+      <LineChart
+        title="Visits and trials"
+        summary="Visits grew from 120 in Q1 to 240 in Q4, dipping in Q3. Trials rose every quarter, reaching 71."
+        data={chartData}
+        categoryKey="quarter"
+        series={[
+          { key: "visits", label: "Visits" },
+          { key: "trials", label: "Trials" },
+        ]}
+        points="dots"
+        headingLevel={4}
+      />
+    ),
+  },
   {
     name: "Marker",
     render: () => (

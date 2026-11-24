@@ -77,6 +77,14 @@ export { Input, type InputProps } from "./components/input.js";
 export { InputGroup, type InputGroupProps } from "./components/input-group.js";
 export { Kbd, type KbdProps } from "./components/kbd.js";
 export { Label, type LabelProps } from "./components/label.js";
+export {
+  LineChart,
+  type LineChartCurve,
+  type LineChartPoints,
+  type LineChartProps,
+  type LineChartSeries,
+  type LineChartView,
+} from "./components/line-chart.js";
 export { Pagination, type PaginationProps } from "./components/pagination.js";
 export { Popover, PopoverContent, type PopoverContentProps, PopoverTitle } from "./components/popover.js";
 export { Progress, type ProgressProps } from "./components/progress.js";

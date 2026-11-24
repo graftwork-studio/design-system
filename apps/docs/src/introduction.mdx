@@ -46,7 +46,7 @@ Only semantic tokens are available. Tailwind's default palette has been removed,
 - Focus rings are 2px with a 2px offset, on `:focus-visible`, at least 3:1 against every surface.
 - Light, dark and high-contrast themes follow the operating system, and the theme toggle overrides them.
 - Under reduced motion, only opacity fades remain.
-- Charts have a written summary and a table view, and never rely on colour alone.
+- Charts have a written summary and a table view. The table is the alternative to colour for telling series apart, so lines and areas don't need patterns. Series colours stay distinguishable under colour blindness, and marks meet 3:1.
 
 ## Component showcase
 
@@ -72,6 +72,7 @@ Component and property names match the Figma library, with the differences liste
 | Card | CardHeader, CardTitle, CardDescription, CardContent, CardFooter |
 | Table | `density`: comfortable, compact |
 | BarChart | `view`: chart, table |
+| LineChart | `view`: chart, table · `curve`: smooth, linear, step · `points`: none, dots, values |
 | ThemeToggle | `value`: system, light, dark, high-contrast |
 | Accordion | `allowsMultipleExpanded` · AccordionItem `isExpanded`, `isDisabled`, `title`, `content` |
 | Alert | `variant`: info, success, warning, error · `title`, `children`, `action` |
