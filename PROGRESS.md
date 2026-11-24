@@ -27,3 +27,12 @@
 | Component showcase | Done | `ComponentShowcase` in `@graftwork/ui/showcase` renders every component on the example pages. CI fails if an exported component is missing from it |
 | Documentation audit | Done | [PR #47](https://github.com/graftwork-studio/design-system/pull/47): naming contract matched to Figma, app `CLAUDE.md` files updated, snapshot and preview steps documented, and Renovate configured for this repo. Figma variable descriptions and page labels corrected and published |
 | Renovate on this repo | Done | Running since 24 November 2026, once `design-system` was added to the Renovate app's repository access. It opened the [Dependency Dashboard](https://github.com/graftwork-studio/design-system/issues/57), and the first updates were [PR #55](https://github.com/graftwork-studio/design-system/pull/55) (Storybook 10.6.8) and [PR #56](https://github.com/graftwork-studio/design-system/pull/56) (stylelint 18.1.0) |
+
+## Blocks
+
+| Milestone | Status | Evidence |
+| --- | --- | --- |
+| B0: Inventory | Done | 100 upstream blocks: 30 for the React Aria base (27 page blocks and 3 internal previews) and 70 charts offered for Radix only. 29 can be built; 71 are parked for missing chart types, BarChart options and other gaps. See `BLOCKS.md` in [app-template PR #19](https://github.com/graftwork-studio/app-template/pull/19) |
+| B1: Conventions | PR open, checks pass | [app-template PR #19](https://github.com/graftwork-studio/app-template/pull/19): registry, inventory, `BLOCKS.md`, licence notice, `CLAUDE.md` section and the completeness test |
+| B2: Pilot in code | PR open, checks pass | [app-template PR #20](https://github.com/graftwork-studio/app-template/pull/20): the five login blocks, the gallery at `/blocks` (off in production unless `GRAFTWORK_BLOCKS_GALLERY=enabled`), axe and snapshots in every theme and width, keyboard journeys |
+| B3: Pilot in Figma | Built, not yet published | The five login blocks in [Graftwork Blocks](https://www.figma.com/design/prmltYKyND4F2ioUj2oqtb/Graftwork-Blocks), built from library instances and variables, and checked in all three modes |
