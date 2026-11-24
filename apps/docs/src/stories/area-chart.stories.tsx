@@ -37,8 +37,15 @@ export const Chart: Story = {
     const canvas = within(canvasElement);
     // A written summary is always visible.
     await expect(canvas.getByText(/Total visitors peaked at 505/)).toBeVisible();
-    // One area per series.
-    await expect(canvasElement.querySelectorAll(".recharts-area")).toHaveLength(series.length);
+    // One fill and one line per series, with a surface-coloured gap between each line and the fill above it.
+    await expect(canvasElement.querySelectorAll(".area-fill")).toHaveLength(series.length);
+    await expect(canvasElement.querySelectorAll(".area-line")).toHaveLength(series.length);
+    const gaps = [...canvasElement.querySelectorAll(".area-gap .recharts-area-curve")];
+    await expect(gaps).toHaveLength(series.length);
+    for (const gap of gaps) {
+      await expect(gap.getAttribute("stroke")).toBe("var(--gw-color-surface-raised)");
+      await expect(Number(gap.getAttribute("stroke-width"))).toBeGreaterThanOrEqual(6);
+    }
 
     // The toggle comes first, then the chart, which is labelled by the title and summary.
     const toggle = canvas.getByRole("button", { name: "View as table" });
