@@ -58,7 +58,7 @@ export function AppShellHeader({ children, actions, showTrigger = true, sticky =
     <header
       data-slot="app-shell-header"
       className={cn(
-        "flex h-16 shrink-0 items-center gap-2 border-b border-border-default bg-surface-default px-4",
+        "flex h-16 shrink-0 items-center gap-2 rounded-t-[inherit] border-b border-border-default bg-surface-default px-4",
         sticky && "sticky top-0 z-10",
         className,
       )}
