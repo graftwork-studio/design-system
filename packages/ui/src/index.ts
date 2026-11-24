@@ -37,7 +37,17 @@ export { AuthLayout, type AuthLayoutProps } from "./components/auth-layout.js";
 export { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps } from "./components/avatar.js";
 export { Badge, type BadgeProps, type BadgeVariant, badgeVariants } from "./components/badge.js";
 export { Breadcrumb, BreadcrumbItem, type BreadcrumbItemProps, type BreadcrumbProps } from "./components/breadcrumb.js";
-export { BarChart, type BarChartProps, type BarChartSeries, type BarChartView } from "./components/bar-chart.js";
+export {
+  BarChart,
+  type BarChartColourBy,
+  type BarChartLabels,
+  type BarChartNegatives,
+  type BarChartOrientation,
+  type BarChartProps,
+  type BarChartSeries,
+  type BarChartStacking,
+  type BarChartView,
+} from "./components/bar-chart.js";
 export { Button, type ButtonProps, type ButtonSize, type ButtonVariant, buttonVariants } from "./components/button.js";
 export {
   Card,
