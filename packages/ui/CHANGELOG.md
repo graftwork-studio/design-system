@@ -1,5 +1,13 @@
 # @graftwork/ui
 
+## 2.5.1
+
+### Patch Changes
+
+- [#70](https://github.com/graftwork-studio/design-system/pull/70) [`b9f1f9b`](https://github.com/graftwork-studio/design-system/commit/b9f1f9ba173acc13d935c3da80682e5431a3df76) Thanks [@david-kenny](https://github.com/david-kenny)! - AppShellHeader follows the rounded corners of the inset sidebar variant's main area, instead of covering them with its background.
+- Updated dependencies []:
+  - @graftwork/tokens@2.5.1
+
 ## 2.5.0
 
 ### Minor Changes
