@@ -31,6 +31,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AppShell,
+  AppShellContent,
+  AppShellHeader,
+  AuthLayout,
   Avatar,
   AvatarGroup,
   Badge,
@@ -626,6 +630,52 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   {
+    name: "AppShell",
+    wide: true,
+    render: () => (
+      <AppShell
+        mainElement="div"
+        keyboardShortcut={false}
+        className="h-80 min-h-0 overflow-hidden rounded-lg border border-border-default"
+        sidebar={
+          <Sidebar contained aria-label="Example app navigation">
+            <SidebarContent>
+              <SidebarGroup>
+                <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton href="#app-overview" isActive>
+                        <HouseIcon aria-hidden />
+                        <span>Overview</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton href="#app-projects">
+                        <FolderOpenIcon aria-hidden />
+                        <span>Projects</span>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            </SidebarContent>
+          </Sidebar>
+        }
+      >
+        <AppShellHeader sticky={false} actions={<Button size="sm" variant="secondary">Share</Button>}>
+          <Breadcrumb aria-label="Example app breadcrumb">
+            <BreadcrumbItem href="#app-projects">Projects</BreadcrumbItem>
+            <BreadcrumbItem>Northwind</BreadcrumbItem>
+          </Breadcrumb>
+        </AppShellHeader>
+        <AppShellContent>
+          <p>Page content goes here.</p>
+        </AppShellContent>
+      </AppShell>
+    ),
+  },
+  {
     name: "AspectRatio",
     render: () => (
       <AspectRatio ratio={16 / 9} className="flex items-center justify-center rounded-lg bg-surface-subtle text-sm text-text-secondary">
@@ -662,6 +712,30 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
           </AttachmentContent>
         </Attachment>
       </AttachmentGroup>
+    ),
+  },
+  {
+    name: "AuthLayout",
+    wide: true,
+    render: () => (
+      <AuthLayout
+        mainElement="div"
+        background="muted"
+        className="min-h-0 rounded-lg"
+        brand={<p className="font-medium">Your app</p>}
+        footer={
+          <p>
+            By continuing, you agree to our <a href="#terms">Terms of Service</a>.
+          </p>
+        }
+      >
+        <Card>
+          <CardHeader>
+            <CardTitle level={4}>Log in</CardTitle>
+            <CardDescription>The form goes here.</CardDescription>
+          </CardHeader>
+        </Card>
+      </AuthLayout>
     ),
   },
   {
