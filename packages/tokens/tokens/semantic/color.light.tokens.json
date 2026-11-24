@@ -467,7 +467,7 @@
         }
       },
       "series-2": {
-        "$value": "{color.shadcn.light-chart-2}",
+        "$value": "{color.shadcn.light-muted-foreground-aa}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -479,7 +479,7 @@
         }
       },
       "series-3": {
-        "$value": "{color.shadcn.light-chart-3}",
+        "$value": "{color.shadcn.light-primary-hover}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -491,7 +491,7 @@
         }
       },
       "series-4": {
-        "$value": "{color.shadcn.light-chart-4}",
+        "$value": "{color.neutral.900}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",

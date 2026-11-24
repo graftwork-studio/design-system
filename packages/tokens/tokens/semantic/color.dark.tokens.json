@@ -455,7 +455,7 @@
       "$type": "color",
       "$description": "Dark theme. chart tokens.",
       "series-1": {
-        "$value": "{color.shadcn.dark-chart-1}",
+        "$value": "{color.neutral.200}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -467,7 +467,7 @@
         }
       },
       "series-2": {
-        "$value": "{color.shadcn.dark-chart-2}",
+        "$value": "{color.shadcn.dark-primary-hover}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -479,7 +479,7 @@
         }
       },
       "series-3": {
-        "$value": "{color.shadcn.dark-chart-3-aa}",
+        "$value": "{color.shadcn.light-input-aa}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
@@ -491,7 +491,7 @@
         }
       },
       "series-4": {
-        "$value": "{color.shadcn.dark-chart-4-aa}",
+        "$value": "{color.shadcn.dark-chart-3-aa}",
         "$extensions": {
           "studio.graftwork": {
             "role": "non-text",
