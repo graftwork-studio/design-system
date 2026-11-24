@@ -9,7 +9,7 @@ import { SidebarInset, SidebarProvider, type SidebarProviderProps, SidebarTrigge
  * Graftwork's own component, promoted from the app template's sidebar blocks.
  *
  * Figma contract: AppShell { variant: sidebar | floating | inset; state: expanded | collapsed;
- *                            showSidebarEnd; showActions } · AppShellHeader { title, showActions }
+ *                            showSidebarEnd } · AppShellHeader { showActions }
  *
  *   <AppShell sidebar={<Sidebar>…</Sidebar>}>
  *     <AppShellHeader actions={<Button>Share</Button>}>
