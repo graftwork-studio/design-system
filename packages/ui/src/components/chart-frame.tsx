@@ -90,6 +90,8 @@ type ChartFrameProps = Omit<ChartBaseProps, "formatValue"> & {
   legend?: readonly ChartSeries[];
   /** A category value whose table row is marked "(highlighted)". */
   highlight?: string;
+  /** When the data can't be charted: why. The table shows instead, with this note and no toggle. */
+  tableOnly?: string;
 };
 
 export function ChartFrame({
@@ -109,8 +111,10 @@ export function ChartFrame({
   renderChart,
   legend = series,
   highlight,
+  tableOnly,
 }: ChartFrameProps) {
-  const [view, setView] = React.useState<ChartView>(defaultView);
+  const [chosenView, setView] = React.useState<ChartView>(defaultView);
+  const view = tableOnly === undefined ? chosenView : "table";
   const uid = React.useId().replace(/:/g, "");
   if (series.length > SERIES_COLOURS.length) {
     throw new Error(`${name} supports up to ${SERIES_COLOURS.length} series.`);
@@ -137,15 +141,17 @@ export function ChartFrame({
             {summary}
           </p>
         </div>
-        <Button
-          variant="secondary"
-          size="sm"
-          aria-controls={regionId}
-          onPress={() => setView(view === "chart" ? "table" : "chart")}
-        >
-          {view === "chart" ? <TableIcon aria-hidden /> : <ChartIcon aria-hidden />}
-          {view === "chart" ? "View as table" : "View as chart"}
-        </Button>
+        {tableOnly === undefined ? (
+          <Button
+            variant="secondary"
+            size="sm"
+            aria-controls={regionId}
+            onPress={() => setView(view === "chart" ? "table" : "chart")}
+          >
+            {view === "chart" ? <TableIcon aria-hidden /> : <ChartIcon aria-hidden />}
+            {view === "chart" ? "View as table" : "View as chart"}
+          </Button>
+        ) : null}
       </div>
 
       {renderDefs?.(ids)}
@@ -164,34 +170,37 @@ export function ChartFrame({
             {renderChart(ids)}
           </div>
         ) : (
-          <Table aria-labelledby={ids.titleId}>
-            <TableHeader>
-              <TableColumn isRowHeader>{categoryKey === "" ? "Category" : labelFor(categoryKey)}</TableColumn>
-              {series.map((s) => (
-                <TableColumn key={s.key} className="text-right">
-                  {s.label}
-                </TableColumn>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {data.map((row, rowIndex) => (
-                <TableRow key={`${String(row[categoryKey])}-${rowIndex}`}>
-                  <TableCell>
-                    {String(row[categoryKey])}
-                    {highlight !== undefined && String(row[categoryKey]) === highlight ? " (highlighted)" : null}
-                  </TableCell>
-                  {series.map((s) => {
-                    const value = row[s.key];
-                    return (
-                      <TableCell key={s.key} className="text-right tabular-nums">
-                        {typeof value === "number" ? formatValue(value) : String(value ?? "")}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <>
+            {tableOnly !== undefined ? <p className="mb-3 max-w-[80ch] text-sm text-text-secondary">{tableOnly}</p> : null}
+            <Table aria-labelledby={ids.titleId}>
+              <TableHeader>
+                <TableColumn isRowHeader>{categoryKey === "" ? "Category" : labelFor(categoryKey)}</TableColumn>
+                {series.map((s) => (
+                  <TableColumn key={s.key} className="text-right">
+                    {s.label}
+                  </TableColumn>
+                ))}
+              </TableHeader>
+              <TableBody>
+                {data.map((row, rowIndex) => (
+                  <TableRow key={`${String(row[categoryKey])}-${rowIndex}`}>
+                    <TableCell>
+                      {String(row[categoryKey])}
+                      {highlight !== undefined && String(row[categoryKey]) === highlight ? " (highlighted)" : null}
+                    </TableCell>
+                    {series.map((s) => {
+                      const value = row[s.key];
+                      return (
+                        <TableCell key={s.key} className="text-right tabular-nums">
+                          {typeof value === "number" ? formatValue(value) : String(value ?? "")}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </>
         )}
       </div>
     </figure>
