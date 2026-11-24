@@ -102,6 +102,7 @@ After a release that changes tokens or components, update Figma:
 
 1. Update the variables and Graftwork components in the [Graftwork Design System](https://www.figma.com/design/8dIiSHbXjX1qwjqlaKkyXA/Graftwork-Design-System) file. The repo is the source of truth.
 2. In Figma, open **Assets**, then the library icon, and **Publish** the changes so other files receive them.
+3. Check the blocks in [Graftwork Blocks](https://www.figma.com/design/prmltYKyND4F2ioUj2oqtb/Graftwork-Blocks) in all three modes, as described in "Keeping Figma in step" in `BLOCKS.md` in `app-template`. Republish that library if anything changed.
 
 Only David merges **Version Packages**. Publishing uses npm trusted publishing (OIDC) from `release.yml` in the `npm` environment, so no npm token is stored.
 
