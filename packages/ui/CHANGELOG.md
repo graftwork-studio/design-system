@@ -1,5 +1,16 @@
 # @graftwork/ui
 
+## 2.5.0
+
+### Minor Changes
+
+- [#67](https://github.com/graftwork-studio/design-system/pull/67) [`289b67b`](https://github.com/graftwork-studio/design-system/commit/289b67b41940438c69ad3336dd0fec98bd64ec11) Thanks [@david-kenny](https://github.com/david-kenny)! - Add AppShell (with AppShellHeader and AppShellContent) and AuthLayout, promoted from the app template's blocks. AppShell puts a Sidebar, a sticky header with the sidebar trigger, and the page's main area together. AuthLayout lays out log-in and sign-up pages: centred or split beside an image, on a default or muted background.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graftwork/tokens@2.5.0
+
 ## 2.4.1
 
 ### Patch Changes
