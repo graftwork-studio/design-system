@@ -62,6 +62,14 @@ pnpm test                                # all unit, showcase and story tests
 4. Add its Figma properties to the naming contract in `apps/docs/src/introduction.mdx`, and to the Figma table in `CLAUDE.md` in `app-template` and `test-app`.
 5. Add a changeset, and commit visual baselines for its stories.
 
+**Charts** follow the same steps, plus:
+
+- Build on the internal `ChartFrame` in `packages/ui/src/components/chart-frame.tsx`. It gives every chart the heading, the required written summary, the "View as table" toggle, the legend and the table view, so they behave the same across charts. Don't export it.
+- Turn on Recharts' `accessibilityLayer`, so the chart is focusable and its tooltip moves with the arrow keys. Name it with the title and describe it with the summary.
+- Use the `chart.series-*` tokens through `seriesColour()`, never raw colours. The table view is the alternative to colour (see the Charts rules in `KICKOFF.md`), so series need no patterns, but their colours must stay distinguishable from each other in every theme, including under protanopia, deuteranopia and tritanopia. The contrast validator checks each series against the surface, not against the other series, so check that by hand when you change the series tokens. [PR #73](https://github.com/graftwork-studio/design-system/pull/73) used a CIEDE2000 difference of at least 10 between every pair.
+- Every mark meets 3:1 against everything it touches. Where marks touch each other, as stacked areas do, separate them with a gap in the surface colour, as AreaChart does.
+- Turn off animation (`isAnimationActive={false}`), on the tooltip too.
+
 The example pages in `app-template` and `test-app` render `<ComponentShowcase />` from `@graftwork/ui/showcase`, so the new component appears on them when they update to the release.
 
 ### Visual snapshots
@@ -93,7 +101,7 @@ Apps use the shared presets in [`renovate/`](renovate) instead.
 Releases use [Changesets](https://changesets.dev). Both packages share one version.
 
 1. Every pull request that changes a package adds a changeset (`pnpm changeset`). See [`.changeset/README.md`](.changeset/README.md) for what counts as major, minor or patch.
-2. Merging to `main` opens or updates the **Version Packages** pull request. GitHub holds CI on pull requests opened by GitHub Actions until a run is approved, so the release workflow approves it.
+2. Merging to `main` opens or updates the **Version Packages** pull request. GitHub holds CI on pull requests opened by GitHub Actions until a run is approved, so the release workflow approves it. Its approval step waits up to three minutes for the held run. If it fails, or Version Packages shows no checks, re-run the **Release** workflow from the Actions tab: it updates the pull request again and approves the new run, without publishing anything.
 3. Merging **Version Packages** releases. The workflow builds and packs (with no publishing rights), then publishes to npm with provenance, tags, creates GitHub releases and deploys Storybook to <https://graftwork-studio.github.io/design-system/>.
 
 To publish docs-only changes without a release, run the **Deploy Storybook** workflow from the Actions tab. It builds `main` and deploys it to GitHub Pages, with no npm access.
@@ -103,6 +111,11 @@ After a release that changes tokens or components, update Figma:
 1. Update the variables and Graftwork components in the [Graftwork Design System](https://www.figma.com/design/8dIiSHbXjX1qwjqlaKkyXA/Graftwork-Design-System) file. The repo is the source of truth.
 2. In Figma, open **Assets**, then the library icon, and **Publish** the changes so other files receive them.
 3. Check the blocks in [Graftwork Blocks](https://www.figma.com/design/prmltYKyND4F2ioUj2oqtb/Graftwork-Blocks) in all three modes, as described in "Keeping Figma in step" in `BLOCKS.md` in `app-template`. Republish that library if anything changed.
+
+When you build a Figma component by cloning another:
+
+- Check that its text layers are still linked to the component's text properties (`title`, `summary` and so on). Cloning a component set can drop the link, so instances can't change the text.
+- Binding a colour variable to a fill resets that fill's opacity to 100%. For a see-through fill bound to a variable, such as AreaChart's 40% areas, set the opacity on the layer instead.
 
 If **Publish to npm** fails, check what reached npm (`npm view @graftwork/ui versions`) and whether the release's tags exist before doing anything else. When neither package went out, as happened with 2.5.1 when GitHub briefly failed to issue the signing token for provenance, open the failed run and choose **Re-run failed jobs**. The build and pack step isn't repeated, so the same packages publish.
 
