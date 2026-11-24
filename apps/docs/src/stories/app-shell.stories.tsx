@@ -101,3 +101,49 @@ export const FullPage: Story = {
     await expect(getComputedStyle(header as Element).position).toBe("sticky");
   },
 };
+
+/** The inset sidebar variant: the main area is a rounded panel, and the header follows its corners. */
+export const Inset: Story = {
+  parameters: { layout: "fullscreen" },
+  render: () => (
+    <AppShell
+      keyboardShortcut={false}
+      sidebar={
+        <Sidebar variant="inset" aria-label="Example app navigation">
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton href="#overview" isActive>
+                      <HouseIcon aria-hidden />
+                      <span>Overview</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+        </Sidebar>
+      }
+    >
+      <AppShellHeader className="border-b-0">
+        <Breadcrumb aria-label="Breadcrumb">
+          <BreadcrumbItem>Overview</BreadcrumbItem>
+        </Breadcrumb>
+      </AppShellHeader>
+      <AppShellContent>
+        <h1 className="text-2xl leading-heading font-semibold">Overview</h1>
+      </AppShellContent>
+    </AppShell>
+  ),
+  play: async ({ canvasElement }) => {
+    if (window.innerWidth < 768) return;
+    const header = canvasElement.querySelector('[data-slot="app-shell-header"]') as HTMLElement;
+    const inset = canvasElement.querySelector('[data-slot="sidebar-inset"]') as HTMLElement;
+    // The header's top corners follow the rounded inset panel instead of covering them.
+    await expect(getComputedStyle(header).borderTopLeftRadius).toBe(getComputedStyle(inset).borderTopLeftRadius);
+    await expect(getComputedStyle(inset).borderTopLeftRadius).not.toBe("0px");
+  },
+};
