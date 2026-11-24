@@ -104,6 +104,14 @@ export {
   type LineChartView,
 } from "./components/line-chart.js";
 export { Pagination, type PaginationProps } from "./components/pagination.js";
+export {
+  PieChart,
+  type PieChartLabels,
+  type PieChartProps,
+  type PieChartSeries,
+  type PieChartVariant,
+  type PieChartView,
+} from "./components/pie-chart.js";
 export { Popover, PopoverContent, type PopoverContentProps, PopoverTitle } from "./components/popover.js";
 export { Progress, type ProgressProps } from "./components/progress.js";
 export { Radio, RadioGroup, type RadioGroupProps, type RadioProps } from "./components/radio-group.js";
