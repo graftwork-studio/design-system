@@ -174,3 +174,35 @@ export const MoreThanEightAxes: Story = {
 };
 
 export const TableView: Story = { args: { defaultView: "table" } };
+
+const twoSeries = [
+  { key: "desktop", label: "Desktop" },
+  { key: "mobile", label: "Mobile" },
+];
+
+export const AxisValues: Story = {
+  args: {
+    axisLabels: "values",
+    series: twoSeries,
+    title: "Visitors by device, January to June",
+    summary: "Desktop visitors peaked at 305 in February. Mobile overtook desktop only in April.",
+  },
+  play: async ({ canvasElement }) => {
+    // Each axis label adds every series' value, in series order.
+    const labels = [...canvasElement.querySelectorAll(".radar-axis-label")];
+    await expect(labels).toHaveLength(meta.args.data.length);
+    const first = meta.args.data[0] as Record<string, string | number>;
+    const expected = twoSeries.map((s) => String(first[s.key])).join(" / ");
+    await expect(labels[0]?.querySelectorAll("tspan")[1]?.textContent).toBe(expected);
+  },
+};
+
+export const Scale: Story = {
+  args: { scale: "values" },
+  play: async ({ canvasElement }) => {
+    // The grid rings are labelled along one radius, with a halo over the polygons.
+    const ticks = [...canvasElement.querySelectorAll(".radar-scale-tick")];
+    await expect(ticks.length).toBeGreaterThan(2);
+    await expect(getComputedStyle(ticks[1] as Element).paintOrder).toMatch(/^stroke/);
+  },
+};
