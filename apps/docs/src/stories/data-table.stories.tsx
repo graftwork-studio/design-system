@@ -64,7 +64,7 @@ const order = (canvas: ReturnType<typeof within>) => canvas.getAllByRole("rowhea
 
 /** Focuses a row, then moves right onto its drag handle, as a keyboard user would. */
 async function focusHandle(canvas: ReturnType<typeof within>, title: string) {
-  const row = canvas.getByRole("rowheader", { name: title }).closest<HTMLElement>('[role="row"]')!;
+  const row = (canvas.getByRole("rowheader", { name: title }) as HTMLElement).closest('[role="row"]') as HTMLElement;
   row.focus();
   await userEvent.keyboard("{ArrowRight}");
   const handle = within(row).getByRole("button", { name: /^Drag / });
