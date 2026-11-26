@@ -16,6 +16,7 @@ import {
   formatLabel,
   seriesColour,
   tooltipContent,
+  valueAxisWidth,
   withFormattedCategories,
 } from "./chart-frame.js";
 
@@ -86,7 +87,7 @@ export function LineChart(allProps: LineChartProps) {
           >
             <CartesianGrid vertical={false} />
             <XAxis dataKey={categoryKey} tickLine={false} axisLine={false} tickMargin={8} minTickGap={24} />
-            <YAxis tickLine={false} axisLine={false} width={48} tickFormatter={(v: number) => formatValue(v)} />
+            <YAxis tickLine={false} axisLine={false} width={valueAxisWidth(formatValue)} tickFormatter={(v: number) => formatValue(v)} />
             <ChartTooltip isAnimationActive={false} content={tooltipContent({ formatValue, indicator: tooltipIndicator, label: tooltipLabel })} />
             {series.map((s, i) => (
               <Line

@@ -15,6 +15,7 @@ import {
   defaultFormatValue,
   seriesColour,
   tooltipContent,
+  valueAxisWidth,
   withFormattedCategories,
 } from "./chart-frame.js";
 
@@ -102,7 +103,7 @@ export function AreaChart(allProps: AreaChartProps) {
             <YAxis
               tickLine={false}
               axisLine={false}
-              width={48}
+              width={percent ? 48 : valueAxisWidth(formatValue)}
               tickFormatter={(v: number) => (percent ? formatShare(v) : formatValue(v))}
             />
             <ChartTooltip isAnimationActive={false} content={tooltipContent({ formatValue, indicator: tooltipIndicator, label: tooltipLabel })} />

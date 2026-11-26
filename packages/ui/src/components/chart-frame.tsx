@@ -69,6 +69,14 @@ export const CURVE_TYPES = { smooth: "monotone", linear: "linear", step: "step" 
 
 export const defaultFormatValue = (value: number) => value.toLocaleString();
 
+/**
+ * The value axis is 48px wide for plain numbers. A custom formatValue may add a unit
+ * ("600 kcal"), so the axis sizes to its widest tick instead of wrapping it.
+ */
+export function valueAxisWidth(formatValue: (value: number) => string): number | "auto" {
+  return formatValue === defaultFormatValue ? 48 : "auto";
+}
+
 export function seriesColour(index: number): string {
   return SERIES_COLOURS[index] ?? SERIES_COLOURS[0];
 }
