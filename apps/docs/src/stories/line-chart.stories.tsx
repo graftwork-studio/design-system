@@ -1,4 +1,5 @@
 import { LineChart } from "@graftwork/ui";
+import { MonitorIcon, RepeatIcon } from "lucide-react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, userEvent, within } from "storybook/test";
 import { expectFocusRing } from "./test-helpers.js";
@@ -104,3 +105,76 @@ export const FourSeries: Story = {
 };
 
 export const TableView: Story = { args: { defaultView: "table" } };
+
+/** Focuses the chart and moves to the second point, returning the tooltip. */
+async function tooltipAtSecondPoint(canvasElement: HTMLElement) {
+  await userEvent.tab();
+  await userEvent.tab();
+  await userEvent.keyboard("{ArrowRight}");
+  return canvasElement.querySelector(".recharts-tooltip-wrapper") as HTMLElement;
+}
+
+export const TooltipIndicatorLine: Story = {
+  args: { tooltipIndicator: "line" },
+  play: async ({ canvasElement }) => {
+    const tooltip = await tooltipAtSecondPoint(canvasElement);
+    await expect(tooltip).toHaveTextContent(/Feb/);
+    // A thin bar beside each row, not a square.
+    await expect(tooltip.querySelectorAll(".w-1")).toHaveLength(2);
+  },
+};
+
+export const TooltipNoIndicator: Story = {
+  args: { tooltipIndicator: "none" },
+  play: async ({ canvasElement }) => {
+    const tooltip = await tooltipAtSecondPoint(canvasElement);
+    await expect(tooltip).toHaveTextContent(/Visitors\s*305/);
+    await expect(tooltip.querySelectorAll("[class*='--color-bg']")).toHaveLength(0);
+  },
+};
+
+export const TooltipNoLabel: Story = {
+  args: { tooltipLabel: "none", tooltipIndicator: "none" },
+  play: async ({ canvasElement }) => {
+    const tooltip = await tooltipAtSecondPoint(canvasElement);
+    await expect(tooltip).toHaveTextContent(/Visitors\s*305/);
+    await expect(tooltip).not.toHaveTextContent(/Feb/);
+  },
+};
+
+export const SeriesIcons: Story = {
+  args: {
+    series: [
+      { key: "visitors", label: "Visitors", icon: MonitorIcon },
+      { key: "returning", label: "Returning", icon: RepeatIcon },
+    ],
+  },
+  play: async ({ canvasElement }) => {
+    // Each legend entry keeps its swatch and adds the icon.
+    const legend = canvasElement.querySelector("ul[aria-hidden]") as HTMLElement;
+    for (const item of legend.querySelectorAll("li")) {
+      await expect(item.querySelectorAll("svg")).toHaveLength(2);
+    }
+    // The tooltip shows the icon beside each row's marker.
+    const tooltip = await tooltipAtSecondPoint(canvasElement);
+    await expect(tooltip.querySelectorAll("svg.lucide")).toHaveLength(2);
+    await expect(tooltip.querySelectorAll("[class*='--color-bg']")).toHaveLength(2);
+  },
+};
+
+const months: Record<string, string> = { Jan: "January", Feb: "February", Mar: "March", Apr: "April", May: "May", Jun: "June" };
+
+export const FormattedCategories: Story = {
+  args: { formatCategory: (month) => `${months[month] ?? month} 2026`, formatValue: (value) => `${value} a day` },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    // Values and categories are formatted in the tooltip.
+    const tooltip = await tooltipAtSecondPoint(canvasElement);
+    await expect(tooltip).toHaveTextContent(/February 2026/);
+    await expect(tooltip).toHaveTextContent(/305 a day/);
+    // And in the table.
+    await userEvent.click(canvas.getByRole("button", { name: "View as table" }));
+    const table = await canvas.findByRole("grid");
+    await expect(within(table).getByText("February 2026")).toBeVisible();
+  },
+};

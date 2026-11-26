@@ -34,6 +34,11 @@ export {
   type AreaChartView,
 } from "./components/area-chart.js";
 export { AuthLayout, type AuthLayoutProps } from "./components/auth-layout.js";
+export type {
+  ChartSeriesIcon,
+  ChartTooltipIndicator,
+  ChartTooltipLabel,
+} from "./components/chart-frame.js";
 export { Avatar, AvatarGroup, type AvatarGroupProps, type AvatarProps } from "./components/avatar.js";
 export { Badge, type BadgeProps, type BadgeVariant, badgeVariants } from "./components/badge.js";
 export { Breadcrumb, BreadcrumbItem, type BreadcrumbItemProps, type BreadcrumbProps } from "./components/breadcrumb.js";

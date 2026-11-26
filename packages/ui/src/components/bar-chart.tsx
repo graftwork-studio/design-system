@@ -14,24 +14,28 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart.js";
+import { ChartContainer, ChartTooltip } from "./chart.js";
 import {
   type ChartBaseProps,
   ChartFrame,
   type ChartSeries,
+  type ChartTooltipProps,
   type ChartView,
   chartConfig,
   defaultFormatValue,
   formatLabel,
   SERIES_COLOURS,
   seriesColour,
+  tooltipContent,
+  valueAxisWidth,
+  withFormattedCategories,
 } from "./chart-frame.js";
 
 /*
  * Figma contract: BarChart {
  *   view: chart | table, orientation: vertical | horizontal, stacking: none | stacked,
  *   labels: values | none | inside, colourBy: series | category, negatives: same | distinct,
- *   highlight
+ *   highlight, icons
  * }
  *
  * Accessibility:
@@ -66,7 +70,8 @@ export type BarChartColourBy = "series" | "category";
 /** distinct gives negative values their own colour and pattern (one series). */
 export type BarChartNegatives = "same" | "distinct";
 
-export type BarChartProps = ChartBaseProps & {
+export type BarChartProps = ChartBaseProps &
+  ChartTooltipProps & {
   /** Which way bars run. Defaults to vertical. */
   orientation?: BarChartOrientation;
   /** How series combine. Defaults to none (side by side). */
@@ -79,6 +84,8 @@ export type BarChartProps = ChartBaseProps & {
   negatives?: BarChartNegatives;
   /** A category value whose bars are highlighted with a ring. */
   highlight?: string;
+  /** Adds a total row to the tooltip (stacked only). Defaults to false. */
+  tooltipTotal?: boolean;
 };
 
 /** One pattern per series: solid, diagonal stripes, dots, cross-hatch. */
@@ -140,7 +147,10 @@ function LabelChip({
 const RING_OFFSET = 4;
 
 function checkOptions(props: BarChartProps) {
-  const { data, series, orientation = "vertical", labels = "values", colourBy = "series", negatives = "same" } = props;
+  const { data, series, orientation = "vertical", labels = "values", colourBy = "series", negatives = "same", stacking = "none", tooltipTotal = false } = props;
+  if (tooltipTotal && stacking !== "stacked") {
+    throw new Error('BarChart tooltipTotal needs stacking="stacked".');
+  }
   if (labels === "inside" && orientation !== "horizontal") {
     throw new Error('BarChart labels="inside" needs orientation="horizontal".');
   }
@@ -165,8 +175,11 @@ export function BarChart(allProps: BarChartProps) {
     colourBy = "series",
     negatives = "same",
     highlight,
+    tooltipIndicator,
+    tooltipLabel,
+    tooltipTotal = false,
     ...props
-  } = allProps;
+  } = withFormattedCategories(allProps);
   const { data, categoryKey, series } = props;
   const patternId = (uid: string, index: number) => `${uid}-pattern-${index}`;
   const horizontal = orientation === "horizontal";
@@ -353,10 +366,13 @@ export function BarChart(allProps: BarChartProps) {
               <>
                 <CartesianGrid vertical={false} />
                 <XAxis dataKey={categoryKey} tickLine={false} axisLine={false} tickMargin={8} />
-                <YAxis tickLine={false} axisLine={false} width={48} tickFormatter={(v: number) => formatValue(v)} />
+                <YAxis tickLine={false} axisLine={false} width={valueAxisWidth(formatValue)} tickFormatter={(v: number) => formatValue(v)} />
               </>
             )}
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <ChartTooltip
+              cursor={false}
+              content={tooltipContent({ formatValue, indicator: tooltipIndicator, label: tooltipLabel, total: tooltipTotal })}
+            />
             {series.map((s, i) => (
               <Bar
                 key={s.key}

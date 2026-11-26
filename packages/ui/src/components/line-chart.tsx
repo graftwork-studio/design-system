@@ -2,22 +2,26 @@
 
 import { ChartLineIcon } from "lucide-react";
 import { CartesianGrid, LabelList, Line, LineChart as RechartsLineChart, XAxis, YAxis } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart.js";
+import { ChartContainer, ChartTooltip } from "./chart.js";
 import {
   CURVE_TYPES,
   type ChartBaseProps,
   type ChartCurve,
   ChartFrame,
   type ChartSeries,
+  type ChartTooltipProps,
   type ChartView,
   chartConfig,
   defaultFormatValue,
   formatLabel,
   seriesColour,
+  tooltipContent,
+  valueAxisWidth,
+  withFormattedCategories,
 } from "./chart-frame.js";
 
 /*
- * Figma contract: LineChart { view: chart | table, curve: smooth | linear | step, points: none | dots | values }
+ * Figma contract: LineChart { view: chart | table, curve: smooth | linear | step, points: none | dots | values, icons }
  *
  * Accessibility:
  * - a written summary is required and always visible
@@ -37,7 +41,8 @@ export type LineChartCurve = ChartCurve;
 /** dots marks each data point; values adds its value above it. */
 export type LineChartPoints = "none" | "dots" | "values";
 
-export type LineChartProps = ChartBaseProps & {
+export type LineChartProps = ChartBaseProps &
+  ChartTooltipProps & {
   /** How points are joined. Defaults to smooth. */
   curve?: LineChartCurve;
   /** Marks on each data point. Defaults to none. */
@@ -53,12 +58,15 @@ function LineSwatch({ colour }: { colour: string }) {
   );
 }
 
-export function LineChart({
-  formatValue = defaultFormatValue,
-  curve = "smooth",
-  points = "none",
-  ...props
-}: LineChartProps) {
+export function LineChart(allProps: LineChartProps) {
+  const {
+    formatValue = defaultFormatValue,
+    curve = "smooth",
+    points = "none",
+    tooltipIndicator,
+    tooltipLabel,
+    ...props
+  } = withFormattedCategories(allProps);
   const { data, categoryKey, series } = props;
 
   return (
@@ -79,8 +87,8 @@ export function LineChart({
           >
             <CartesianGrid vertical={false} />
             <XAxis dataKey={categoryKey} tickLine={false} axisLine={false} tickMargin={8} minTickGap={24} />
-            <YAxis tickLine={false} axisLine={false} width={48} tickFormatter={(v: number) => formatValue(v)} />
-            <ChartTooltip isAnimationActive={false} content={<ChartTooltipContent />} />
+            <YAxis tickLine={false} axisLine={false} width={valueAxisWidth(formatValue)} tickFormatter={(v: number) => formatValue(v)} />
+            <ChartTooltip isAnimationActive={false} content={tooltipContent({ formatValue, indicator: tooltipIndicator, label: tooltipLabel })} />
             {series.map((s, i) => (
               <Line
                 key={s.key}

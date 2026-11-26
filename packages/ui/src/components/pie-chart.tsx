@@ -2,7 +2,7 @@
 
 import { ChartPieIcon } from "lucide-react";
 import { Cell, Pie, type PieLabelRenderProps, PieChart as RechartsPieChart, Sector, useChartHeight, useChartWidth } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart.js";
+import { ChartContainer, ChartTooltip } from "./chart.js";
 import {
   type ChartBaseProps,
   ChartFrame,
@@ -12,6 +12,8 @@ import {
   defaultFormatValue,
   SERIES_COLOURS,
   seriesColour,
+  tooltipContent,
+  withFormattedCategories,
 } from "./chart-frame.js";
 
 /*
@@ -214,14 +216,15 @@ function PieRings({ slices, categoryKey, series, donut, labels, totalLabel, high
   );
 }
 
-export function PieChart({
-  formatValue = defaultFormatValue,
-  variant = "pie",
-  labels = "none",
-  totalLabel,
-  highlight,
-  ...props
-}: PieChartProps) {
+export function PieChart(allProps: PieChartProps) {
+  const {
+    formatValue = defaultFormatValue,
+    variant = "pie",
+    labels = "none",
+    totalLabel,
+    highlight,
+    ...props
+  } = withFormattedCategories(allProps);
   const { data, categoryKey, series } = props;
   if (series.length < 1 || series.length > 2) {
     throw new Error("PieChart takes one series, or two for two rings.");
@@ -249,7 +252,7 @@ export function PieChart({
             aria-describedby={summaryId}
             margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
           >
-            <ChartTooltip isAnimationActive={false} content={<ChartTooltipContent hideLabel nameKey={categoryKey} />} />
+            <ChartTooltip isAnimationActive={false} content={tooltipContent({ formatValue, label: "none", nameKey: categoryKey })} />
             <PieRings
               slices={slices}
               categoryKey={categoryKey}

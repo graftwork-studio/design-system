@@ -11,7 +11,7 @@ import {
   useChartHeight,
   useChartWidth,
 } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart.js";
+import { ChartContainer, ChartTooltip } from "./chart.js";
 import {
   type ChartBaseProps,
   ChartFrame,
@@ -21,6 +21,8 @@ import {
   defaultFormatValue,
   SERIES_COLOURS,
   seriesColour,
+  tooltipContent,
+  withFormattedCategories,
 } from "./chart-frame.js";
 
 /*
@@ -97,14 +99,15 @@ function Total({ total, label, half }: { total: string; label: string; half: boo
   );
 }
 
-export function RadialChart({
-  formatValue = defaultFormatValue,
-  shape = "full",
-  labels = "none",
-  totalLabel,
-  max,
-  ...props
-}: RadialChartProps) {
+export function RadialChart(allProps: RadialChartProps) {
+  const {
+    formatValue = defaultFormatValue,
+    shape = "full",
+    labels = "none",
+    totalLabel,
+    max,
+    ...props
+  } = withFormattedCategories(allProps);
   const { data, categoryKey, series } = props;
   const stacked = series.length > 1;
   if (stacked && data.length !== 1) {
@@ -181,7 +184,7 @@ export function RadialChart({
             <ChartTooltip
               isAnimationActive={false}
               cursor={false}
-              content={<ChartTooltipContent hideLabel {...(stacked ? {} : { nameKey: categoryKey })} />}
+              content={tooltipContent({ formatValue, label: "none", ...(stacked ? {} : { nameKey: categoryKey }) })}
             />
             {stacked ? (
               series.map((s, i) => (

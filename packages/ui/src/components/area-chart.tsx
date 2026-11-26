@@ -2,21 +2,25 @@
 
 import { ChartAreaIcon } from "lucide-react";
 import { Area, CartesianGrid, AreaChart as RechartsAreaChart, XAxis, YAxis } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart.js";
+import { ChartContainer, ChartTooltip } from "./chart.js";
 import {
   CURVE_TYPES,
   type ChartBaseProps,
   type ChartCurve,
   ChartFrame,
   type ChartSeries,
+  type ChartTooltipProps,
   type ChartView,
   chartConfig,
   defaultFormatValue,
   seriesColour,
+  tooltipContent,
+  valueAxisWidth,
+  withFormattedCategories,
 } from "./chart-frame.js";
 
 /*
- * Figma contract: AreaChart { view: chart | table, curve: smooth | linear | step, stacking: stacked | percent }
+ * Figma contract: AreaChart { view: chart | table, curve: smooth | linear | step, stacking: stacked | percent, icons }
  *
  * Accessibility:
  * - a written summary is required and always visible
@@ -39,7 +43,8 @@ export type AreaChartCurve = ChartCurve;
 /** stacked adds series on top of each other; percent shows each series' share of the total. */
 export type AreaChartStacking = "stacked" | "percent";
 
-export type AreaChartProps = ChartBaseProps & {
+export type AreaChartProps = ChartBaseProps &
+  ChartTooltipProps & {
   /** How points are joined. Defaults to smooth. */
   curve?: AreaChartCurve;
   /** How series combine. Defaults to stacked. */
@@ -64,12 +69,15 @@ function AreaSwatch({ colour }: { colour: string }) {
 
 const formatShare = (value: number) => `${Math.round(value * 100)}%`;
 
-export function AreaChart({
-  formatValue = defaultFormatValue,
-  curve = "smooth",
-  stacking = "stacked",
-  ...props
-}: AreaChartProps) {
+export function AreaChart(allProps: AreaChartProps) {
+  const {
+    formatValue = defaultFormatValue,
+    curve = "smooth",
+    stacking = "stacked",
+    tooltipIndicator,
+    tooltipLabel,
+    ...props
+  } = withFormattedCategories(allProps);
   const { data, categoryKey, series } = props;
   const percent = stacking === "percent";
 
@@ -95,10 +103,10 @@ export function AreaChart({
             <YAxis
               tickLine={false}
               axisLine={false}
-              width={48}
+              width={percent ? 48 : valueAxisWidth(formatValue)}
               tickFormatter={(v: number) => (percent ? formatShare(v) : formatValue(v))}
             />
-            <ChartTooltip isAnimationActive={false} content={<ChartTooltipContent />} />
+            <ChartTooltip isAnimationActive={false} content={tooltipContent({ formatValue, indicator: tooltipIndicator, label: tooltipLabel })} />
             {/*
               Three passes, each its own stack so the geometry matches: the fills, then a
               gap in the surface colour along each top line, then the lines. Each line
