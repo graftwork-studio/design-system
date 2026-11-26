@@ -111,3 +111,19 @@ export const FourSeries: Story = {
 };
 
 export const TableView: Story = { args: { defaultView: "table" } };
+
+export const Gradient: Story = {
+  args: { fill: "gradient" },
+  play: async ({ canvasElement }) => {
+    // Each area fades from 40% at the top to 5% at the bottom.
+    const fills = [...canvasElement.querySelectorAll(".area-fill path.recharts-area-area")];
+    await expect(fills).toHaveLength(series.length);
+    for (const fill of fills) {
+      const id = /url\(#(.+)\)/.exec(fill.getAttribute("fill") ?? "")?.[1] ?? "";
+      const stops = [...(document.getElementById(id)?.querySelectorAll("stop") ?? [])];
+      await expect(stops.map((stop) => stop.getAttribute("stop-opacity"))).toEqual(["0.4", "0.05"]);
+    }
+    // The line along each top stays solid.
+    await expect(canvasElement.querySelectorAll(".area-line path.recharts-area-curve")).toHaveLength(series.length);
+  },
+};

@@ -28,6 +28,7 @@ export {
 export {
   AreaChart,
   type AreaChartCurve,
+  type AreaChartFill,
   type AreaChartProps,
   type AreaChartSeries,
   type AreaChartStacking,
