@@ -1,5 +1,55 @@
 # @graftwork/ui
 
+## 2.7.0
+
+### Minor Changes
+
+- [#83](https://github.com/graftwork-studio/design-system/pull/83) [`c457da9`](https://github.com/graftwork-studio/design-system/commit/c457da95561b27b53ae8f4bb87c6a647b17dd65c) Thanks [@david-kenny](https://github.com/david-kenny)! - BarChart has six new options. Each one is off by default, so existing charts look and behave exactly as before.
+  
+  - `orientation="horizontal"` draws bars from the left, with the categories down the side.
+  - `stacking="stacked"` stacks series in one bar per category. A 2px gap in the surface colour separates the segments, so each one meets 3:1 against its neighbours. Each segment's value sits in its middle when there's room.
+  - `labels="none"` hides the value labels. `labels="inside"` (horizontal only) puts each category name inside its bar and the value at the end.
+  - `colourBy="category"` gives each bar its own colour and pattern, for one series of up to four bars. The legend names the categories.
+  - `negatives="distinct"` gives negative values the second series colour and its striped pattern, for one series. The legend says which is which.
+  - `highlight` takes a category value and draws a ring round that bar. Its table row says "(highlighted)".
+  
+  Labels drawn over a bar sit on a chip in the surface colour, so their contrast doesn't depend on the bar.
+
+- [#84](https://github.com/graftwork-studio/design-system/pull/84) [`b506f56`](https://github.com/graftwork-studio/design-system/commit/b506f56374a4294ddb73b6f3596653f156033689) Thanks [@david-kenny](https://github.com/david-kenny)! - New component: PieChart. It has the same written summary and "View as table" toggle as the other charts, and its table lists each slice's label and value.
+  
+  - `variant`: pie or donut. On a donut, `totalLabel` shows the total in the middle.
+  - `labels`: none, values or names, drawn outside the slices. The legend always names every slice.
+  - `highlight` takes a category value and draws that slice larger. Its table row says "(highlighted)".
+  - Two series draw two rings.
+  
+  A pie shows at most four slices, one per chart colour. With more rows, the fourth slice is "Other (n categories)" and the table still lists every row. A 2px gap in the surface colour separates neighbouring slices, so each one meets 3:1 against the card and against its neighbours. The chart is focusable, and the arrow keys move the tooltip from slice to slice.
+
+- [#86](https://github.com/graftwork-studio/design-system/pull/86) [`452e60f`](https://github.com/graftwork-studio/design-system/commit/452e60f850f69946335ad57dff3380a7cd88e9dc) Thanks [@david-kenny](https://github.com/david-kenny)! - New component: RadarChart, and a new token, `color.chart.axis`.
+  
+  RadarChart has the same written summary and "View as table" toggle as the other charts. Each row is an axis and each series a polygon.
+  
+  - `variant`: filled (the default) or lines.
+  - `points`: none or dots.
+  - `grid`: polygon, circle or none.
+  
+  Each polygon's outline meets 3:1 against the card, with a 2px gap in the surface colour where it crosses another polygon's fill. A radar has no value axis, so its grid is how values are read. The grid is drawn in the new `color.chart.axis` token, at 3:1 against the surface in every theme: 3.27:1 light, 3.56:1 dark and 4.74:1 high contrast. No 3:1 grey is far enough from every series grey to tell them apart by colour, so the grid is a 1px dashed line and each series a solid 2px one. `color.chart.grid`, which the bar, line and area charts use, is unchanged.
+  
+  A radar chart takes 3 to 8 axes. With more, the labels can't fit at 320px, so the table shows instead, with a note. The chart is focusable, and the arrow keys move the tooltip from axis to axis.
+
+- [#85](https://github.com/graftwork-studio/design-system/pull/85) [`ce84aaf`](https://github.com/graftwork-studio/design-system/commit/ce84aaf3c888b5c13d629b46a6b55f567954ff1f) Thanks [@david-kenny](https://github.com/david-kenny)! - New component: RadialChart. It has the same written summary and "View as table" toggle as the other charts, and its table lists each ring's label and value.
+  
+  - With one series, each row is a ring. Several rings span three quarters of a circle, leaving room for `labels="names"` beside where each ring starts.
+  - With two or more series and one row, the series stack into one ring, separated by a 2px gap in the surface colour.
+  - `shape`: full or half (a semicircle).
+  - `totalLabel` shows the total in the middle. `max` sets the value of a complete ring, for progress towards a target.
+  
+  It draws at most four rings, one per chart colour. With more rows, the chart can't be drawn, so the table shows instead, with a note saying why. There's no background track, because a ring ending against one would fall below 3:1. The chart is focusable, and the arrow keys move the tooltip from ring to ring.
+
+### Patch Changes
+
+- Updated dependencies [[`452e60f`](https://github.com/graftwork-studio/design-system/commit/452e60f850f69946335ad57dff3380a7cd88e9dc)]:
+  - @graftwork/tokens@2.7.0
+
 ## 2.6.1
 
 ### Patch Changes
