@@ -114,6 +114,14 @@ export {
 } from "./components/pie-chart.js";
 export { Popover, PopoverContent, type PopoverContentProps, PopoverTitle } from "./components/popover.js";
 export { Progress, type ProgressProps } from "./components/progress.js";
+export {
+  RadialChart,
+  type RadialChartLabels,
+  type RadialChartProps,
+  type RadialChartSeries,
+  type RadialChartShape,
+  type RadialChartView,
+} from "./components/radial-chart.js";
 export { Radio, RadioGroup, type RadioGroupProps, type RadioProps } from "./components/radio-group.js";
 export { Select, SelectItem, type SelectItemProps, type SelectProps } from "./components/select.js";
 export { Separator, type SeparatorProps } from "./components/separator.js";

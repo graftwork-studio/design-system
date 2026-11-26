@@ -75,6 +75,7 @@ import {
   Label,
   LineChart,
   PieChart,
+  RadialChart,
   Pagination,
   Popover,
   PopoverContent,
@@ -1377,6 +1378,21 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   { name: "Questionnaire", render: () => <QuestionnaireExample /> },
+  {
+    name: "RadialChart",
+    wide: true,
+    render: () => (
+      <RadialChart
+        title="Visits by quarter"
+        summary="Q4 brought the most visits, 240. Q1 brought the fewest, 120."
+        data={chartData}
+        categoryKey="quarter"
+        series={[{ key: "visits", label: "Visits" }]}
+        labels="names"
+        headingLevel={4}
+      />
+    ),
+  },
   {
     name: "RadioGroup",
     render: () => (
