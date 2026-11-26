@@ -53,3 +53,16 @@
 | C3: Figma | Done | LineChart and AreaChart on the Charts page of the Graftwork Design System library, with `view`, `curve`, `points` and `stacking` matching the code |
 | C4: Blocks | Done | [app-template PR #27](https://github.com/graftwork-studio/app-template/pull/27): 15 chart blocks built (7 line, 8 area), published on the Charts page of Graftwork Blocks ([PR #28](https://github.com/graftwork-studio/app-template/pull/28) links them). Five stay parked for options the charts don't offer: a colour per point, custom point markers, category labels, legend icons and gradient fills |
 | C5: Stacked area contrast | Done | [PR #79](https://github.com/graftwork-studio/design-system/pull/79), released in 2.6.1 ([PR #80](https://github.com/graftwork-studio/design-system/pull/80)): a 2px gap in the surface colour along each AreaChart line, so in a stack every line meets 3:1 against the fill above it as well as against the card. Figma AreaChart and the Graftwork Blocks area blocks match |
+
+
+## The rest of the chart set
+
+| Milestone | Status | Evidence |
+| --- | --- | --- |
+| D0: Findings | Done | Series greys pass CIEDE2000 10 under every simulated vision, but neighbouring series are only about 1.6:1 against each other, so touching marks (slices, stacked segments) are separated by a 2px surface gap |
+| D1: BarChart options | Done | [PR #83](https://github.com/graftwork-studio/design-system/pull/83): `orientation`, `stacking`, `labels`, `colourBy`, `negatives`, `highlight`. Additive: every existing BarChart baseline passed unchanged |
+| D2: PieChart | Done | [PR #84](https://github.com/graftwork-studio/design-system/pull/84): pie or donut, outside labels, total, highlight, two rings. Up to four slices, the rest combined into "Other" |
+| D3: RadialChart | Done | [PR #85](https://github.com/graftwork-studio/design-system/pull/85): rings or a stacked ring, full or half, names, total, `max`. More than four rings shows the table only |
+| D4: RadarChart | Done | [PR #86](https://github.com/graftwork-studio/design-system/pull/86) with a new `color.chart.axis` token (3:1) for its grid; [PR #88](https://github.com/graftwork-studio/design-system/pull/88) dashes the grid, because no 3:1 grey is far enough from every series grey. 74 components in total. Released in 2.7.0 ([PR #87](https://github.com/graftwork-studio/design-system/pull/87)) |
+| D5: Figma | Done | `chart/axis`, BarChart's options and PieChart, RadialChart and RadarChart on the Charts page of the Graftwork Design System library |
+| D6: Blocks | In review | [app-template PR #32](https://github.com/graftwork-studio/app-template/pull/32): 35 chart blocks built (53 of 70 charts), in the Graftwork Blocks library. Still parked: three radar, three line and two area option blocks, nine tooltip blocks |
