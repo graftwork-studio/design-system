@@ -28,6 +28,7 @@ export {
 export {
   AreaChart,
   type AreaChartCurve,
+  type AreaChartFill,
   type AreaChartProps,
   type AreaChartSeries,
   type AreaChartStacking,
@@ -102,6 +103,7 @@ export { Kbd, type KbdProps } from "./components/kbd.js";
 export { Label, type LabelProps } from "./components/label.js";
 export {
   LineChart,
+  type LineChartColourBy,
   type LineChartCurve,
   type LineChartPoints,
   type LineChartProps,
