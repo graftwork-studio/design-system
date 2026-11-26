@@ -75,6 +75,7 @@ import {
   Label,
   LineChart,
   PieChart,
+  RadarChart,
   RadialChart,
   Pagination,
   Popover,
@@ -1378,6 +1379,23 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   { name: "Questionnaire", render: () => <QuestionnaireExample /> },
+  {
+    name: "RadarChart",
+    wide: true,
+    render: () => (
+      <RadarChart
+        title="Visits and trials by quarter"
+        summary="Visits peaked at 240 in Q4. Trials rose every quarter, reaching 71."
+        data={chartData}
+        categoryKey="quarter"
+        series={[
+          { key: "visits", label: "Visits" },
+          { key: "trials", label: "Trials" },
+        ]}
+        headingLevel={4}
+      />
+    ),
+  },
   {
     name: "RadialChart",
     wide: true,

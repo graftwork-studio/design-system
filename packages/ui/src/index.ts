@@ -115,6 +115,15 @@ export {
 export { Popover, PopoverContent, type PopoverContentProps, PopoverTitle } from "./components/popover.js";
 export { Progress, type ProgressProps } from "./components/progress.js";
 export {
+  RadarChart,
+  type RadarChartGrid,
+  type RadarChartPoints,
+  type RadarChartProps,
+  type RadarChartSeries,
+  type RadarChartVariant,
+  type RadarChartView,
+} from "./components/radar-chart.js";
+export {
   RadialChart,
   type RadialChartLabels,
   type RadialChartProps,
