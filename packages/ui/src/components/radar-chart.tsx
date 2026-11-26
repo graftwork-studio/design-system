@@ -3,7 +3,7 @@
 import { RadarIcon } from "lucide-react";
 import * as React from "react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart as RechartsRadarChart } from "recharts";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./chart.js";
+import { ChartContainer, ChartTooltip } from "./chart.js";
 import {
   type ChartBaseProps,
   ChartFrame,
@@ -12,10 +12,12 @@ import {
   chartConfig,
   defaultFormatValue,
   seriesColour,
+  tooltipContent,
+  withFormattedCategories,
 } from "./chart-frame.js";
 
 /*
- * Figma contract: RadarChart { view: chart | table, variant: filled | lines, points: none | dots, grid: polygon | circle | none }
+ * Figma contract: RadarChart { view: chart | table, variant: filled | lines, points: none | dots, grid: polygon | circle | none, icons }
  *
  * Each row is an axis (3 to 8); each series is a polygon (up to 4).
  *
@@ -108,13 +110,14 @@ function useWidth<T extends HTMLElement>() {
   return [ref, width] as const;
 }
 
-export function RadarChart({
-  formatValue = defaultFormatValue,
-  variant = "filled",
-  points = "none",
-  grid = "polygon",
-  ...props
-}: RadarChartProps) {
+export function RadarChart(allProps: RadarChartProps) {
+  const {
+    formatValue = defaultFormatValue,
+    variant = "filled",
+    points = "none",
+    grid = "polygon",
+    ...props
+  } = withFormattedCategories(allProps);
   const { data, categoryKey, series } = props;
   if (data.length < MIN_AXES) {
     throw new Error(`RadarChart needs at least ${MIN_AXES} rows, one per axis.`);
@@ -151,7 +154,7 @@ export function RadarChart({
               outerRadius={radius}
               margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
-              <ChartTooltip isAnimationActive={false} cursor={false} content={<ChartTooltipContent />} />
+              <ChartTooltip isAnimationActive={false} cursor={false} content={tooltipContent({ formatValue })} />
               {grid === "none" ? null : <PolarGrid className="radar-grid" gridType={grid} stroke={GRID} strokeDasharray={GRID_DASH} />}
               <PolarAngleAxis dataKey={categoryKey} tickLine={false} axisLine={false} />
               {/*

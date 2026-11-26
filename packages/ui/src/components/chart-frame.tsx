@@ -4,7 +4,7 @@ import { TableIcon } from "lucide-react";
 import * as React from "react";
 import { cn } from "../lib/utils.js";
 import { Button } from "./button.js";
-import type { ChartConfig } from "./chart.js";
+import { type ChartConfig, ChartTooltipContent } from "./chart.js";
 import { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "./table.js";
 
 /*
@@ -21,7 +21,15 @@ export type ChartSeries = {
   key: string;
   /** Human-readable name, used in the legend and table header. */
   label: string;
+  /**
+   * An icon for the series, shown beside its swatch in the legend and beside its
+   * marker in the tooltip. Decorative: the label still names the series.
+   */
+  icon?: ChartSeriesIcon;
 };
+
+/** A Lucide icon, or any component that takes the same props. */
+export type ChartSeriesIcon = React.ComponentType<{ "aria-hidden"?: boolean; className?: string }>;
 
 export type ChartView = "chart" | "table";
 
@@ -38,6 +46,8 @@ export type ChartBaseProps = {
   series: readonly ChartSeries[];
   /** Formats values in labels, tooltips and the table. */
   formatValue?: (value: number) => string;
+  /** Formats category names on the axis and in labels, the legend, tooltips and the table. */
+  formatCategory?: (category: string) => string;
   /** Which view shows first. Defaults to chart. */
   defaultView?: ChartView;
   /** Heading level for the title. Defaults to 2. */
@@ -64,7 +74,63 @@ export function seriesColour(index: number): string {
 }
 
 export function chartConfig(series: readonly ChartSeries[]): ChartConfig {
-  return Object.fromEntries(series.map((s, i) => [s.key, { label: s.label, color: seriesColour(i) }]));
+  return Object.fromEntries(
+    series.map((s, i) => [s.key, { label: s.label, color: seriesColour(i), ...(s.icon ? { icon: s.icon } : {}) }]),
+  );
+}
+
+/**
+ * Applies formatCategory once, up front: to each row's category and to a highlight,
+ * so axes, labels, legends, tooltips and the table all show the same name.
+ */
+export function withFormattedCategories<P extends ChartBaseProps & { highlight?: string | undefined }>(props: P): P {
+  const { formatCategory, categoryKey } = props;
+  if (!formatCategory) return props;
+  return {
+    ...props,
+    data: props.data.map((row) => ({ ...row, [categoryKey]: formatCategory(String(row[categoryKey])) })),
+    ...(props.highlight !== undefined ? { highlight: formatCategory(props.highlight) } : {}),
+  };
+}
+
+/** The marker beside each tooltip row. */
+export type ChartTooltipIndicator = "dot" | "line" | "none";
+
+/** Whether the tooltip starts with the category name. */
+export type ChartTooltipLabel = "category" | "none";
+
+/** Tooltip options for the cartesian charts. */
+export type ChartTooltipProps = {
+  /** The marker beside each tooltip row. Defaults to dot. */
+  tooltipIndicator?: ChartTooltipIndicator;
+  /** Whether the tooltip names the category. Defaults to category. */
+  tooltipLabel?: ChartTooltipLabel;
+};
+
+/** The tooltip content every chart uses, with its values run through formatValue. */
+export function tooltipContent({
+  formatValue,
+  indicator = "dot",
+  label = "category",
+  total = false,
+  ...rest
+}: {
+  formatValue: (value: number) => string;
+  indicator?: ChartTooltipIndicator;
+  label?: ChartTooltipLabel;
+  total?: boolean;
+  nameKey?: string;
+}) {
+  return (
+    <ChartTooltipContent
+      valueFormatter={formatValue}
+      indicator={indicator === "none" ? "dot" : indicator}
+      hideIndicator={indicator === "none"}
+      hideLabel={label === "none"}
+      showTotal={total}
+      {...rest}
+    />
+  );
 }
 
 export type ChartFrameIds = {
@@ -163,6 +229,7 @@ export function ChartFrame({
               {legend.map((s, i) => (
                 <li key={s.key} className="flex items-center gap-1">
                   {renderSwatch(i, ids)}
+                  {s.icon ? <s.icon aria-hidden className="size-4 shrink-0 text-text-secondary" /> : null}
                   {s.label}
                 </li>
               ))}

@@ -1,6 +1,6 @@
 import { BarChart } from "@graftwork/ui";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, userEvent, within } from "storybook/test";
+import { expect, fireEvent, userEvent, waitFor, within } from "storybook/test";
 
 const data = [
   { month: "Jul", signups: 420, upgrades: 64 },
@@ -201,3 +201,22 @@ export const Highlight: Story = {
     await expect(rows.filter((row) => row[0]?.includes("(highlighted)"))).toHaveLength(1);
   },
 };
+
+export const TooltipTotal: Story = {
+  args: {
+    stacking: "stacked",
+    tooltipTotal: true,
+    tooltipIndicator: "line",
+    summary: "Sign-ups and upgrades together grew from 484 in July to 724 in October.",
+  },
+  play: async ({ canvasElement }) => {
+    // Hovering a column shows both values and their total.
+    const segment = (canvasElement.querySelector(".recharts-bar-rectangle path") as Element).getBoundingClientRect();
+    const wrapper = canvasElement.querySelector(".recharts-wrapper") as Element;
+    await fireEvent.mouseMove(wrapper, { clientX: segment.x + segment.width / 2, clientY: segment.y + segment.height / 2 });
+    const tooltip = canvasElement.querySelector(".recharts-tooltip-wrapper") as HTMLElement;
+    await waitFor(() => expect(tooltip).toHaveTextContent(/Sign-ups\s*420/));
+    await expect(tooltip).toHaveTextContent(/Total\s*484/);
+  },
+};
+

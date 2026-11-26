@@ -20,7 +20,7 @@ type ChartConfig = Record<
   string,
   {
     label?: React.ReactNode
-    icon?: React.ComponentType
+    icon?: React.ComponentType<{ "aria-hidden"?: boolean; className?: string }>
   } & (
     | { color?: string; theme?: never }
     | { color?: never; theme: Record<keyof typeof THEMES, string> }
@@ -134,6 +134,8 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
+  valueFormatter = (value: number) => value.toLocaleString(),
+  showTotal = false,
 }: React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
   React.ComponentProps<"div"> & {
     hideLabel?: boolean
@@ -141,6 +143,10 @@ function ChartTooltipContent({
     indicator?: "line" | "dot" | "dashed"
     nameKey?: string
     labelKey?: string
+    /** Graftwork: formats numeric values (the chart's formatValue). */
+    valueFormatter?: (value: number) => string
+    /** Graftwork: adds a row with the sum of the values. */
+    showTotal?: boolean
   } & Omit<
     RechartsPrimitive.DefaultTooltipContentProps<
       TooltipValueType,
@@ -191,6 +197,11 @@ function ChartTooltipContent({
   }
 
   const nestLabel = payload.length === 1 && indicator !== "dot"
+  const shown = payload.filter((item) => item.type !== "none")
+  const total = shown.reduce(
+    (sum, item) => sum + (typeof item.value === "number" ? item.value : 0),
+    0
+  )
 
   return (
     <div
@@ -201,18 +212,23 @@ function ChartTooltipContent({
     >
       {!nestLabel ? tooltipLabel : null}
       <div className="grid gap-1.5">
-        {payload
-          .filter((item) => item.type !== "none")
+        {shown
           .map((item, index) => {
             const key = `${nameKey ?? item.name ?? item.dataKey ?? "value"}`
-            const itemConfig = getPayloadConfigFromPayload(config, item, key)
+            // Graftwork: series are named by label, so fall back to the data key
+            // (unless rows are named by a category, as in PieChart).
+            const itemConfig =
+              getPayloadConfigFromPayload(config, item, key) ??
+              (nameKey === undefined && typeof item.dataKey === "string"
+                ? config[item.dataKey]
+                : undefined)
             const indicatorColor = color ?? item.payload?.fill ?? item.color
 
             return (
               <div
                 key={index}
                 className={cn(
-                  "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-text-secondary",
+                  "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-text-secondary",
                   indicator === "dot" && "items-center"
                 )}
               >
@@ -220,9 +236,8 @@ function ChartTooltipContent({
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
                   <>
-                    {itemConfig?.icon ? (
-                      <itemConfig.icon />
-                    ) : (
+                    {/* Graftwork: an icon sits beside the indicator, not in place of it. */}
+                    {
                       !hideIndicator && (
                         <div
                           className={cn(
@@ -243,7 +258,8 @@ function ChartTooltipContent({
                           }
                         />
                       )
-                    )}
+                    }
+                    {itemConfig?.icon ? <itemConfig.icon aria-hidden /> : null}
                     <div
                       className={cn(
                         "flex flex-1 justify-between leading-none",
@@ -259,7 +275,7 @@ function ChartTooltipContent({
                       {item.value != null && (
                         <span className="font-mono font-medium text-text-default tabular-nums">
                           {typeof item.value === "number"
-                            ? item.value.toLocaleString()
+                            ? valueFormatter(item.value)
                             : String(item.value)}
                         </span>
                       )}
@@ -269,6 +285,12 @@ function ChartTooltipContent({
               </div>
             )
           })}
+        {showTotal ? (
+          <div className="flex items-center justify-between border-t border-border-default pt-1.5 leading-none font-medium text-text-default">
+            <span>Total</span>
+            <span className="font-mono tabular-nums">{valueFormatter(total)}</span>
+          </div>
+        ) : null}
       </div>
     </div>
   )

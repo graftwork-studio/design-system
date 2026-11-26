@@ -46,7 +46,7 @@ Only semantic tokens are available. Tailwind's default palette has been removed,
 - Focus rings are 2px with a 2px offset, on `:focus-visible`, at least 3:1 against every surface.
 - Light, dark and high-contrast themes follow the operating system, and the theme toggle overrides them.
 - Under reduced motion, only opacity fades remain.
-- Charts have a written summary and a table view. The table is the alternative to colour for telling series apart, so lines and areas don't need patterns. Series colours stay distinguishable under colour blindness, and marks meet 3:1.
+- Charts have a written summary and a table view. The table is the alternative to colour for telling series apart, so lines and areas don't need patterns. Series colours stay distinguishable under colour blindness, and marks meet 3:1. A series can carry an icon, shown beside its swatch and never in place of it, and tooltips are an extra, never the only way to read a value.
 
 ## Component showcase
 
@@ -71,11 +71,11 @@ Component and property names match the Figma library, with the differences liste
 | Select | `label`, `description`, `placeholder`, `errorMessage`, `isInvalid`, `isDisabled`, `isRequired` |
 | Card | CardHeader, CardTitle, CardDescription, CardContent, CardFooter |
 | Table | `density`: comfortable, compact |
-| BarChart | `view`: chart, table · `orientation`: vertical, horizontal · `stacking`: none, stacked · `labels`: values, none, inside · `colourBy`: series, category · `negatives`: same, distinct · `highlight` |
-| LineChart | `view`: chart, table · `curve`: smooth, linear, step · `points`: none, dots, values |
-| AreaChart | `view`: chart, table · `curve`: smooth, linear, step · `stacking`: stacked, percent |
+| BarChart | `view`: chart, table · `orientation`: vertical, horizontal · `stacking`: none, stacked · `labels`: values, none, inside · `colourBy`: series, category · `negatives`: same, distinct · `highlight` · `icons` |
+| LineChart | `view`: chart, table · `curve`: smooth, linear, step · `points`: none, dots, values · `icons` |
+| AreaChart | `view`: chart, table · `curve`: smooth, linear, step · `stacking`: stacked, percent · `icons` |
 | PieChart | `view`: chart, table · `variant`: pie, donut · `labels`: none, values, names · `totalLabel` · `highlight` |
-| RadarChart | `view`: chart, table · `variant`: filled, lines · `points`: none, dots · `grid`: polygon, circle, none |
+| RadarChart | `view`: chart, table · `variant`: filled, lines · `points`: none, dots · `grid`: polygon, circle, none · `icons` |
 | RadialChart | `view`: chart, table · `shape`: full, half · `labels`: none, names · `totalLabel` · `max` |
 | ThemeToggle | `value`: system, light, dark, high-contrast |
 | Accordion | `allowsMultipleExpanded` · AccordionItem `isExpanded`, `isDisabled`, `title`, `content` |
