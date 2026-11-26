@@ -509,6 +509,19 @@
             "role": "decorative"
           }
         }
+      },
+      "axis": {
+        "$value": "{color.shadcn.light-input-aa}",
+        "$description": "Grid lines a chart is read by, where there is no value axis (RadarChart). 3:1 against the surface.",
+        "$extensions": {
+          "studio.graftwork": {
+            "role": "non-text",
+            "on": [
+              "{color.surface.default}",
+              "{color.surface.raised}"
+            ]
+          }
+        }
       }
     }
   }
