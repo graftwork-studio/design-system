@@ -16,9 +16,9 @@ import {
   tableFeatures,
   useTable,
 } from "@tanstack/react-table";
-import { ArrowDownIcon, ArrowUpIcon, ChevronsUpDownIcon, SearchIcon, Settings2Icon } from "lucide-react";
+import { ArrowDownIcon, ArrowUpIcon, ChevronsUpDownIcon, GripVerticalIcon, SearchIcon, Settings2Icon } from "lucide-react";
 import * as React from "react";
-import type { Key, Selection, SortDescriptor } from "react-aria-components";
+import { DropIndicator, type Key, type Selection, type SortDescriptor, useDragAndDrop } from "react-aria-components";
 import { cn } from "../lib/utils.js";
 import { Button } from "./button.js";
 import { Checkbox } from "./checkbox.js";
@@ -33,7 +33,9 @@ import { Table, TableBody, TableCell, TableColumn, type TableDensity, TableHeade
  * Figma contract: see the naming contract in apps/docs/src/introduction.mdx.
  *
  * TanStack Table handles filtering, sorting and paging. React Aria handles the
- * keyboard grid and selection. Columns are TanStack column definitions.
+ * keyboard grid, selection and row reordering (drag and drop, with keyboard
+ * reordering and screen reader announcements). Columns are TanStack column
+ * definitions.
  */
 
 const features = tableFeatures({
@@ -72,6 +74,12 @@ export type DataTableProps<T extends RowData> = {
   onSelectionChange?: (ids: string[]) => void;
   /** Show the menu for hiding columns. Defaults to true. */
   showColumnToggle?: boolean;
+  /**
+   * Turns on row reordering: adds a drag handle to each row. Called with every
+   * row id in `data`, in the new order. Columns can't be sorted while this is
+   * set, because a sorted table has no order of its own.
+   */
+  onReorder?: (ids: string[]) => void;
   /** Defaults to comfortable. */
   density?: TableDensity;
   /** Shown when no rows match. Defaults to "No results". */
@@ -81,6 +89,20 @@ export type DataTableProps<T extends RowData> = {
 
 function columnLabel(header: unknown, id: string) {
   return typeof header === "string" ? header : id;
+}
+
+/** Moves `keys` before or after `target`, keeping their order from `ids`. */
+export function reorderIds(ids: string[], keys: Set<Key>, target: Key, position: "before" | "after" | "on") {
+  const moving = ids.filter((id) => keys.has(id));
+  const rest = ids.filter((id) => !keys.has(id));
+  const index = rest.indexOf(String(target));
+  if (index === -1) return ids;
+  rest.splice(position === "after" ? index + 1 : index, 0, ...moving);
+  return rest;
+}
+
+function cellText(value: unknown, fallback: string) {
+  return typeof value === "string" || typeof value === "number" ? String(value) : fallback;
 }
 
 export function DataTable<T extends RowData>({
@@ -94,6 +116,7 @@ export function DataTable<T extends RowData>({
   selectionMode = "none",
   onSelectionChange,
   showColumnToggle = true,
+  onReorder,
   density = "comfortable",
   emptyMessage = "No results",
   className,
@@ -120,6 +143,24 @@ export function DataTable<T extends RowData>({
   const sortDescriptor: SortDescriptor | undefined = sorting[0]
     ? { column: sorting[0].id, direction: sorting[0].desc ? "descending" : "ascending" }
     : undefined;
+
+  const reorderable = Boolean(onReorder);
+  const rowText = (id: Key) => {
+    const row = table.getRowModel().rowsById[String(id)];
+    return row ? cellText(row.getVisibleCells()[0]?.getValue(), row.id) : String(id);
+  };
+  const { dragAndDropHooks } = useDragAndDrop({
+    getItems: (keys) => [...keys].map((key) => ({ "text/plain": rowText(key) })),
+    onReorder: (event) => {
+      onReorder?.(reorderIds(data.map(getRowId), event.keys, event.target.key, event.target.dropPosition));
+    },
+    renderDropIndicator: (target) => (
+      <DropIndicator
+        target={target}
+        className="data-drop-target:outline-2 data-drop-target:outline-solid data-drop-target:outline-focus-ring"
+      />
+    ),
+  });
 
   const updateSelection = (keys: Selection) => {
     const next = keys === "all" ? new Set<Key>(table.getFilteredRowModel().rows.map((row) => row.id)) : new Set<Key>(keys);
@@ -182,15 +223,21 @@ export function DataTable<T extends RowData>({
         selectionBehavior="toggle"
         selectedKeys={selected}
         onSelectionChange={updateSelection}
+        dragAndDropHooks={reorderable ? dragAndDropHooks : undefined}
       >
         <TableHeader>
+          {reorderable ? (
+            <TableColumn id="__drag" className="w-8">
+              <span className="sr-only">Reorder</span>
+            </TableColumn>
+          ) : null}
           {selectionMode === "multiple" ? (
             <TableColumn id="__select" className="w-8">
               <Checkbox slot="selection">{null}</Checkbox>
             </TableColumn>
           ) : null}
           {headers.map((header, index) => {
-            const canSort = header.column.getCanSort();
+            const canSort = header.column.getCanSort() && !reorderable;
             return (
               <TableColumn
                 key={header.id}
@@ -219,7 +266,14 @@ export function DataTable<T extends RowData>({
         </TableHeader>
         <TableBody renderEmptyState={() => <p className="p-6 text-center text-sm text-text-secondary">{emptyMessage}</p>}>
           {rows.map((row) => (
-            <TableRow key={row.id} id={row.id}>
+            <TableRow key={row.id} id={row.id} textValue={reorderable ? rowText(row.id) : undefined}>
+              {reorderable ? (
+                <TableCell>
+                  <Button slot="drag" variant="ghost" size="sm" className="size-7 cursor-grab px-0 text-icon-default">
+                    <GripVerticalIcon aria-hidden />
+                  </Button>
+                </TableCell>
+              ) : null}
               {selectionMode === "multiple" ? (
                 <TableCell>
                   <Checkbox slot="selection">{null}</Checkbox>
