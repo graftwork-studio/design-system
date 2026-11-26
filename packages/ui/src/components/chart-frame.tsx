@@ -86,6 +86,10 @@ type ChartFrameProps = Omit<ChartBaseProps, "formatValue"> & {
   renderDefs?: (ids: ChartFrameIds) => React.ReactNode;
   /** The Recharts chart. */
   renderChart: (ids: ChartFrameIds) => React.ReactNode;
+  /** Legend entries, when they aren't the series (such as one per category). */
+  legend?: readonly ChartSeries[];
+  /** A category value whose table row is marked "(highlighted)". */
+  highlight?: string;
 };
 
 export function ChartFrame({
@@ -103,6 +107,8 @@ export function ChartFrame({
   renderSwatch,
   renderDefs,
   renderChart,
+  legend = series,
+  highlight,
 }: ChartFrameProps) {
   const [view, setView] = React.useState<ChartView>(defaultView);
   const uid = React.useId().replace(/:/g, "");
@@ -148,7 +154,7 @@ export function ChartFrame({
         {view === "chart" ? (
           <div className="flex flex-col gap-3">
             <ul aria-hidden className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-text-default">
-              {series.map((s, i) => (
+              {legend.map((s, i) => (
                 <li key={s.key} className="flex items-center gap-1">
                   {renderSwatch(i, ids)}
                   {s.label}
@@ -170,7 +176,10 @@ export function ChartFrame({
             <TableBody>
               {data.map((row, rowIndex) => (
                 <TableRow key={`${String(row[categoryKey])}-${rowIndex}`}>
-                  <TableCell>{String(row[categoryKey])}</TableCell>
+                  <TableCell>
+                    {String(row[categoryKey])}
+                    {highlight !== undefined && String(row[categoryKey]) === highlight ? " (highlighted)" : null}
+                  </TableCell>
                   {series.map((s) => {
                     const value = row[s.key];
                     return (
