@@ -67,10 +67,17 @@ export const Chart: Story = {
     await expect(canvasElement.querySelectorAll("g.radar-line")).toHaveLength(1);
     const gap = canvasElement.querySelector(".radar-gap path.recharts-polygon") as SVGPathElement;
     await expect(gap.getAttribute("stroke")).toBe("var(--gw-color-surface-raised)");
-    // The grid is drawn in chart.axis, which meets 3:1 against the surface.
+    // The grid is drawn in chart.axis, which meets 3:1 against the surface, and dashed,
+    // so it never reads as a series: series lines are solid.
     const gridLines = [...canvasElement.querySelectorAll(".recharts-polar-grid [stroke]")];
     await expect(gridLines.length).toBeGreaterThan(0);
-    for (const line of gridLines) await expect(line.getAttribute("stroke")).toBe("var(--gw-color-chart-axis)");
+    for (const line of gridLines) {
+      await expect(line.getAttribute("stroke")).toBe("var(--gw-color-chart-axis)");
+      await expect(line.getAttribute("stroke-dasharray")).toBe("3 3");
+    }
+    for (const line of canvasElement.querySelectorAll("g.radar-line path.recharts-polygon")) {
+      await expect(line.getAttribute("stroke-dasharray")).toBeNull();
+    }
     await expectAxisLabelsInside(canvasElement);
 
     // The toggle comes first, then the chart, which is labelled by the title and summary.
