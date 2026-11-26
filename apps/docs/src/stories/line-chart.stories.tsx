@@ -1,5 +1,5 @@
 import { LineChart } from "@graftwork/ui";
-import { MonitorIcon, RepeatIcon } from "lucide-react";
+import { GitCommitVerticalIcon, MonitorIcon, RepeatIcon } from "lucide-react";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { expect, userEvent, within } from "storybook/test";
 import { expectFocusRing } from "./test-helpers.js";
@@ -176,5 +176,52 @@ export const FormattedCategories: Story = {
     await userEvent.click(canvas.getByRole("button", { name: "View as table" }));
     const table = await canvas.findByRole("grid");
     await expect(within(table).getByText("February 2026")).toBeVisible();
+  },
+};
+
+const browsers = [
+  { browser: "Browser A", visitors: 275 },
+  { browser: "Browser B", visitors: 200 },
+  { browser: "Browser C", visitors: 187 },
+  { browser: "Other", visitors: 90 },
+];
+
+const browserArgs = {
+  title: "Visitors by browser",
+  summary: "Browser A brought the most visitors, 275, and other browsers the fewest, 90.",
+  data: browsers,
+  categoryKey: "browser",
+  series: [{ key: "visitors", label: "Visitors" }],
+};
+
+export const DotsByCategory: Story = {
+  args: { ...browserArgs, points: "dots", colourBy: "category" },
+  play: async ({ canvasElement }) => {
+    // One point per browser, each in its own colour with a surface ring.
+    const dots = [...canvasElement.querySelectorAll(".line-category-dot")];
+    await expect(dots.map((dot) => dot.getAttribute("fill"))).toEqual([1, 2, 3, 4].map((n) => `var(--gw-color-chart-series-${n})`));
+    for (const dot of dots) await expect(dot.getAttribute("stroke")).toBe("var(--gw-color-surface-raised)");
+    // The legend names the categories.
+    const legend = canvasElement.querySelector("ul[aria-hidden]") as HTMLElement;
+    await expect([...legend.querySelectorAll("li")].map((li) => li.textContent)).toEqual(browsers.map((row) => row.browser));
+  },
+};
+
+export const Names: Story = {
+  args: { ...browserArgs, points: "names", colourBy: "category", tooltipIndicator: "line", tooltipLabel: "none" },
+  play: async ({ canvasElement }) => {
+    // Each point is labelled with its category name.
+    const labels = [...canvasElement.querySelectorAll(".recharts-label-list text")].map((text) => text.textContent);
+    await expect(labels).toEqual(browsers.map((row) => row.browser));
+  },
+};
+
+export const IconMarkers: Story = {
+  args: { series: [{ key: "visitors", label: "Visitors", icon: GitCommitVerticalIcon }], points: "icons", tooltipLabel: "none" },
+  play: async ({ canvasElement }) => {
+    // The series icon marks every point, in the series colour over the surface.
+    const icons = [...canvasElement.querySelectorAll(".line-icon")];
+    await expect(icons).toHaveLength(data.length);
+    await expect((icons[0] as HTMLElement).style.color).toBe("var(--gw-color-chart-series-1)");
   },
 };
