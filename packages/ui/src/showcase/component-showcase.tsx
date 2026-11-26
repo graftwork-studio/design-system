@@ -74,6 +74,7 @@ import {
   Kbd,
   Label,
   LineChart,
+  PieChart,
   Pagination,
   Popover,
   PopoverContent,
@@ -1334,6 +1335,23 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
     ),
   },
   { name: "Pagination", wide: true, render: () => <PaginationExample /> },
+  {
+    name: "PieChart",
+    wide: true,
+    render: () => (
+      <PieChart
+        title="Trials by quarter"
+        summary="Q4 brought the most trials, 71 of 206."
+        data={chartData}
+        categoryKey="quarter"
+        series={[{ key: "trials", label: "Trials" }]}
+        variant="donut"
+        labels="values"
+        totalLabel="Trials"
+        headingLevel={4}
+      />
+    ),
+  },
   {
     name: "Popover",
     render: () => (
