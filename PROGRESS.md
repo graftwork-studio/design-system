@@ -28,6 +28,7 @@
 | Component showcase | Done | `ComponentShowcase` in `@graftwork/ui/showcase` renders every component on the example pages. CI fails if an exported component is missing from it |
 | Documentation audit | Done | [PR #47](https://github.com/graftwork-studio/design-system/pull/47): naming contract matched to Figma, app `CLAUDE.md` files updated, snapshot and preview steps documented, and Renovate configured for this repo. Figma variable descriptions and page labels corrected and published |
 | Renovate on this repo | Done | Running since 24 November 2026, once `design-system` was added to the Renovate app's repository access. It opened the [Dependency Dashboard](https://github.com/graftwork-studio/design-system/issues/57), and the first updates were [PR #55](https://github.com/graftwork-studio/design-system/pull/55) (Storybook 10.6.8) and [PR #56](https://github.com/graftwork-studio/design-system/pull/56) (stylelint 18.1.0) |
+| Cascade for releases that change how things look | In review | [PR #99](https://github.com/graftwork-studio/design-system/pull/99). The snapshot-refresh workflow commits to Renovate's branch, and Renovate treated that as a manual edit: it stopped rebasing the pull request when `main` moved, so test-app stayed on 2.6.1 with [test-app PR #33](https://github.com/graftwork-studio/test-app/pull/33) (2.7.0) stuck behind `main`. The `app` preset now lists the workflow's author in `gitIgnoredAuthors`. Releases with no visual change were unaffected |
 
 ## Blocks
 
@@ -65,4 +66,16 @@
 | D3: RadialChart | Done | [PR #85](https://github.com/graftwork-studio/design-system/pull/85): rings or a stacked ring, full or half, names, total, `max`. More than four rings shows the table only |
 | D4: RadarChart | Done | [PR #86](https://github.com/graftwork-studio/design-system/pull/86) with a new `color.chart.axis` token (3:1) for its grid; [PR #88](https://github.com/graftwork-studio/design-system/pull/88) dashes the grid, because no 3:1 grey is far enough from every series grey. 74 components in total. Released in 2.7.0 ([PR #87](https://github.com/graftwork-studio/design-system/pull/87)) |
 | D5: Figma | Done | `chart/axis`, BarChart's options and PieChart, RadialChart and RadarChart on the Charts page of the Graftwork Design System library |
-| D6: Blocks | In review | [app-template PR #32](https://github.com/graftwork-studio/app-template/pull/32): 35 chart blocks built (53 of 70 charts), in the Graftwork Blocks library. Still parked: three radar, three line and two area option blocks, nine tooltip blocks |
+| D6: Blocks | Done | [app-template PR #32](https://github.com/graftwork-studio/app-template/pull/32): 35 chart blocks built (53 of 70 charts), published in the Graftwork Blocks library. The last 17 followed in E5 |
+
+## Chart options and the last blocks
+
+| Milestone | Status | Evidence |
+| --- | --- | --- |
+| E1: Shared chart options | Done | [PR #91](https://github.com/graftwork-studio/design-system/pull/91): `icon` on a series, `formatCategory` on every chart, and `tooltipIndicator`, `tooltipLabel` and `tooltipTotal`. Tooltips now format values with `formatValue` |
+| E2: AreaChart gradient | Done | [PR #92](https://github.com/graftwork-studio/design-system/pull/92): `fill`, flat or gradient |
+| E3: LineChart options | Done | [PR #93](https://github.com/graftwork-studio/design-system/pull/93): `colourBy` and names or icons as points |
+| E4: RadarChart options | Done | [PR #94](https://github.com/graftwork-studio/design-system/pull/94): `axisLabels` and `scale`. Released in 2.8.0 ([PR #95](https://github.com/graftwork-studio/design-system/pull/95)). The Figma charts have the matching variants and `icons` booleans |
+| E5: Last chart blocks | Done | [app-template PR #34](https://github.com/graftwork-studio/app-template/pull/34): the last 17 chart blocks, including nine tooltip examples. All 70 chart blocks are built and in the Graftwork Blocks library. Figma rows for apps in [test-app PR #32](https://github.com/graftwork-studio/test-app/pull/32) and [test-app PR #35](https://github.com/graftwork-studio/test-app/pull/35) |
+| E6: DataTable row reordering | Done | [PR #97](https://github.com/graftwork-studio/design-system/pull/97): `onReorder`, with drag handles and keyboard reordering from React Aria's drag and drop. Columns can't be sorted while it's set. Released in 2.9.0 ([PR #98](https://github.com/graftwork-studio/design-system/pull/98)). Figma DataTable has `showDragHandle` |
+| E7: dashboard-01 | Done | [app-template PR #35](https://github.com/graftwork-studio/app-template/pull/35): the last page block, on 2.9.0, published on a new Dashboard page in Graftwork Blocks. [test-app PR #36](https://github.com/graftwork-studio/test-app/pull/36) adds `showDragHandle` to test-app's Figma table. 97 of 100 upstream blocks are built; `preview`, `preview-02` and `preview-03` stay parked because they aren't page layouts |
