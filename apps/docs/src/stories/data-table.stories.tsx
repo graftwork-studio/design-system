@@ -72,6 +72,12 @@ async function focusHandle(canvas: ReturnType<typeof within>, title: string) {
   return handle;
 }
 
+/** Waits for React Aria to return focus to the dropped row, so the snapshot always shows the same state. */
+async function expectRowFocused(canvas: ReturnType<typeof within>, title: string) {
+  const row = (canvas.getByRole("rowheader", { name: title }) as HTMLElement).closest('[role="row"]') as HTMLElement;
+  await waitFor(() => expect(row).toHaveFocus());
+}
+
 /** While dragging, presses the down arrow until the named drop position has focus. */
 async function moveTo(name: string) {
   for (let step = 0; step < 12 && document.activeElement?.getAttribute("aria-label") !== name; step++) {
@@ -97,6 +103,7 @@ export const Reorder: Story = {
     await waitFor(() =>
       expect(order(canvas)).toEqual(["Table of contents", "Executive summary", "Cover page", "Technical approach", "Design"]),
     );
+    await expectRowFocused(canvas, "Cover page");
   },
 };
 
@@ -136,6 +143,15 @@ export const ReorderFiltered: Story = {
     await waitFor(() =>
       expect(order(canvas)).toEqual(["Cover page", "Table of contents", "Design", "Executive summary", "Technical approach"]),
     );
+    // End with focus on the filter, holding long enough that React Aria's refocus can't change the snapshot.
+    await waitFor(
+      async () => {
+        filter.focus();
+        await new Promise((resolve) => setTimeout(resolve, 250));
+        await expect(filter).toHaveFocus();
+      },
+      { timeout: 3000 },
+    );
   },
 };
 
@@ -155,5 +171,6 @@ export const ReorderWithSelection: Story = {
     await waitFor(() =>
       expect(order(canvas)).toEqual(["Table of contents", "Technical approach", "Design", "Cover page", "Executive summary"]),
     );
+    await expectRowFocused(canvas, "Cover page");
   },
 };
