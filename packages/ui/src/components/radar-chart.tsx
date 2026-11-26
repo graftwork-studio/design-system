@@ -2,7 +2,7 @@
 
 import { RadarIcon } from "lucide-react";
 import * as React from "react";
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart as RechartsRadarChart } from "recharts";
+import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart as RechartsRadarChart } from "recharts";
 import { ChartContainer, ChartTooltip } from "./chart.js";
 import {
   type ChartBaseProps,
@@ -17,7 +17,8 @@ import {
 } from "./chart-frame.js";
 
 /*
- * Figma contract: RadarChart { view: chart | table, variant: filled | lines, points: none | dots, grid: polygon | circle | none, icons }
+ * Figma contract: RadarChart { view: chart | table, variant: filled | lines, points: none | dots, grid: polygon | circle | none,
+ *   axisLabels: names | values, scale: none | values, icons }
  *
  * Each row is an axis (3 to 8); each series is a polygon (up to 4).
  *
@@ -33,10 +34,14 @@ import {
  *   and the grid is how values are read. No 3:1 grey is far enough from every series
  *   grey, so the grid is a 1px dashed line and every series a solid 2px one: they
  *   differ by shape, not only by colour
- *   and the grid is how values are read
  * - axis labels are text-secondary on the surface, and the radius leaves room for
  *   the widest one on each side, down to 320px. More than 8 axes can't be labelled
  *   legibly at 320px, so the table shows instead, with a note
+ * - axisLabels="values" adds each series' value under the axis name, in text-default,
+ *   separated by slashes in series order
+ * - scale="values" labels the grid rings along one radius, between the first two
+ *   axes, in text-secondary with a halo in the surface colour so the labels stay
+ *   legible over the polygons
  * - there's no animation
  */
 
@@ -53,6 +58,12 @@ export type RadarChartPoints = "none" | "dots";
 /** The shape of the grid, or none. */
 export type RadarChartGrid = "polygon" | "circle" | "none";
 
+/** names labels each axis with its category; values adds each series' value under it. */
+export type RadarChartAxisLabels = "names" | "values";
+
+/** values labels the grid rings with their values. */
+export type RadarChartScale = "none" | "values";
+
 export type RadarChartProps = ChartBaseProps & {
   /** Filled polygons or outlines only. Defaults to filled. */
   variant?: RadarChartVariant;
@@ -60,6 +71,10 @@ export type RadarChartProps = ChartBaseProps & {
   points?: RadarChartPoints;
   /** Grid shape. Defaults to polygon. */
   grid?: RadarChartGrid;
+  /** What the axis labels show. Defaults to names. */
+  axisLabels?: RadarChartAxisLabels;
+  /** A value scale along one radius. Defaults to none. */
+  scale?: RadarChartScale;
 };
 
 const MIN_AXES = 3;
@@ -116,6 +131,8 @@ export function RadarChart(allProps: RadarChartProps) {
     variant = "filled",
     points = "none",
     grid = "polygon",
+    axisLabels = "names",
+    scale = "none",
     ...props
   } = withFormattedCategories(allProps);
   const { data, categoryKey, series } = props;
@@ -124,8 +141,45 @@ export function RadarChart(allProps: RadarChartProps) {
   }
   const tooMany = data.length > MAX_AXES;
   const [ref, width] = useWidth<HTMLDivElement>();
-  const widest = Math.max(...data.map((row) => textWidth(String(row[categoryKey]))));
-  const radius = Math.max(40, Math.min(HEIGHT / 2 - 28, width / 2 - widest - 16));
+  const withValues = axisLabels === "values";
+  const valuesText = (row: Record<string, string | number>) =>
+    series.map((s) => (typeof row[s.key] === "number" ? formatValue(row[s.key] as number) : String(row[s.key] ?? ""))).join(" / ");
+  const widest = Math.max(
+    ...data.map((row) => Math.max(textWidth(String(row[categoryKey])), withValues ? textWidth(valuesText(row)) : 0)),
+  );
+  /* A second line of text needs more room above and below. */
+  const radius = Math.max(40, Math.min(HEIGHT / 2 - (withValues ? 44 : 28), width / 2 - widest - 16));
+  /* Midway between the first axis (at the top) and the second. */
+  const scaleAngle = 90 - 180 / data.length;
+
+  /* Level, not along the radius, and none at the centre, where the polygons meet. */
+  const scaleTick = ({ x = 0, y = 0, payload, index = 0 }: TickProps) =>
+    index === 0 ? (
+      <g key={index} />
+    ) : (
+      <text key={index} x={x} y={y} dx={4} textAnchor="start" dominantBaseline="central" className="radar-scale-tick text-xs">
+        {typeof payload?.value === "number" ? formatValue(payload.value) : String(payload?.value ?? "")}
+      </text>
+    );
+
+  type TickProps = { x?: number | string; y?: number | string; textAnchor?: string; index?: number; payload?: { value?: unknown } };
+  const valueTick = ({ x = 0, y = 0, textAnchor = "middle", index = 0, payload }: TickProps) => {
+    const row = data[index] ?? {};
+    const top = index === 0;
+    return (
+      <text
+        x={x}
+        y={Number(y) + (top ? -16 : 0)}
+        textAnchor={textAnchor as "start" | "middle" | "end"}
+        className="radar-axis-label text-xs"
+      >
+        <tspan className="fill-text-secondary">{String(payload?.value ?? "")}</tspan>
+        <tspan x={x} dy="1.25em" className="fill-text-default font-medium">
+          {valuesText(row)}
+        </tspan>
+      </text>
+    );
+  };
   const filled = variant === "filled";
 
   return (
@@ -144,7 +198,7 @@ export function RadarChart(allProps: RadarChartProps) {
         <div ref={ref} className="w-full min-w-0">
           <ChartContainer
             config={chartConfig(series)}
-            className="focus-ring-within aspect-auto h-72 w-full min-w-0 rounded-md [&_.recharts-polar-angle-axis-tick_text]:fill-text-secondary"
+            className="focus-ring-within aspect-auto h-72 w-full min-w-0 rounded-md [&_.recharts-polar-angle-axis-tick_text]:fill-text-secondary [&_.radar-scale-tick]:fill-text-secondary [&_.radar-scale-tick]:stroke-surface-raised [&_.radar-scale-tick]:stroke-3 [&_.radar-scale-tick]:[paint-order:stroke]"
           >
             <RechartsRadarChart
               data={[...data]}
@@ -156,7 +210,7 @@ export function RadarChart(allProps: RadarChartProps) {
             >
               <ChartTooltip isAnimationActive={false} cursor={false} content={tooltipContent({ formatValue })} />
               {grid === "none" ? null : <PolarGrid className="radar-grid" gridType={grid} stroke={GRID} strokeDasharray={GRID_DASH} />}
-              <PolarAngleAxis dataKey={categoryKey} tickLine={false} axisLine={false} />
+              <PolarAngleAxis dataKey={categoryKey} tickLine={false} axisLine={false} {...(withValues ? { tick: valueTick } : {})} />
               {/*
                 Three passes, as in AreaChart: the fills, then a gap in the surface colour
                 along each outline, then the outlines. Each outline touches only the gap.
@@ -204,6 +258,17 @@ export function RadarChart(allProps: RadarChartProps) {
                   isAnimationActive={false}
                 />
               ))}
+              {/* After the polygons, so the scale sits on top of them. */}
+              {scale === "values" ? (
+                <PolarRadiusAxis
+                  className="radar-scale"
+                  angle={scaleAngle}
+                  axisLine={false}
+                  tickLine={false}
+                  tickCount={5}
+                  tick={scaleTick}
+                />
+              ) : null}
             </RechartsRadarChart>
           </ChartContainer>
         </div>

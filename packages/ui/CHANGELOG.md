@@ -1,5 +1,35 @@
 # @graftwork/ui
 
+## 2.8.0
+
+### Minor Changes
+
+- [#92](https://github.com/graftwork-studio/design-system/pull/92) [`a56a38e`](https://github.com/graftwork-studio/design-system/commit/a56a38e4a7ded493764079057f6b11c80d323e7f) Thanks [@david-kenny](https://github.com/david-kenny)! - AreaChart: `fill` (flat or gradient). A gradient fades each area from 40% at the top to 5% at the bottom. The line along the top is still the mark.
+
+- [#91](https://github.com/graftwork-studio/design-system/pull/91) [`3927a36`](https://github.com/graftwork-studio/design-system/commit/3927a364d8a3d615112c3305e14239ecc4f4fc96) Thanks [@david-kenny](https://github.com/david-kenny)! - Charts: shared options.
+  
+  - `icon` on a series: a Lucide icon shown beside the series' swatch in the legend and beside its marker in the tooltip.
+  - `formatCategory` on every chart: formats category names on the axis and in labels, the legend, tooltips and the table.
+  - `tooltipIndicator` (dot, line or none) and `tooltipLabel` (category or none) on BarChart, LineChart and AreaChart.
+  - `tooltipTotal` on a stacked BarChart: adds a total row to the tooltip.
+  - Fix: tooltips now format values with `formatValue`, as the table and labels already did. With the default formatter, nothing changes.
+
+- [#93](https://github.com/graftwork-studio/design-system/pull/93) [`6474868`](https://github.com/graftwork-studio/design-system/commit/647486820a98f4c7b72bf1deccb0f0e05ea56b18) Thanks [@david-kenny](https://github.com/david-kenny)! - LineChart: `colourBy` (series or category) and two new `points` options.
+  
+  - `colourBy="category"` gives each point its category's colour, with a ring in the surface colour and a legend by category. It takes one series of up to four points, with dots, values or names.
+  - `points="names"` labels each point with its category name.
+  - `points="icons"` draws the series icon at each point. Every series needs an `icon`.
+
+- [#94](https://github.com/graftwork-studio/design-system/pull/94) [`fc5bd1c`](https://github.com/graftwork-studio/design-system/commit/fc5bd1cc6d8c0c7f6e92f6b2f5492d18273eaf44) Thanks [@david-kenny](https://github.com/david-kenny)! - RadarChart: `axisLabels` (names or values) and `scale` (none or values).
+  
+  - `axisLabels="values"` adds each series' value under every axis name.
+  - `scale="values"` labels the grid rings with their values along one radius.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graftwork/tokens@2.8.0
+
 ## 2.7.0
 
 ### Minor Changes
