@@ -69,6 +69,7 @@ pnpm test                                # all unit, showcase and story tests
 - Build on the internal `ChartFrame` in `packages/ui/src/components/chart-frame.tsx`. It gives every chart the heading, the required written summary, the "View as table" toggle, the legend and the table view, so they behave the same across charts. Don't export it.
 - Turn on Recharts' `accessibilityLayer`, so the chart is focusable and its tooltip moves with the arrow keys. Name it with the title and describe it with the summary.
 - Use the `chart.series-*` tokens through `seriesColour()`, never raw colours. The table view is the alternative to colour (see the Charts rules in `KICKOFF.md`), so series need no patterns, but their colours must stay distinguishable from each other in every theme, including under protanopia, deuteranopia and tritanopia. The build checks this for you: it fails if any two series are less than 10 apart in CIEDE2000 (see [Working on tokens](#working-on-tokens)).
+- A grid that values are read from, where there's no value axis (as on RadarChart), uses `chart.axis` at 3:1 and is dashed. No 3:1 grey is far enough from every series grey to tell them apart by colour, so the dash does it.
 - Every mark meets 3:1 against everything it touches. Where marks touch each other, as stacked areas do, separate them with a gap in the surface colour, as AreaChart does.
 - Turn off animation (`isAnimationActive={false}`), on the tooltip too.
 

@@ -28,6 +28,9 @@ import {
  *   theme. A 2px gap in the surface colour runs along each side of it, so it never
  *   touches another polygon's fill. Fills are decorative.
  * - the grid lines meet 3:1 against the surface, because a radar has no value axis
+ *   and the grid is how values are read. No 3:1 grey is far enough from every series
+ *   grey, so the grid is a 1px dashed line and every series a solid 2px one: they
+ *   differ by shape, not only by colour
  *   and the grid is how values are read
  * - axis labels are text-secondary on the surface, and the radius leaves room for
  *   the widest one on each side, down to 320px. More than 8 axes can't be labelled
@@ -64,6 +67,8 @@ const SURFACE = "var(--gw-color-surface-raised)";
 const GAP_WIDTH = 6;
 /** chart.axis: 3:1 against the surface, because the grid is how a radar is read. */
 const GRID = "var(--gw-color-chart-axis)";
+/** Dashed, so the grid never reads as a series, whose lines are solid. */
+const GRID_DASH = "3 3";
 const HEIGHT = 288;
 
 /** Rough width of a 12px label. */
@@ -147,7 +152,7 @@ export function RadarChart({
               margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
             >
               <ChartTooltip isAnimationActive={false} cursor={false} content={<ChartTooltipContent />} />
-              {grid === "none" ? null : <PolarGrid className="radar-grid" gridType={grid} stroke={GRID} />}
+              {grid === "none" ? null : <PolarGrid className="radar-grid" gridType={grid} stroke={GRID} strokeDasharray={GRID_DASH} />}
               <PolarAngleAxis dataKey={categoryKey} tickLine={false} axisLine={false} />
               {/*
                 Three passes, as in AreaChart: the fills, then a gap in the surface colour
