@@ -6,6 +6,7 @@
   "internalChecksFilter": "strict",
   "platformAutomerge": true,
   "automergeType": "pr",
+  "gitIgnoredAuthors": ["41898282+github-actions[bot]@users.noreply.github.com"],
   "packageRules": [
     {
       "description": "Minor and patch updates merge themselves once every required check passes.",

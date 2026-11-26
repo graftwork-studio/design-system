@@ -99,6 +99,8 @@ Renovate only sees repositories it has been given. To add one, go to the organis
 
 Apps use the shared presets in [`renovate/`](renovate) instead.
 
+On an app's design-system pull request, a workflow commits refreshed visual snapshots as `github-actions[bot]`. The `app` preset lists that author in `gitIgnoredAuthors`, so Renovate still treats the branch as its own: it keeps rebasing it when `main` moves and updates it to newer releases, and the pull request can merge itself. Without that, Renovate counts the commit as a manual edit and leaves the pull request behind `main` for good. A rebase drops the snapshot commit, and the workflow adds it again.
+
 ## Releasing
 
 Releases use [Changesets](https://changesets.dev). Both packages share one version.
