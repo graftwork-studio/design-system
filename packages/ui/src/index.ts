@@ -121,6 +121,7 @@ export {
 } from "./components/pie-chart.js";
 export { Popover, PopoverContent, type PopoverContentProps, PopoverTitle } from "./components/popover.js";
 export { Progress, type ProgressProps } from "./components/progress.js";
+export { QrCode, type QrCodeProps, type QrCodeSize } from "./components/qr-code.js";
 export {
   RadarChart,
   type RadarChartAxisLabels,

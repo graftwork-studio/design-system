@@ -1,5 +1,19 @@
 # @graftwork/ui
 
+## 2.10.0
+
+### Minor Changes
+
+- [#101](https://github.com/graftwork-studio/design-system/pull/101) [`d94edf1`](https://github.com/graftwork-studio/design-system/commit/d94edf12dcf7276bf916b07a80889bdca9a4cec8) Thanks [@david-kenny](https://github.com/david-kenny)! - Add QrCode: a QR code for a link or short text, named by `label`, in three sizes. It always draws dark modules on a light tile, in every theme, so phone scanners can read it.
+
+### Patch Changes
+
+- [#62](https://github.com/graftwork-studio/design-system/pull/62) [`a2c8267`](https://github.com/graftwork-studio/design-system/commit/a2c8267527b73dce36d02164f4394b3824fd4389) Thanks [@renovate](https://github.com/apps/renovate)! - Update lucide-react to 1.79.0.
+
+- [#96](https://github.com/graftwork-studio/design-system/pull/96) [`ffadff2`](https://github.com/graftwork-studio/design-system/commit/ffadff2521934a0b8e16bf1c0304085811552e35) Thanks [@renovate](https://github.com/apps/renovate)! - Update recharts to 3.11.1.
+- Updated dependencies []:
+  - @graftwork/tokens@2.10.0
+
 ## 2.9.0
 
 ### Minor Changes

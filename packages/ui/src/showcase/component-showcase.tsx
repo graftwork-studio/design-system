@@ -82,6 +82,7 @@ import {
   PopoverContent,
   PopoverTitle,
   Progress,
+  QrCode,
   Radio,
   RadioGroup,
   Select,
@@ -1375,6 +1376,17 @@ export const showcaseEntries: readonly ShowcaseEntry[] = [
       <div className="flex flex-col gap-4">
         <Progress label="Uploading file" value={60} />
         <Progress label="Preparing export" isIndeterminate />
+      </div>
+    ),
+  },
+  {
+    name: "QrCode",
+    render: () => (
+      <div className="flex flex-col items-start gap-2">
+        <QrCode value="https://example.com/pair/4829" label="QR code to connect your phone" />
+        <p className="text-sm text-text-secondary">
+          Or enter code <span className="font-mono text-text-default">4829</span> in the app.
+        </p>
       </div>
     ),
   },
