@@ -28,6 +28,13 @@
       "labels": [
         "major"
       ]
+    },
+    {
+      "description": "Stay on TypeScript 6 until typescript-eslint supports TypeScript 7 (expected with 7.1; see typescript-eslint/typescript-eslint#10940). Then remove this rule.",
+      "matchPackageNames": [
+        "typescript"
+      ],
+      "allowedVersions": "<7"
     }
   ]
 }
